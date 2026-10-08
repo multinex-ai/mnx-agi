@@ -1,0 +1,37 @@
+{
+  "apiVersion": "mnx-agi/v0.1",
+  "kind": "Realm",
+  "metadata": {
+    "id": "example-local",
+    "displayName": "Example local realm"
+  },
+  "spec": {
+    "profile": "portable",
+    "policyPath": ".realm/policy.md",
+    "memory": {
+      "adapter": "local",
+      "mode": "local",
+      "onUnavailable": "local-only"
+    },
+    "coordination": {
+      "coordinator": "single-writer",
+      "maxWorkers": 1
+    },
+    "federation": {
+      "mode": "isolated",
+      "peers": []
+    },
+    "decisionRouting": {
+      "enabled": false
+    },
+    "skills": [
+      "mnx-realm-context",
+      "mnx-memq-checkpoint"
+    ],
+    "budgets": {
+      "contextTokens": 12000,
+      "maxToolCalls": 80,
+      "maxDelegationDepth": 0
+    }
+  }
+}

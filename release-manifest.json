@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "files": [
+    {
+      "path": ".github/workflows/validate.yml",
+      "sha256": "97605b18638406019fa58de164f66ceab4a11ca274e8c420dfcf9769b2c53ca1"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "dc28b5106ea16ccbbea6a1a793c91615dace13af3f695f2adfe2814c931f776c"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "f4078a5d71c29131b5cfdd0a342a108abebcbb134984a7aac7635df5634d617c"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ae7ff1f1ffc5a1668accbaa2861d5bd01ad2959445e3703d00be5bd1f38c9504"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "17e7c442a584eb8421701f033d8bf3b0d828b90eaebed4b0ff00d35fc252b7bc"
+    },
+    {
+      "path": "bin/mnx-agi.mjs",
+      "sha256": "d0348ed3d35086ae916821bd4cf7aa8cc1bd9ea0986911034b28c49a0ac8815a"
+    },
+    {
+      "path": "constitution/CORE.md",
+      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+    },
+    {
+      "path": "docs/ACCEPTANCE.md",
+      "sha256": "e905b8e6bd6bcd72432c59274e3c0ea87815b2ac81d4cddb102e7aa30e0ed561"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "sha256": "681b042e2a195e72ba84c2cf883eb6fc0b788ae3148244c7667ff7174fe90be0"
+    },
+    {
+      "path": "docs/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "docs/RELEASE.md",
+      "sha256": "5bc5ed4fd2dac9a0ea67367d1d62d2256ee85b2d51d5e61b22f2626450d08cb9"
+    },
+    {
+      "path": "docs/RESEARCH.md",
+      "sha256": "25cee291ea32086735086bc9aac15b26997eaff137180444dbcc79ba7c3d205d"
+    },
+    {
+      "path": "docs/SKILLS.md",
+      "sha256": "5849ed5eaee7cd85bdd9d48dae70d578d0eda588549541afd0c3e50a92070f4f"
+    },
+    {
+      "path": "examples/federated.realm.json",
+      "sha256": "6164be0ce83799ecc20de281f9b889e30b1e37d092b3e5dae1b8668859ae9286"
+    },
+    {
+      "path": "examples/local.realm.json",
+      "sha256": "c4edd8ab9c6a3386b4c32d58ace3beee762812c901a33df438303f6efb63a9c0"
+    },
+    {
+      "path": "examples/team.realm.json",
+      "sha256": "eec4071d372ee1346dce96cd1c35923417f9193f77fc617644230a84be09063a"
+    },
+    {
+      "path": "package.json",
+      "sha256": "6ea94787f5d62c9f990657b92efeca9253d1cbc5de307d730bd4bfe812fee47b"
+    },
+    {
+      "path": "profiles/multinex.md",
+      "sha256": "e623055c6e42e363a0671cca93ad2c7a8be7989780e9ed1ab37bdd8f91d3ac86"
+    },
+    {
+      "path": "profiles/portable.md",
+      "sha256": "829fe6c7a478ca4cd7e89914060d82d6ab647db7d3d7e2fde5f64d19d9917d97"
+    },
+    {
+      "path": "schemas/realm.schema.json",
+      "sha256": "8d3019e47f1d5d26b11613a38a6882cff3b76daab34c6d668bed1921ab279d66"
+    },
+    {
+      "path": "skills/mnx-decision-routing/SKILL.md",
+      "sha256": "657fca132686af1ccf14dc0fa3df497b91d1c907869a76625b6c3c2e02537965"
+    },
+    {
+      "path": "skills/mnx-decision-routing/references/CORE.md",
+      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+    },
+    {
+      "path": "skills/mnx-decision-routing/references/RESEARCH.md",
+      "sha256": "25cee291ea32086735086bc9aac15b26997eaff137180444dbcc79ba7c3d205d"
+    },
+    {
+      "path": "skills/mnx-harness-evaluate/SKILL.md",
+      "sha256": "d1c36d1db7c663a37a2e228fde0ca7176d2c56663c9c178847ac7325f5423be2"
+    },
+    {
+      "path": "skills/mnx-harness-evaluate/references/ACCEPTANCE.md",
+      "sha256": "e905b8e6bd6bcd72432c59274e3c0ea87815b2ac81d4cddb102e7aa30e0ed561"
+    },
+    {
+      "path": "skills/mnx-memq-checkpoint/SKILL.md",
+      "sha256": "13edbb8617d51d7266c0b62cc0dc44cd47ac3b015344dff897ddf41f89681c68"
+    },
+    {
+      "path": "skills/mnx-memq-checkpoint/references/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-memq-coordinate/SKILL.md",
+      "sha256": "fb47b45464ecedadee20b3492d350ac4733397cd6671210fcd4da53ea43fbbd7"
+    },
+    {
+      "path": "skills/mnx-memq-coordinate/references/ARCHITECTURE.md",
+      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+    },
+    {
+      "path": "skills/mnx-memq-coordinate/references/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-memq-learn/SKILL.md",
+      "sha256": "a1857ca78d5ac5791bd311d6a12b009765853f781d064a1fbd3b1ec85472679e"
+    },
+    {
+      "path": "skills/mnx-memq-learn/references/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-memq-recall/SKILL.md",
+      "sha256": "670221f3f2e7f5d60031717ac417005c63e5cb9a1768a18a3a52248ff47c8fbb"
+    },
+    {
+      "path": "skills/mnx-memq-recall/references/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-realm-context/SKILL.md",
+      "sha256": "abc6f0025ab1820e372e6860615d0f459f40a0d7a4a2513d94289f4a191e0958"
+    },
+    {
+      "path": "skills/mnx-realm-context/references/ARCHITECTURE.md",
+      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+    },
+    {
+      "path": "skills/mnx-realm-context/references/CORE.md",
+      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+    },
+    {
+      "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
+      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-realm-federation/SKILL.md",
+      "sha256": "9d74c82b8ac7d41053bf0525a8a9b860ddc04c46d31161424731531e8019b078"
+    },
+    {
+      "path": "skills/mnx-realm-federation/references/ARCHITECTURE.md",
+      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+    },
+    {
+      "path": "skills/mnx-realm-federation/references/CORE.md",
+      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+    },
+    {
+      "path": "src/bundle.mjs",
+      "sha256": "88ea64f155cbe5144cc64b233bca3a082b1bbf5fb2ee3e26da2801e751317b33"
+    },
+    {
+      "path": "src/files.mjs",
+      "sha256": "829448e50553bab85d0863f93536b974deb485fc981019412bb03b220f29093a"
+    },
+    {
+      "path": "src/install.mjs",
+      "sha256": "160a551f06741e7305e8abac80fc1221c2d61e7b626565a48878b3a00f8acfc6"
+    },
+    {
+      "path": "test/install.test.mjs",
+      "sha256": "71b494bc15e88d28c89959e28d3efd581198734222ca8b7a433d099383c8dc03"
+    },
+    {
+      "path": "test/realm.test.mjs",
+      "sha256": "3c96c6c2ca97aee6c80f2a281fec7cfdae751687e0d7abacabf9e91be74f482b"
+    },
+    {
+      "path": "tools/build-manifest.mjs",
+      "sha256": "2afd83ec31d47d9a51eb4ea25c167d72acb019796fa99fa221917f664faa07bb"
+    },
+    {
+      "path": "tools/build-skills.mjs",
+      "sha256": "8a6db9e61ad1587b69f45c63b44e913dc8487e216e4cf5ee8dbfb51adae5034e"
+    },
+    {
+      "path": "tools/check-release.mjs",
+      "sha256": "20251ab2f946e08443122b43871f6d82d3586a6cbf5479d51f3191df52799449"
+    },
+    {
+      "path": "tools/validate-realm.mjs",
+      "sha256": "e0ac9cbf990c12aa7d007120a98927b715b2390c97b327c772c3686d4eb9a0bd"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@multinex-ai/mnx-agi",
+  "version": "1.0.0",
+  "description": "Portable AI operating constitution, realm validation and MemQ workflow skills with reversible installation.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "bin": { "mnx-agi": "bin/mnx-agi.mjs" },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "manifest": "node tools/build-manifest.mjs",
+    "check": "node tools/check-release.mjs && node bin/mnx-agi.mjs verify-package",
+    "prepack": "npm test && npm run check"
+  },
+  "repository": { "type": "git", "url": "https://github.com/multinex-ai/mnx-agi.git" }
+}

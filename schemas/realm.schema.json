@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MNX-AGI realm configuration",
+  "description": "Configuration only. Grant references and expected namespaces are not verified authorization. Full semantic checks also require the offline validator; runtime checks require a deployed adapter.",
+  "type": "object",
+  "properties": {
+    "apiVersion": {
+      "const": "mnx-agi/v0.1",
+      "type": "string"
+    },
+    "kind": {
+      "const": "Realm",
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "parentId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-z][a-z0-9-]*$"
+        }
+      },
+      "required": [
+        "id",
+        "displayName"
+      ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "type": "string",
+          "enum": [
+            "portable",
+            "multinex"
+          ]
+        },
+        "policyPath": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "pattern": "^(?:[A-Za-z0-9_-]+|\\.[A-Za-z0-9_-]+)(?:/[A-Za-z0-9_.-]+)*$"
+        },
+        "memory": {
+          "type": "object",
+          "properties": {
+            "adapter": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[a-z][a-z0-9-]*$"
+            },
+            "mode": {
+              "type": "string",
+              "enum": [
+                "local",
+                "preferred",
+                "required"
+              ]
+            },
+            "expectedNamespace": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]*$"
+            },
+            "onUnavailable": {
+              "type": "string",
+              "enum": [
+                "local-only",
+                "pause-dependent"
+              ]
+            },
+            "identityRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]*$",
+              "description": "Reference to private expected service/principal binding; the adapter must resolve and verify it before access."
+            }
+          },
+          "required": [
+            "adapter",
+            "mode",
+            "onUnavailable"
+          ],
+          "additionalProperties": false
+        },
+        "coordination": {
+          "type": "object",
+          "properties": {
+            "coordinator": {
+              "type": "string",
+              "enum": [
+                "single-writer",
+                "external-verified"
+              ]
+            },
+            "maxWorkers": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            }
+          },
+          "required": [
+            "coordinator",
+            "maxWorkers"
+          ],
+          "additionalProperties": false
+        },
+        "federation": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "isolated",
+                "explicit-grants"
+              ]
+            },
+            "peers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "realmId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64,
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "grantRef": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]*$"
+                  },
+                  "operations": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "query",
+                        "export",
+                        "handoff"
+                      ]
+                    },
+                    "minItems": 1,
+                    "maxItems": 64,
+                    "uniqueItems": true
+                  },
+                  "dataClasses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "public",
+                        "approved-shared"
+                      ]
+                    },
+                    "minItems": 1,
+                    "maxItems": 64,
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "realmId",
+                  "grantRef",
+                  "operations",
+                  "dataClasses"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0,
+              "maxItems": 64,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "mode",
+            "peers"
+          ],
+          "additionalProperties": false
+        },
+        "decisionRouting": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "providerRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64,
+              "pattern": "^[a-z][a-z0-9-]*$"
+            },
+            "calibrationRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]*$"
+            }
+          },
+          "required": [
+            "enabled"
+          ],
+          "additionalProperties": false
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "minItems": 0,
+          "maxItems": 64,
+          "uniqueItems": true
+        },
+        "budgets": {
+          "type": "object",
+          "properties": {
+            "contextTokens": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 1000000
+            },
+            "maxToolCalls": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000
+            },
+            "maxDelegationDepth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8
+            }
+          },
+          "required": [
+            "contextTokens",
+            "maxToolCalls",
+            "maxDelegationDepth"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "profile",
+        "policyPath",
+        "memory",
+        "coordination",
+        "federation",
+        "decisionRouting",
+        "skills",
+        "budgets"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "additionalProperties": false
+}
