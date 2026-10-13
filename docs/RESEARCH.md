@@ -28,3 +28,7 @@ Do not copy published benchmark multipliers or example thresholds into global po
 ## Evidence boundary
 
 The linked sources inform design choices. Runtime capabilities must be checked against the tools and authorization of each deployment; a documentation claim is not evidence of an active connection.
+
+## October 12 revision
+
+[Anthropic context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) motivates compact working sets, just-in-time retrieval and durable notes. [LangChain memory concepts](https://github.com/langchain-ai/docs/blob/main/src/oss/concepts/memory.mdx) distinguish facts, experiences and procedures. MNX-AGI applies these ideas through conditional memory workflows and explicit performance evaluation; no vendor benchmark is a measured gain for this package.

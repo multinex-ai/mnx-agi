@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { planMemory } from '../src/memory-plan.mjs';
+const request = () => ({task:'debug',scope:'matched',capabilities:['identity','hydrate','retrieve','episode','associate','checkpoint','write','reflect','consolidate','reinforce','predict','sharedSearch'],signals:{materialGap:true},maxCalls:6});
+const names = value => planMemory(value).steps.map(s => s.capability);
+test('simple tasks do not ritualistically use memory',()=>{const v=request();v.task='simple';assert.deepEqual(names(v),[]);});
+test('unknown identity plans only the handshake, not protected access',()=>{const v=request();v.scope='unknown';assert.deepEqual(names(v),['identity']);});
+test('mismatched identity never plans fallback reads or writes',()=>{const v=request();v.scope='mismatch';v.signals={checkpointDue:true,verifiedOutcome:true,novelLesson:true};assert.deepEqual(names(v),[]);});
+test('missing tools do not produce invented operations',()=>{const v=request();v.capabilities=[];const p=planMemory(v);assert.equal(p.steps.length,0);assert.ok(p.deferred.every(d=>d.reason==='unavailable'));});
+test('checkpoint is prioritized under context pressure and a tight budget',()=>{const v=request();v.signals.contextPressure=true;v.maxCalls=1;assert.deepEqual(names(v),['checkpoint']);});
+test('zero budget makes no calls even for identity',()=>{const v=request();v.scope='unknown';v.maxCalls=0;assert.deepEqual(names(v),[]);});
+test('retrieval does not automatically replay episodes or expand graphs',()=>{assert.deepEqual(names(request()),['hydrate','retrieve']);});
+test('chronology and unresolved failure enable conditional expansion',()=>{const v=request();v.signals={chronology:true,blocked:true};assert.deepEqual(names(v),['retrieve','episode','associate']);assert.match(planMemory(v).steps[2].condition,/did-not-resolve/);});
+test('unverified outcomes never trigger learning writes',()=>{const v=request();v.signals={novelLesson:true};assert.ok(!names(v).includes('write'));});
+test('learning requires verified novelty and independent reinforcement evidence',()=>{const v=request();v.task='build';v.signals={verifiedOutcome:true,novelLesson:true};assert.deepEqual(names(v),['write','reflect']);v.signals.independentReuse=true;assert.deepEqual(names(v),['write','reflect','reinforce']);assert.match(planMemory(v).steps[2].condition,/independent-source/);});
+test('shared recall requires a declared sharing purpose and material gap',()=>{const v=request();assert.ok(!names(v).includes('sharedSearch'));v.signals.sharedKnowledgeAllowed=true;assert.ok(names(v).includes('sharedSearch'));});
+test('planning never asserts runtime authorization or service verification',()=>{const p=planMemory(request());assert.equal(p.runtimeVerified,false);assert.equal(p.advisoryOnly,true);assert.equal(p.protectedAccess,'not-authorized-by-plan');assert.ok(p.steps.every(s=>s.executionGate));});
+test('malformed, unknown, duplicate and secret-like fields are rejected',()=>{for(const mutate of [v=>v.maxCalls=25,v=>v.scope='verified-by-name',v=>v.capabilities.push('identity'),v=>v.signals.materialGap='yes',v=>v.apiKey='synthetic',v=>v.signals.extra=true]){const v=request();mutate(v);assert.throws(()=>planMemory(v),/Invalid memory-plan/);}});

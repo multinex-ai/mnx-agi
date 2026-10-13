@@ -16,3 +16,5 @@ Choose the supported write or learning tool that fits the purpose. Predictions r
 Evaluate whether a proposed lesson improves representative future decisions and fails appropriately on counterexamples. Keep generalizable content separate from private specifics. Prepare shared candidates only within the task's disclosure authorization; a commons candidate is not a published commons record.
 
 Return the useful lesson, evidence, applicability limits and actual persistence state. If the tool is absent, retain the candidate locally without pretending that learning was written remotely.
+
+Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.

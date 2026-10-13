@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+- Adds an offline, budgeted memory-workflow planner with fail-closed planning on unknown or mismatched scope and explicit execution gates.
+- Adds task-specific retrieval, stopping, checkpoint, contradiction-handling and evidence-based learning workflows.
+- Expands four skills with self-contained adaptive memory references and adds planner regression tests.
+- Defines behavioral comparison criteria without claiming live MemQ access or measured intelligence gains.
+
 ## 1.0.0
 
 First public MNX-AGI operating baseline.

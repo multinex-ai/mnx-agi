@@ -1,0 +1,7 @@
+{
+  "task": "debug",
+  "scope": "unknown",
+  "capabilities": ["identity", "hydrate", "retrieve", "checkpoint"],
+  "signals": {"materialGap": true, "checkpointDue": true},
+  "maxCalls": 4
+}

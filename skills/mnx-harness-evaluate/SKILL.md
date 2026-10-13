@@ -16,3 +16,5 @@ Measure task correctness, false completion, unauthorized actions, realm leakage,
 Distinguish structural checks, offline contract tests, live adapter conformance and behavioral model evaluations. A well-formed SKILL.md does not prove good agent behavior, and schema-valid realm configuration does not prove access enforcement.
 
 Compare the added complexity with a simpler workflow. Report evidence, failures, uncertainty and the precise adoption boundary. Fix demonstrated defects and rerun affected cases; do not keep adding universal rules from one anecdote.
+
+Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.

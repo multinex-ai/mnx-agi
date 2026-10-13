@@ -33,6 +33,10 @@ For a project, run `node bin/mnx-agi.mjs init --dir /path/to/project`. This inst
 
 This package installs instructions and local validation. It does **not** install a security sandbox, authenticate MemQ, implement distributed locks, provision a federation gateway, or prove that an agent follows policy. `runtimeVerified: false` is intentional. Host permissions and service-side controls remain authoritative. Cross-client account isolation must be configured privately by the adopter.
 
+## Adaptive memory planning
+
+Use `node bin/mnx-agi.mjs memory-plan examples/memory-plan.json` to produce a bounded candidate workflow from available capability declarations and task signals. Read [adaptive memory workflows](docs/MEMORY_WORKFLOWS.md) for retrieval stopping rules, evidence quality and evaluation. The planner is offline and advisory; it does not authenticate or call MemQ.
+
 ## Develop and verify
 
 ```sh

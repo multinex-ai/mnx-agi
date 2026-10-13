@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "f4078a5d71c29131b5cfdd0a342a108abebcbb134984a7aac7635df5634d617c"
+      "sha256": "f18748e10da2e357bfebd0c348330c3e8c8f23e09e49282a4c0333839bc17013"
     },
     {
       "path": "LICENSE",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "ae7ff1f1ffc5a1668accbaa2861d5bd01ad2959445e3703d00be5bd1f38c9504"
+      "sha256": "ec1d2091d28088503029464ead740dd13a7247f11ce27196174e9042b7368902"
     },
     {
       "path": "SECURITY.md",
@@ -28,11 +28,11 @@
     },
     {
       "path": "bin/mnx-agi.mjs",
-      "sha256": "d0348ed3d35086ae916821bd4cf7aa8cc1bd9ea0986911034b28c49a0ac8815a"
+      "sha256": "4b56ccb38dab1d836ba022759a06612efac14fb76f698237670ae41502f1f01f"
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
     },
     {
       "path": "docs/ACCEPTANCE.md",
@@ -47,6 +47,10 @@
       "sha256": "681b042e2a195e72ba84c2cf883eb6fc0b788ae3148244c7667ff7174fe90be0"
     },
     {
+      "path": "docs/MEMORY_WORKFLOWS.md",
+      "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
+    },
+    {
       "path": "docs/MEMQ_CONTRACT.md",
       "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
     },
@@ -56,7 +60,7 @@
     },
     {
       "path": "docs/RESEARCH.md",
-      "sha256": "25cee291ea32086735086bc9aac15b26997eaff137180444dbcc79ba7c3d205d"
+      "sha256": "2837a6716e32d6970b72a7da8f542e7cec4e2fb42ec82b20a0f51485e4e2b027"
     },
     {
       "path": "docs/SKILLS.md",
@@ -71,12 +75,16 @@
       "sha256": "c4edd8ab9c6a3386b4c32d58ace3beee762812c901a33df438303f6efb63a9c0"
     },
     {
+      "path": "examples/memory-plan.json",
+      "sha256": "c3548799d65c8362067c6e30e76c07bd9b5be44013d6a2cfe6fceda03227d560"
+    },
+    {
       "path": "examples/team.realm.json",
       "sha256": "eec4071d372ee1346dce96cd1c35923417f9193f77fc617644230a84be09063a"
     },
     {
       "path": "package.json",
-      "sha256": "6ea94787f5d62c9f990657b92efeca9253d1cbc5de307d730bd4bfe812fee47b"
+      "sha256": "5677a36f4a57fb6a4e72064d8fccc78f6cc6b30eab4d845aa624252b0a7730c5"
     },
     {
       "path": "profiles/multinex.md",
@@ -96,23 +104,31 @@
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
-      "sha256": "25cee291ea32086735086bc9aac15b26997eaff137180444dbcc79ba7c3d205d"
+      "sha256": "2837a6716e32d6970b72a7da8f542e7cec4e2fb42ec82b20a0f51485e4e2b027"
     },
     {
       "path": "skills/mnx-harness-evaluate/SKILL.md",
-      "sha256": "d1c36d1db7c663a37a2e228fde0ca7176d2c56663c9c178847ac7325f5423be2"
+      "sha256": "4022f68a41fd22ab5483b26c3e461e62df3f9a6138536ef0dffe9dab45853e1d"
     },
     {
       "path": "skills/mnx-harness-evaluate/references/ACCEPTANCE.md",
       "sha256": "e905b8e6bd6bcd72432c59274e3c0ea87815b2ac81d4cddb102e7aa30e0ed561"
     },
     {
+      "path": "skills/mnx-harness-evaluate/references/MEMORY_WORKFLOWS.md",
+      "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
+    },
+    {
       "path": "skills/mnx-memq-checkpoint/SKILL.md",
-      "sha256": "13edbb8617d51d7266c0b62cc0dc44cd47ac3b015344dff897ddf41f89681c68"
+      "sha256": "f0c4fe6bdc5fa6389d47891a8d5ba6510cc774120db657827d964bc592239f3a"
+    },
+    {
+      "path": "skills/mnx-memq-checkpoint/references/MEMORY_WORKFLOWS.md",
+      "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/MEMQ_CONTRACT.md",
@@ -132,7 +148,11 @@
     },
     {
       "path": "skills/mnx-memq-learn/SKILL.md",
-      "sha256": "a1857ca78d5ac5791bd311d6a12b009765853f781d064a1fbd3b1ec85472679e"
+      "sha256": "a18bf113755fa5b2b37df242b59f796a7ddc531c091a50925de131690dd9168f"
+    },
+    {
+      "path": "skills/mnx-memq-learn/references/MEMORY_WORKFLOWS.md",
+      "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
     },
     {
       "path": "skills/mnx-memq-learn/references/MEMQ_CONTRACT.md",
@@ -140,7 +160,11 @@
     },
     {
       "path": "skills/mnx-memq-recall/SKILL.md",
-      "sha256": "670221f3f2e7f5d60031717ac417005c63e5cb9a1768a18a3a52248ff47c8fbb"
+      "sha256": "d6993c7e7ec27bff452d1982ac9b371af942a98997002c80b9a92467b3bb0c2a"
+    },
+    {
+      "path": "skills/mnx-memq-recall/references/MEMORY_WORKFLOWS.md",
+      "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
     },
     {
       "path": "skills/mnx-memq-recall/references/MEMQ_CONTRACT.md",
@@ -156,7 +180,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -172,7 +196,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "6579e8716eb1e3593bd3c121d35f1bc3f61305097b4e4174a96e6780260aab1d"
+      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
     },
     {
       "path": "src/bundle.mjs",
@@ -187,8 +211,16 @@
       "sha256": "160a551f06741e7305e8abac80fc1221c2d61e7b626565a48878b3a00f8acfc6"
     },
     {
+      "path": "src/memory-plan.mjs",
+      "sha256": "727c80c680e544f816c4ac9715189654c4a8fe2c0ba20cf78fc5fbb20ed05f26"
+    },
+    {
       "path": "test/install.test.mjs",
       "sha256": "71b494bc15e88d28c89959e28d3efd581198734222ca8b7a433d099383c8dc03"
+    },
+    {
+      "path": "test/memory-plan.test.mjs",
+      "sha256": "4bfe5a5b4b98ad49b214b3e72fd4c9af75882bd7033cacafdb0ae2f2d20331d4"
     },
     {
       "path": "test/realm.test.mjs",
@@ -200,11 +232,11 @@
     },
     {
       "path": "tools/build-skills.mjs",
-      "sha256": "8a6db9e61ad1587b69f45c63b44e913dc8487e216e4cf5ee8dbfb51adae5034e"
+      "sha256": "8b901c94f39768a92ba28292f6ce01b910a4bb409d4b86e51ddaa200940837dc"
     },
     {
       "path": "tools/check-release.mjs",
-      "sha256": "20251ab2f946e08443122b43871f6d82d3586a6cbf5479d51f3191df52799449"
+      "sha256": "981ef935db0f48ddf82382f363a66c3977801685dd578d11e7461d512881d6d8"
     },
     {
       "path": "tools/validate-realm.mjs",

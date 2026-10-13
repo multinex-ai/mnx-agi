@@ -16,3 +16,5 @@ Use only supported fields and known returned IDs. Inspect persistence receipts. 
 If remote persistence is unavailable, use an approved realm-local checkpoint and identify it as local only. Before later flushing an outbox, recheck identity, destination, current authorization, duplicates and privacy. An old queued write is not permanently authorized.
 
 For resume, load the actual checkpoint using the current schema and IDs; reread current artifacts and ownership state. Reconcile actions that may already have happened before replay. A checkpoint records work; it does not grant publication, deployment or federation permission.
+
+Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
