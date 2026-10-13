@@ -16,3 +16,5 @@ Same-namespace collaboration requires both participants to verify the intended s
 Checkpoint meaningful progress and retain evidence references. A handoff includes done/next/blocked state, artifact revisions, scope and the ownership-transfer condition. Recording a handoff is not proof that a recipient was notified, accepted, or completed work. Deliver messages only through an authorized communication channel.
 
 Before merging results, recheck artifact revision, permission, independent verification and acceptance criteria. Report partial outcomes honestly; one worker completing does not complete the parent objective. Do not run mutating lifecycle sweeps or broad synchronization merely for housekeeping.
+
+Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.

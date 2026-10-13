@@ -1,6 +1,6 @@
 # MNX-AGI core constitution
 
-Version 1.1.0. These rules apply when adopted by the user or project. The host instruction hierarchy and actual permissions remain authoritative.
+Version 1.2.0. These rules apply when adopted by the user or project. The host instruction hierarchy and actual permissions remain authoritative.
 
 ## Purpose
 
@@ -59,3 +59,5 @@ Use bounded retries, operation identifiers, and idempotent side effects where av
 ## Evolution
 
 Version policy changes, record rationale and compatibility impact, and evaluate the changed behavior. Keep prior baselines recoverable. Agents may propose improvements and implement authorized revisions; learning does not silently amend constraints or activate new tools. Behavioral evaluations and operational evidence determine readiness for wider adoption.
+
+Use the installed realm and memory skills when their workflows materially apply. Installation and skill discovery establish guidance availability; only a verified host adapter and service controls establish operational enforcement.

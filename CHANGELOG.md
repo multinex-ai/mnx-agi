@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0
+
+- Adds an opt-in provider-neutral operation boundary with per-call identity/policy checks, conditional-update requirements, bounded federation grants and payload-free receipts. Host wiring and backend enforcement remain external.
+- Adds bounded exact-read/search visibility polling without mutation retries.
+- Adds paired evaluation scoring with safety gates, trace requirements and explicit non-approval of adoption.
+- Tests synthetic scope failures, stale authorization, ambiguous outcomes, federation expiry/revocation/replay, audit failures and retrieval delay.
+- Clarifies Codex versus ChatGPT installation scope, learning-exclusion verification and embedding provenance.
+
+
 ## 1.1.0
 
 - Adds an offline, budgeted memory-workflow planner with fail-closed planning on unknown or mismatched scope and explicit execution gates.

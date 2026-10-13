@@ -7,20 +7,21 @@ import { loadBundle } from '../src/bundle.mjs';
 import { install, verify, rollback } from '../src/install.mjs';
 import { rootPath, safePath } from '../src/files.mjs';
 import { parseStrictJSON, validateRealm } from '../tools/validate-realm.mjs';
+import { evaluateRuns } from '../src/evaluate.mjs';
 import { planMemory } from '../src/memory-plan.mjs';
 const source = fileURLToPath(new URL('..', import.meta.url));
 try {
   const args = process.argv.slice(2), command = args.shift();
   if (!command || command === 'help' || command === '--help') {
-    console.log('MNX-AGI: init | upgrade | verify | doctor | rollback [--global] [--dir PATH] [--hosts codex,claude] [--dry-run]\nMNX-AGI: validate REALM.json | memory-plan INPUT.json | verify-package\nNode.js 22+. No remote services are contacted. Backups contain private local instructions; never publish them.');
+    console.log('MNX-AGI: init | upgrade | verify | doctor | rollback [--global] [--dir PATH] [--hosts codex,claude] [--dry-run]\nMNX-AGI: validate REALM.json | memory-plan INPUT.json | evaluate RUNS.json | verify-package\nNode.js 22+. No remote services are contacted. Backups contain private local instructions; never publish them.');
   } else if (command === 'verify-package') {
     if (args.length) throw new Error('Unexpected argument');
     const b = loadBundle(source); console.log(JSON.stringify({ ok: true, version: b.version, files: b.files.size, manifestDigest: b.digest, runtimeVerified: false }, null, 2));
-  } else if (command === 'validate' || command === 'memory-plan') {
+  } else if (command === 'validate' || command === 'memory-plan' || command === 'evaluate') {
     if (args.length !== 1) throw new Error('Expected one JSON path');
     const file = path.resolve(args[0]);
     const value = parseStrictJSON(fs.readFileSync(safePath(rootPath(path.dirname(file)), path.basename(file)), 'utf8'));
-    const result = command === 'memory-plan' ? planMemory(value) : validateRealm(value); console.log(JSON.stringify(result, null, 2)); if (result.ok === false) process.exitCode = 1;
+    const result = command === 'memory-plan' ? planMemory(value) : command === 'evaluate' ? evaluateRuns(value) : validateRealm(value); console.log(JSON.stringify(result, null, 2)); if (result.ok === false) process.exitCode = 1;
   } else {
     if (!['init','upgrade','verify','doctor','rollback'].includes(command)) throw new Error('Unknown command');
     let scope = 'project', directory, hosts, dryRun = false;

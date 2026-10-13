@@ -37,6 +37,10 @@ This package installs instructions and local validation. It does **not** install
 
 Use `node bin/mnx-agi.mjs memory-plan examples/memory-plan.json` to produce a bounded candidate workflow from available capability declarations and task signals. Read [adaptive memory workflows](docs/MEMORY_WORKFLOWS.md) for retrieval stopping rules, evidence quality and evaluation. The planner is offline and advisory; it does not authenticate or call MemQ.
 
+## Opt-in runtime integration and evaluation
+
+The [runtime boundary](docs/RUNTIME.md) checks current scope, policy, capability gates and operation receipts for calls routed through a trusted host adapter. It includes bounded search-visibility polling and paired evaluation scoring. It is not automatically wired into host tools, and synthetic contract tests do not prove live federation or model performance.
+
 ## Develop and verify
 
 ```sh

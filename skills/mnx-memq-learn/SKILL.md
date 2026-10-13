@@ -18,3 +18,5 @@ Evaluate whether a proposed lesson improves representative future decisions and 
 Return the useful lesson, evidence, applicability limits and actual persistence state. If the tool is absent, retain the candidate locally without pretending that learning was written remotely.
 
 Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
+
+Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.

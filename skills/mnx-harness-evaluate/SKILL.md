@@ -18,3 +18,5 @@ Distinguish structural checks, offline contract tests, live adapter conformance 
 Compare the added complexity with a simpler workflow. Report evidence, failures, uncertainty and the precise adoption boundary. Fix demonstrated defects and rerun affected cases; do not keep adding universal rules from one anecdote.
 
 Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
+
+Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.

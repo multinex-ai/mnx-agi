@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "f18748e10da2e357bfebd0c348330c3e8c8f23e09e49282a4c0333839bc17013"
+      "sha256": "5ee0949c8103141ce968393781da2d897627a4fc8f87d824945162b61d8880a6"
     },
     {
       "path": "LICENSE",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "ec1d2091d28088503029464ead740dd13a7247f11ce27196174e9042b7368902"
+      "sha256": "48a88610e204046bc41a9597c8e60057a6eedcf07d22dea4167625b70781cd4b"
     },
     {
       "path": "SECURITY.md",
@@ -28,11 +28,11 @@
     },
     {
       "path": "bin/mnx-agi.mjs",
-      "sha256": "4b56ccb38dab1d836ba022759a06612efac14fb76f698237670ae41502f1f01f"
+      "sha256": "6b59f320b0c4110e352c4a0042000e47b650dee393ac1c038fef2913af58cafb"
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
+      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
     },
     {
       "path": "docs/ACCEPTANCE.md",
@@ -44,7 +44,7 @@
     },
     {
       "path": "docs/INSTALL.md",
-      "sha256": "681b042e2a195e72ba84c2cf883eb6fc0b788ae3148244c7667ff7174fe90be0"
+      "sha256": "13befc7f47deaa928f4a20b882f23702376fdacbf09d6dd3f732d82de276e8a5"
     },
     {
       "path": "docs/MEMORY_WORKFLOWS.md",
@@ -61,6 +61,10 @@
     {
       "path": "docs/RESEARCH.md",
       "sha256": "2837a6716e32d6970b72a7da8f542e7cec4e2fb42ec82b20a0f51485e4e2b027"
+    },
+    {
+      "path": "docs/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
     },
     {
       "path": "docs/SKILLS.md",
@@ -84,7 +88,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "5677a36f4a57fb6a4e72064d8fccc78f6cc6b30eab4d845aa624252b0a7730c5"
+      "sha256": "ec76d4b5c5e66bc95fbbd671338c2a534d6ab64924486c6669c45e8ad7269ac0"
     },
     {
       "path": "profiles/multinex.md",
@@ -104,7 +108,7 @@
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
+      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
@@ -112,7 +116,7 @@
     },
     {
       "path": "skills/mnx-harness-evaluate/SKILL.md",
-      "sha256": "4022f68a41fd22ab5483b26c3e461e62df3f9a6138536ef0dffe9dab45853e1d"
+      "sha256": "39951ad2d3f292152e03ec5d8599c3db7bbb581d5f5ae035caafc7895ff944d8"
     },
     {
       "path": "skills/mnx-harness-evaluate/references/ACCEPTANCE.md",
@@ -123,8 +127,12 @@
       "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
     },
     {
+      "path": "skills/mnx-harness-evaluate/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+    },
+    {
       "path": "skills/mnx-memq-checkpoint/SKILL.md",
-      "sha256": "f0c4fe6bdc5fa6389d47891a8d5ba6510cc774120db657827d964bc592239f3a"
+      "sha256": "c23a40890a75bd30edebe69ae387926e1ac2eed54420746f98ad8fa0af687fbd"
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/MEMORY_WORKFLOWS.md",
@@ -135,8 +143,12 @@
       "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
     },
     {
+      "path": "skills/mnx-memq-checkpoint/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+    },
+    {
       "path": "skills/mnx-memq-coordinate/SKILL.md",
-      "sha256": "fb47b45464ecedadee20b3492d350ac4733397cd6671210fcd4da53ea43fbbd7"
+      "sha256": "31296c1ef9e1b47acefde1acffbf9c2da6bf75c0064ca47504b5bb1e550c0196"
     },
     {
       "path": "skills/mnx-memq-coordinate/references/ARCHITECTURE.md",
@@ -147,8 +159,12 @@
       "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
     },
     {
+      "path": "skills/mnx-memq-coordinate/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+    },
+    {
       "path": "skills/mnx-memq-learn/SKILL.md",
-      "sha256": "a18bf113755fa5b2b37df242b59f796a7ddc531c091a50925de131690dd9168f"
+      "sha256": "45a76c4bbae9c40480966c8bdf4c37c87835a6892fd295007e50d9392896399b"
     },
     {
       "path": "skills/mnx-memq-learn/references/MEMORY_WORKFLOWS.md",
@@ -159,8 +175,12 @@
       "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
     },
     {
+      "path": "skills/mnx-memq-learn/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+    },
+    {
       "path": "skills/mnx-memq-recall/SKILL.md",
-      "sha256": "d6993c7e7ec27bff452d1982ac9b371af942a98997002c80b9a92467b3bb0c2a"
+      "sha256": "f10658fcbd218ab048ea0fe8d573c0c324c37cb71c2e15b17ad62e5886b6e86c"
     },
     {
       "path": "skills/mnx-memq-recall/references/MEMORY_WORKFLOWS.md",
@@ -169,6 +189,10 @@
     {
       "path": "skills/mnx-memq-recall/references/MEMQ_CONTRACT.md",
       "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+    },
+    {
+      "path": "skills/mnx-memq-recall/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
     },
     {
       "path": "skills/mnx-realm-context/SKILL.md",
@@ -180,7 +204,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
+      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -188,7 +212,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/SKILL.md",
-      "sha256": "9d74c82b8ac7d41053bf0525a8a9b860ddc04c46d31161424731531e8019b078"
+      "sha256": "7b14939fcc5e82bb4a69582067745d1991180f6647368460494669416103dad5"
     },
     {
       "path": "skills/mnx-realm-federation/references/ARCHITECTURE.md",
@@ -196,11 +220,19 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "4f84234fc559674ce75af20785bd35a0c4ef48c0ad3dbbf9bcaf0f3b339c7327"
+      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
+    },
+    {
+      "path": "skills/mnx-realm-federation/references/RUNTIME.md",
+      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
     },
     {
       "path": "src/bundle.mjs",
       "sha256": "88ea64f155cbe5144cc64b233bca3a082b1bbf5fb2ee3e26da2801e751317b33"
+    },
+    {
+      "path": "src/evaluate.mjs",
+      "sha256": "ece70218df92398c1f47d0e07fb0fdf2f37589ea2107f66fda4848805f05bcde"
     },
     {
       "path": "src/files.mjs",
@@ -215,6 +247,14 @@
       "sha256": "727c80c680e544f816c4ac9715189654c4a8fe2c0ba20cf78fc5fbb20ed05f26"
     },
     {
+      "path": "src/runtime.mjs",
+      "sha256": "7d2dfdd869cb2de4d62c5d01003a7f0ac79f05ebd2187c77ea0ab35a9ebd5852"
+    },
+    {
+      "path": "test/evaluate.test.mjs",
+      "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
+    },
+    {
       "path": "test/install.test.mjs",
       "sha256": "71b494bc15e88d28c89959e28d3efd581198734222ca8b7a433d099383c8dc03"
     },
@@ -227,16 +267,20 @@
       "sha256": "3c96c6c2ca97aee6c80f2a281fec7cfdae751687e0d7abacabf9e91be74f482b"
     },
     {
+      "path": "test/runtime.test.mjs",
+      "sha256": "0db3236011e5fb7e9c6048516d632c0bfc12206738181e9323ff4d38150518d3"
+    },
+    {
       "path": "tools/build-manifest.mjs",
       "sha256": "2afd83ec31d47d9a51eb4ea25c167d72acb019796fa99fa221917f664faa07bb"
     },
     {
       "path": "tools/build-skills.mjs",
-      "sha256": "8b901c94f39768a92ba28292f6ce01b910a4bb409d4b86e51ddaa200940837dc"
+      "sha256": "d610cc22b42f5b231bce19050f39e052e6ecaffdf817ea975d748234d400c714"
     },
     {
       "path": "tools/check-release.mjs",
-      "sha256": "981ef935db0f48ddf82382f363a66c3977801685dd578d11e7461d512881d6d8"
+      "sha256": "b783cce2b3e72dee37f3aec391c37275d814663d8601cc48d656d3450485844b"
     },
     {
       "path": "tools/validate-realm.mjs",

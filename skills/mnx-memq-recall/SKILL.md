@@ -16,3 +16,5 @@ For each material claim, preserve the source reference, observed date and confid
 Return a compact context summary with useful source references and unresolved uncertainty. Do not copy a raw transcript into the prompt or another namespace. If optional recall fails, continue with available evidence and state the material limitation. If protected scope is unknown, do not query a broader destination as a fallback.
 
 Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
+
+Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.

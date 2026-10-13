@@ -24,7 +24,7 @@ for (const name of files) {
   }
 }
 // Copied references must stay byte-identical to their maintained source.
-const references = { 'MEMORY_WORKFLOWS.md': 'docs/MEMORY_WORKFLOWS.md', 'CORE.md': 'constitution/CORE.md', 'ARCHITECTURE.md': 'docs/ARCHITECTURE.md', 'MEMQ_CONTRACT.md': 'docs/MEMQ_CONTRACT.md', 'RESEARCH.md': 'docs/RESEARCH.md', 'ACCEPTANCE.md': 'docs/ACCEPTANCE.md' };
+const references = { 'RUNTIME.md': 'docs/RUNTIME.md', 'MEMORY_WORKFLOWS.md': 'docs/MEMORY_WORKFLOWS.md', 'CORE.md': 'constitution/CORE.md', 'ARCHITECTURE.md': 'docs/ARCHITECTURE.md', 'MEMQ_CONTRACT.md': 'docs/MEMQ_CONTRACT.md', 'RESEARCH.md': 'docs/RESEARCH.md', 'ACCEPTANCE.md': 'docs/ACCEPTANCE.md' };
 for (const name of files.filter(n => n.startsWith('skills/') && n.includes('/references/'))) {
   const source = references[path.basename(name)];
   if (!source || !fs.readFileSync(path.join(root, name)).equals(fs.readFileSync(path.join(root, source)))) errors.push(`Stale skill reference: ${name}`);

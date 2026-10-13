@@ -48,3 +48,7 @@ Upgrade refuses modified managed files and blocks. Edit local rules outside the 
 Run only one installation/rollback operation per target at a time. Writes are atomic per file, not a filesystem-wide transaction. The installer detects observed intervening edits; it is not a defense against a malicious same-user process racing filesystem operations. Back up and protect your home directory separately. Backups are retained locally until you deliberately remove them under your retention policy.
 
 `verify` checks managed content, not the behavior of an agent. `doctor` adds host-shadow and runtime-boundary reporting. Neither probes remote services. `validate FILE` checks configuration structure and semantic consistency, not actual filesystem containment, parent policy resolution, identity or grants.
+
+## Codex and ChatGPT scope
+
+Global Codex guidance is loaded from its active instruction chain; skills are available for relevant automatic selection. This is not an unconditional invocation on every message. Local filesystem installation does not establish installation in ChatGPT cloud chats, mobile, or workspace Skills. Those surfaces have separate lifecycle and access controls: see [OpenAI skill controls](https://learn.chatgpt.com/docs/enterprise/skills). The package does not change ChatGPT account settings or publish a ChatGPT plugin. Verify availability in the actual host session before claiming adoption.

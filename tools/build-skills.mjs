@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
-const sources = { 'MEMORY_WORKFLOWS.md': 'docs/MEMORY_WORKFLOWS.md', 'CORE.md': 'constitution/CORE.md', 'ARCHITECTURE.md': 'docs/ARCHITECTURE.md', 'MEMQ_CONTRACT.md': 'docs/MEMQ_CONTRACT.md', 'RESEARCH.md': 'docs/RESEARCH.md', 'ACCEPTANCE.md': 'docs/ACCEPTANCE.md' };
+const sources = { 'RUNTIME.md': 'docs/RUNTIME.md', 'MEMORY_WORKFLOWS.md': 'docs/MEMORY_WORKFLOWS.md', 'CORE.md': 'constitution/CORE.md', 'ARCHITECTURE.md': 'docs/ARCHITECTURE.md', 'MEMQ_CONTRACT.md': 'docs/MEMQ_CONTRACT.md', 'RESEARCH.md': 'docs/RESEARCH.md', 'ACCEPTANCE.md': 'docs/ACCEPTANCE.md' };
 for (const name of fs.readdirSync(path.join(root, 'skills'))) {
   const dir = path.join(root, 'skills', name), entry = path.join(dir, 'SKILL.md');
   let text = fs.readFileSync(entry, 'utf8');
