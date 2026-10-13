@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "1.2.0",
+  "version": "1.2.1",
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "5ee0949c8103141ce968393781da2d897627a4fc8f87d824945162b61d8880a6"
+      "sha256": "abaf40c84916e33196abe8e9d70e4e8762dd9cec2beb2709b78cbafaf1e92984"
     },
     {
       "path": "LICENSE",
@@ -32,7 +32,7 @@
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
+      "sha256": "6d38906e751a28d321a892f03f70bb02654e6e52d5a6b8293f2ee16741b477d1"
     },
     {
       "path": "docs/ACCEPTANCE.md",
@@ -88,7 +88,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "ec76d4b5c5e66bc95fbbd671338c2a534d6ab64924486c6669c45e8ad7269ac0"
+      "sha256": "89cef0087195cebe0d3d7706e6f4fd2afa8edbcb819c4e9857e6fdebc3f10ce3"
     },
     {
       "path": "profiles/multinex.md",
@@ -108,7 +108,7 @@
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
+      "sha256": "6d38906e751a28d321a892f03f70bb02654e6e52d5a6b8293f2ee16741b477d1"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
@@ -204,7 +204,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
+      "sha256": "6d38906e751a28d321a892f03f70bb02654e6e52d5a6b8293f2ee16741b477d1"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -220,7 +220,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "1fac8732d33cc4a17fdf5ade76c68632e1aa8fa7baffca88f81a9879b0af955c"
+      "sha256": "6d38906e751a28d321a892f03f70bb02654e6e52d5a6b8293f2ee16741b477d1"
     },
     {
       "path": "skills/mnx-realm-federation/references/RUNTIME.md",
@@ -248,7 +248,7 @@
     },
     {
       "path": "src/runtime.mjs",
-      "sha256": "7d2dfdd869cb2de4d62c5d01003a7f0ac79f05ebd2187c77ea0ab35a9ebd5852"
+      "sha256": "4469686b03245486df7219efb3182b6065890b3c046515ff5b4a18be5ba938c4"
     },
     {
       "path": "test/evaluate.test.mjs",
@@ -268,7 +268,7 @@
     },
     {
       "path": "test/runtime.test.mjs",
-      "sha256": "0db3236011e5fb7e9c6048516d632c0bfc12206738181e9323ff4d38150518d3"
+      "sha256": "cd3255b0a4ce7f1ae1053671b707b752800b5b84681bb4450569a8fcfc27f6ef"
     },
     {
       "path": "tools/build-manifest.mjs",

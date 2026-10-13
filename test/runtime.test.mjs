@@ -41,3 +41,5 @@ test('audit failure before dispatch blocks side effects',async()=>{const f=fixtu
 
 test('MemQ metadata exclusion cannot bypass the capability gate',async()=>{const f=fixture();await assert.rejects(f.runtime().execute({...f.request,operation:'write',payload:{metadata:{exclude_from_learning:true}}}),/learning_exclusion/);assert.equal(f.calls.length,0);});
 test('grant expiring during the second identity check is not dispatched',async()=>{const f=federation();let count=0;f.adapter.identity=async()=>{if(++count===2)f.now=150;return scope;};f.grant.expiresAt=140;await assert.rejects(f.runtime().execute(f.request),/grant_expired/);assert.equal(f.calls.length,0);});
+
+test('slow audit cannot extend authorization expiry',async()=>{const f=fixture();const r=createRuntime({binding:scope,adapter:f.adapter,authorize:f.authorize,audit:async()=>{f.now=201;},clock:()=>f.now});await assert.rejects(r.execute(f.request),/authorization_expired/);assert.equal(f.calls.length,0);});

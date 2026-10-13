@@ -1,6 +1,6 @@
 # MNX-AGI core constitution
 
-Version 1.2.0. These rules apply when adopted by the user or project. The host instruction hierarchy and actual permissions remain authoritative.
+Version 1.2.1. These rules apply when adopted by the user or project. The host instruction hierarchy and actual permissions remain authoritative.
 
 ## Purpose
 

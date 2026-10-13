@@ -1,6 +1,6 @@
 {
   "name": "@multinex-ai/mnx-agi",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Portable AI operating constitution, realm validation and MemQ workflow skills with reversible installation.",
   "type": "module",
   "license": "Apache-2.0",

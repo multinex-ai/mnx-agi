@@ -53,6 +53,9 @@ export function createRuntime({ binding, adapter, authorize, audit, clock = Date
       if (decision.expiresAt <= clock()) fail('authorization_expired');
       if (request.operation === 'transfer' && (decision.grant.revoked !== false || decision.grant.expiresAt <= clock())) fail('grant_expired_or_revoked');
       await audit({ ...receipt, status: 'dispatching' });
+      // A slow audit sink must not extend the authorization or transfer window.
+      if (decision.expiresAt <= clock()) fail('authorization_expired');
+      if (request.operation === 'transfer' && (decision.grant.revoked !== false || decision.grant.expiresAt <= clock())) fail('grant_expired_or_revoked');
       dispatched = true;
       const result = await adapter.execute({ binding: expected, request, decision });
       if (!sameScope(expected, result?.binding)) fail('response_scope_mismatch');

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1
+
+- Rechecks authorization and transfer expiry after an asynchronous audit write, so audit latency cannot extend a permission window. Adds a regression test for the delayed-audit case.
+
+
 ## 1.2.0
 
 - Adds an opt-in provider-neutral operation boundary with per-call identity/policy checks, conditional-update requirements, bounded federation grants and payload-free receipts. Host wiring and backend enforcement remain external.
