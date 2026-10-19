@@ -10,6 +10,8 @@ MNX-AGI is a model-agnostic **Recursive Agent Harness**, paired with **[MemQ](ht
 
 **Bring your models. Connect your tools. Build on what your agents learn.**
 
+**Reusable agent infrastructure for coordinated work and lasting memory.** Adopt MNX-AGI in the agent hosts and applications you already use. Carry objectives, verified decisions, progress, and reusable procedures across supported models and authorized sessions through MemQ.
+
 MNX-AGI supplies the operating rules, focused skills, realm boundaries, and evaluation loop. MemQ supplies durable context through a configured memory connection. Together, they are designed to make continuity feel seamless across compatible agents while keeping each project's access and ownership explicit.
 
 - **Remember across sessions.** Retain selected decisions, preferences, verified procedures, and progress checkpoints instead of rebuilding context each time.
@@ -34,7 +36,7 @@ flowchart LR
 
 Recursion here means bounded feedback and reuse. Each cycle keeps an objective, acceptance criteria, permission boundaries, and stopping conditions. Changes to skills or policy are reviewed and evaluated before adoption. Compounding refers to reusable knowledge and better continuity; measured performance gains require behavioral evaluation.
 
-Explore the [MNX-AGI + MemQ pairing](docs/MEMQ_PAIRING.md), [eight workflow skills](docs/SKILLS.md), and [architecture](docs/ARCHITECTURE.md).
+Explore the [MNX-AGI + MemQ pairing](docs/MEMQ_PAIRING.md), [reusable infrastructure modules](docs/HARNESS_MODULES.md), [eight workflow skills](docs/SKILLS.md), and [architecture](docs/ARCHITECTURE.md).
 
 ### Compatibility and readiness
 

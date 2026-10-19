@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "b091dd4c6846382c4fd40a4f386c70ec58ae8369c4dfc0c68c546729c04ad2f3"
+      "sha256": "98738616d36012336262501a32759fb33439242bd86083d6c139b823839d5073"
     },
     {
       "path": "SECURITY.md",
@@ -51,6 +51,10 @@
       "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
+      "path": "docs/HARNESS_MODULES.md",
+      "sha256": "6dc6ef375398ed11fe183e0ff9c50cf5416728c564badf867825e8be9a6bfd43"
+    },
+    {
       "path": "docs/INSTALL.md",
       "sha256": "13befc7f47deaa928f4a20b882f23702376fdacbf09d6dd3f732d82de276e8a5"
     },
@@ -68,11 +72,11 @@
     },
     {
       "path": "docs/MEMQ_PAIRING.md",
-      "sha256": "f0ec1d2e25badc2f9dc98fad66e6fba1d8ab0d457c6587e8e9e27adb1c4d5134"
+      "sha256": "bde14ea8febf252c229292e6483fd93354c8300b5ce5964fa5dd57ca485267e5"
     },
     {
       "path": "docs/POSITIONING.md",
-      "sha256": "83e2b67c25fc472947bcd41a2923b401b3c59a391869e55551e5d04db8fefdf2"
+      "sha256": "73126f630b51b94997186116e2951f7fe3ef9ba7f08d6158a84e5889e233e72d"
     },
     {
       "path": "docs/RELEASE.md",
@@ -108,7 +112,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "ec785cded1510497e3537d409273eadf16daa2d39945006fdfbc79a1916e5c2f"
+      "sha256": "f0aa1c1e2a4a402665c6b1106fe83b1c4d9e3f602cf043f54593310bac4027c9"
     },
     {
       "path": "profiles/multinex.md",

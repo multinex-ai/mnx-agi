@@ -1,7 +1,7 @@
 {
   "name": "@multinex-ai/mnx-agi",
   "version": "1.2.1",
-  "description": "Model-agnostic Recursive Agent Harness paired with MemQ for persistent memory across supported agents and sessions, turning verified work into reusable knowledge.",
+  "description": "Model-agnostic Recursive Agent Harness + MemQ: reusable agent infrastructure for coordinated workflows, persistent cross-session memory, and compounding verified knowledge.",
   "type": "module",
   "license": "Apache-2.0",
   "private": true,
