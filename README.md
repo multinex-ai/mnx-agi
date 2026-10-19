@@ -55,16 +55,17 @@ flowchart LR
 
 Recursion here means bounded feedback and reuse. Each cycle keeps an objective, acceptance criteria, permission boundaries, and stopping conditions. Changes to skills or policy are reviewed and evaluated before adoption. Compounding refers to reusable knowledge and better continuity; measured performance gains require behavioral evaluation.
 
-Explore the [MNX-AGI + MemQ pairing](docs/MEMQ_PAIRING.md), [reusable infrastructure modules](docs/HARNESS_MODULES.md), [eight workflow skills](docs/SKILLS.md), and [architecture](docs/ARCHITECTURE.md).
+Explore the [MNX-AGI + MemQ pairing](docs/MEMQ_PAIRING.md), [reusable infrastructure modules](docs/HARNESS_MODULES.md), [eleven workflow skills](docs/SKILLS.md), and [architecture](docs/ARCHITECTURE.md).
 
 ### Compatibility and readiness
 
 | Surface | What is available |
 |---|---|
-| Codex and Claude Code | Reversible installation of core instructions and eight self-contained skills |
+| Codex and Claude Code | Reversible installation of core instructions and eleven self-contained skills |
 | MemQ | Recall, checkpoint, learning, and handoff workflows; a configured connection and verified account scope are required |
 | Universal vector translation | MemQ-side dimension-adaptation interfaces; supported profiles and retrieval quality require deployment-specific validation |
 | Other models and agent hosts | Model-agnostic rules and adapter contracts; host integration and acceptance testing are required |
+| Isolated credential broker | Experimental macOS service installer and fixed-identity plan interface; separate enrollment and host containment remain required |
 | Guarded Codex-to-MemQ route | Experimental adapter for isolated plan reads and conditional writes, with a live acceptance probe |
 | Team coordination and federation | Explicit contracts and acceptance gates; deployment requires verified ownership, grants, and service controls |
 
@@ -81,7 +82,7 @@ node bin/mnx-agi.mjs init --global --hosts codex,claude
 node bin/mnx-agi.mjs doctor --global
 ```
 
-Existing instructions are preserved outside a clearly marked managed block. Eight self-contained skills are installed for each selected host. The executable is placed at `~/.local/bin/mnx-agi`; use that path directly if it is not on your PATH. Start a new host session to load the updated global instructions. Skills are available when the host next refreshes its skill inventory.
+Existing instructions are preserved outside a clearly marked managed block. Eleven self-contained skills are installed for each selected host. The executable is placed at `~/.local/bin/mnx-agi`; use that path directly if it is not on your PATH. Start a new host session to load the updated global instructions. Skills are available when the host next refreshes its skill inventory.
 
 Install only the hosts you use: choose `--hosts codex`, `--hosts claude`, or both. A successful installation makes the harness guidance available. Connect MemQ separately, verify the intended account and namespace, and complete a bounded read/write acceptance check before relying on persistent memory. The default `doctor` command checks the local installation; it does not test the remote connection.
 
@@ -92,7 +93,7 @@ For a project, run `node bin/mnx-agi.mjs init --dir /path/to/project`. This inst
 | Component | Status |
 |---|---|
 | [Core constitution](constitution/CORE.md) and optional profiles | Adoptable instructions, embedded in host instruction files |
-| [Eight skills](docs/SKILLS.md) | Installed self-contained workflows; no automatic network activity |
+| [Eleven skills](docs/SKILLS.md) | Installed self-contained workflows; no automatic network activity |
 | [Realm schema](schemas/realm.schema.json), examples and validator | Offline structure and consistency validation |
 | Installation, upgrade, verification and rollback CLI | Local files, conflict detection, backups and integrity manifest |
 | [Memory contract](docs/MEMQ_CONTRACT.md) | Capability and identity requirements for a connected service |

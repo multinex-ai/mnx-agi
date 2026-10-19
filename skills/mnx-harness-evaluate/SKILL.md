@@ -19,4 +19,8 @@ Compare the added complexity with a simpler workflow. Report evidence, failures,
 
 Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
 
+For embedding or universal vector-translation changes, record the source provider, model, dimension and translation profile. Compare exact-source recovery, paraphrase retrieval, irrelevant-query rejection and cross-project exclusion on held-out examples. Preserve a recoverable baseline; matching dimensions alone is not proof of semantic retrieval quality.
+
 Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.
+
+Use [the tool coverage map](references/MEMQ_TOOL_COVERAGE.md) to select among currently exposed capabilities. Installed skills do not grant access to tools withheld by the host.

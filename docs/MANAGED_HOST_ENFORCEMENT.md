@@ -8,7 +8,7 @@ Mandatory operation requires a credential-bearing broker outside the agent's OS 
 
 One user's unrestricted shell, alternate binaries, credential access, browser tools, and injected SDK tools can bypass an instruction or an ordinary MCP proxy. Host configuration must address each surface. For the strongest separation, run agent workloads in separate OS identities or isolated execution environments, with no provider credentials and no unmediated provider network access.
 
-The broker is a deployment prerequisite, not a component implemented by the policy preparation tool. The current Codex-backed guard cannot simply be placed behind a strict MCP allowlist: its own upstream Codex process needs direct MemQ access, which the same allowlist would reject. Leaving an exception for that upstream in the agent's policy would reopen the bypass.
+The experimental broker in `broker/` provides a separate credential-owning service and a macOS installer. Its default installation has no realm grants and does not activate host policies. See [broker installation](../broker/README.md). The policy preparation tool does not install or enroll that service. The current Codex-backed guard cannot simply be placed behind a strict MCP allowlist: its own upstream Codex process needs direct MemQ access, which the same allowlist would reject. Leaving an exception for that upstream in the agent's policy would reopen the bypass.
 
 ## Prepare, do not blindly install
 

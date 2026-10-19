@@ -18,3 +18,5 @@ If the task needs protected memory, discover the actual MemQ tools and follow [t
 Load a concise objective and only relevant skill metadata/context. Avoid loading every policy document or every realm. If required identity is unavailable, pause protected access while continuing independent local work. Report a short scope summary only when it changes what the user needs to know; no compulsory persona ceremony.
 
 Return the active realm, effective constraints/defaults, available required capabilities and unresolved dependencies. Do not claim a live connection from configuration alone.
+
+Use [the tool coverage map](references/MEMQ_TOOL_COVERAGE.md) to select among currently exposed capabilities. Installed skills do not grant access to tools withheld by the host.
