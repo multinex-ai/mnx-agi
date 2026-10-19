@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "0302e1bc1990c0a11d6d18d7c0acbde67ed537043cb89fd28027195d56130d7d"
+      "sha256": "d02d22d39e5e78c03ea8e20efac98336bb80005878a7b2680b1dce6a734d812e"
     },
     {
       "path": "LICENSE",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "22bf2cd2b758e99f0651143c0f063a8d24e507bbf5c21af987514d65ef96e33c"
+      "sha256": "d59fd01c7f348f313f82cc7a72540d24d52638064f6206e9688d921ddc4d255e"
     },
     {
       "path": "SECURITY.md",
@@ -67,6 +67,10 @@
       "sha256": "13befc7f47deaa928f4a20b882f23702376fdacbf09d6dd3f732d82de276e8a5"
     },
     {
+      "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
+      "sha256": "cb4c2006e44e11fd1116a982db97a105760a66d68e444779489ef0b901c51a79"
+    },
+    {
       "path": "docs/MEMORY_WORKFLOWS.md",
       "sha256": "e672cd57577250439099484e40450817356f84e1f7df620ce90e94746c611ece"
     },
@@ -76,7 +80,7 @@
     },
     {
       "path": "docs/MEMQ_ENFORCEMENT_CANDIDATE.md",
-      "sha256": "8b79ee3443fdeeb64dc506c3b83d287218e3ab599409e36dde6590a971073e5f"
+      "sha256": "cda6f422d02fecd1ed61063f9bc135cd87849fac139be05c2c0273f91767304d"
     },
     {
       "path": "docs/MEMQ_PAIRING.md",
@@ -272,7 +276,7 @@
     },
     {
       "path": "src/codex-memq-client.mjs",
-      "sha256": "43a187704797046d2c284ce37755c3cc52de2daf4e7eff2f81e4c412baf0952c"
+      "sha256": "8d130623368c4c14fa1dec3f0ea44e0a1140f6f1ff7d9b73262442c83bc224ad"
     },
     {
       "path": "src/evaluate.mjs",
@@ -281,6 +285,10 @@
     {
       "path": "src/files.mjs",
       "sha256": "829448e50553bab85d0863f93536b974deb485fc981019412bb03b220f29093a"
+    },
+    {
+      "path": "src/host-enforcement.mjs",
+      "sha256": "658c31d721a585c5dd825e12bcb8ae2b4877a3567f33e3c6bc35ae2b830a6271"
     },
     {
       "path": "src/install.mjs",
@@ -292,15 +300,23 @@
     },
     {
       "path": "src/memq-guard.mjs",
-      "sha256": "fd8ae9af316b5ec3de900cfd311cc4831382441291b80f5dea01c09b7b4ddca3"
+      "sha256": "41f70b5b62dc47ff43119436f5f27073d44b6fc106a70cd149b08a9380585618"
     },
     {
       "path": "src/runtime.mjs",
       "sha256": "4469686b03245486df7219efb3182b6065890b3c046515ff5b4a18be5ba938c4"
     },
     {
+      "path": "test/codex-client.test.mjs",
+      "sha256": "36dca8b6254a492b0330aa7af0e09965b3c36c0b187248d7c2fd7ce78b6313ea"
+    },
+    {
       "path": "test/evaluate.test.mjs",
       "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
+    },
+    {
+      "path": "test/host-enforcement.test.mjs",
+      "sha256": "c9b1cf58a930d96bf62c4e02d375f48235df0f3a2bfa316d193c9995169361a3"
     },
     {
       "path": "test/install.test.mjs",
@@ -312,7 +328,7 @@
     },
     {
       "path": "test/memq-guard.test.mjs",
-      "sha256": "9d2f82f038a84bdde1bb732724935912420e286406275a11012e5d7237de9555"
+      "sha256": "e62eac33074894d7baaead74637acce3eb69d4e94948411782a85ac46866e7e8"
     },
     {
       "path": "test/realm.test.mjs",
@@ -333,6 +349,14 @@
     {
       "path": "tools/check-release.mjs",
       "sha256": "b783cce2b3e72dee37f3aec391c37275d814663d8601cc48d656d3450485844b"
+    },
+    {
+      "path": "tools/prepare-managed-hosts.mjs",
+      "sha256": "dc3e3c063877970e82c89500e40788055d8b189c6c79fcfb0ab70570b73fcece"
+    },
+    {
+      "path": "tools/probe-account-isolation.mjs",
+      "sha256": "48dc11f21626f78ceb4aa71ae696001d93e5e9f2a8b0b3c93dcff144c82f29ab"
     },
     {
       "path": "tools/probe-memq-host.mjs",

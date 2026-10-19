@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Adds optional strict authenticated-subject binding to the MemQ plan guard. Missing subject evidence fails closed; current namespace-only handshakes do not satisfy this mode.
+- Keeps explicitly isolated Codex clients on their own effective OAuth file store, rather than assuming a new home separates OS-keyring credentials.
+- Adds a live two-account synthetic isolation probe, administrator-policy preparation, and a read-only enforcement readiness audit. These tools do not install a credential broker or activate system-wide enforcement.
+- Documents managed-policy precedence, injected-tool exceptions, protected runtime dependencies, and remaining activation gates for Codex and Claude.
+
 ## 1.3.0
 
 - Presents MNX-AGI as a Recursive Agent Harness paired with MemQ, with Multinex branding, live repository badges, a benefit-led pairing guide, and a verified installation quickstart.

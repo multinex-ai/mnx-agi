@@ -112,6 +112,8 @@ The [runtime boundary](docs/RUNTIME.md) checks current scope, policy, capability
 
 The experimental [MemQ host integration candidate](docs/MEMQ_ENFORCEMENT_CANDIDATE.md) adds a narrow stdio gateway and a live Codex-host acceptance probe. It is separately configured and does not establish a sealed system installation or change the default installer's enforcement status.
 
+[Managed host enforcement](docs/MANAGED_HOST_ENFORCEMENT.md) describes the prepared Codex/Claude policies, independent account tests, and the credential-broker and OS boundaries required before activation. Policy generation alone is not enforcement.
+
 ## Develop and verify
 
 ```sh
