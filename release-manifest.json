@@ -20,15 +20,23 @@
     },
     {
       "path": "README.md",
-      "sha256": "48a88610e204046bc41a9597c8e60057a6eedcf07d22dea4167625b70781cd4b"
+      "sha256": "b091dd4c6846382c4fd40a4f386c70ec58ae8369c4dfc0c68c546729c04ad2f3"
     },
     {
       "path": "SECURITY.md",
       "sha256": "17e7c442a584eb8421701f033d8bf3b0d828b90eaebed4b0ff00d35fc252b7bc"
     },
     {
+      "path": "assets/mnx-agi-memq.svg",
+      "sha256": "7281a485679a136799c13355a02e76ccdd17df244ccb8978f5b361daa5a44013"
+    },
+    {
       "path": "bin/mnx-agi.mjs",
       "sha256": "6b59f320b0c4110e352c4a0042000e47b650dee393ac1c038fef2913af58cafb"
+    },
+    {
+      "path": "bin/mnx-memq-guard.mjs",
+      "sha256": "f48669d4dee690a21b7511423ce6b291b6855951d2403079879aaf47fd22797c"
     },
     {
       "path": "constitution/CORE.md",
@@ -40,7 +48,7 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+      "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
       "path": "docs/INSTALL.md",
@@ -52,7 +60,19 @@
     },
     {
       "path": "docs/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
+    },
+    {
+      "path": "docs/MEMQ_ENFORCEMENT_CANDIDATE.md",
+      "sha256": "ea1a6dc2e73998bf9776af1b26c887b1670bb8c14bcae59d8edcdcbb5dc9e18f"
+    },
+    {
+      "path": "docs/MEMQ_PAIRING.md",
+      "sha256": "f0ec1d2e25badc2f9dc98fad66e6fba1d8ab0d457c6587e8e9e27adb1c4d5134"
+    },
+    {
+      "path": "docs/POSITIONING.md",
+      "sha256": "83e2b67c25fc472947bcd41a2923b401b3c59a391869e55551e5d04db8fefdf2"
     },
     {
       "path": "docs/RELEASE.md",
@@ -64,7 +84,7 @@
     },
     {
       "path": "docs/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "docs/SKILLS.md",
@@ -88,7 +108,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "89cef0087195cebe0d3d7706e6f4fd2afa8edbcb819c4e9857e6fdebc3f10ce3"
+      "sha256": "ec785cded1510497e3537d409273eadf16daa2d39945006fdfbc79a1916e5c2f"
     },
     {
       "path": "profiles/multinex.md",
@@ -128,7 +148,7 @@
     },
     {
       "path": "skills/mnx-harness-evaluate/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "skills/mnx-memq-checkpoint/SKILL.md",
@@ -140,11 +160,11 @@
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "skills/mnx-memq-coordinate/SKILL.md",
@@ -152,15 +172,15 @@
     },
     {
       "path": "skills/mnx-memq-coordinate/references/ARCHITECTURE.md",
-      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+      "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
       "path": "skills/mnx-memq-coordinate/references/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
     },
     {
       "path": "skills/mnx-memq-coordinate/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "skills/mnx-memq-learn/SKILL.md",
@@ -172,11 +192,11 @@
     },
     {
       "path": "skills/mnx-memq-learn/references/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
     },
     {
       "path": "skills/mnx-memq-learn/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "skills/mnx-memq-recall/SKILL.md",
@@ -188,11 +208,11 @@
     },
     {
       "path": "skills/mnx-memq-recall/references/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
     },
     {
       "path": "skills/mnx-memq-recall/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "skills/mnx-realm-context/SKILL.md",
@@ -200,7 +220,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/ARCHITECTURE.md",
-      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+      "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
@@ -208,7 +228,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
-      "sha256": "9c5f88787f188acb510795e2f507f2e9f75d35a4c7eab33a3419131eca9ec774"
+      "sha256": "ac3c31e86d44faa81e0da9279d2d0ecb1efa7858846598140083cac3aebb7720"
     },
     {
       "path": "skills/mnx-realm-federation/SKILL.md",
@@ -216,7 +236,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/ARCHITECTURE.md",
-      "sha256": "54441aa960113cd80df1eb11e7e1aa30c90941d34c437a39bbd55fc5704893d6"
+      "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
@@ -224,11 +244,15 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/RUNTIME.md",
-      "sha256": "23da9ab92d00c1b9b479f447f59fedb88e551d77aafc863fafda47f715f4fed2"
+      "sha256": "709ea55110fd7ea26bc00783e6433968566693a09f075b35539e512071f12d97"
     },
     {
       "path": "src/bundle.mjs",
       "sha256": "88ea64f155cbe5144cc64b233bca3a082b1bbf5fb2ee3e26da2801e751317b33"
+    },
+    {
+      "path": "src/codex-memq-client.mjs",
+      "sha256": "43a187704797046d2c284ce37755c3cc52de2daf4e7eff2f81e4c412baf0952c"
     },
     {
       "path": "src/evaluate.mjs",
@@ -247,6 +271,10 @@
       "sha256": "727c80c680e544f816c4ac9715189654c4a8fe2c0ba20cf78fc5fbb20ed05f26"
     },
     {
+      "path": "src/memq-guard.mjs",
+      "sha256": "d0d0dfa09fd61165279a959473bfb8de7381cb6cd311a75448f694402c43fcec"
+    },
+    {
       "path": "src/runtime.mjs",
       "sha256": "4469686b03245486df7219efb3182b6065890b3c046515ff5b4a18be5ba938c4"
     },
@@ -261,6 +289,10 @@
     {
       "path": "test/memory-plan.test.mjs",
       "sha256": "4bfe5a5b4b98ad49b214b3e72fd4c9af75882bd7033cacafdb0ae2f2d20331d4"
+    },
+    {
+      "path": "test/memq-guard.test.mjs",
+      "sha256": "8992d4996f9fcbea91c52335e838cbb8cd55968565e5b1d406d2d202641a288f"
     },
     {
       "path": "test/realm.test.mjs",
@@ -281,6 +313,10 @@
     {
       "path": "tools/check-release.mjs",
       "sha256": "b783cce2b3e72dee37f3aec391c37275d814663d8601cc48d656d3450485844b"
+    },
+    {
+      "path": "tools/probe-memq-host.mjs",
+      "sha256": "d6a17989c362fa09092e1197fcda6b3f815353a564101a44ec133de757b60f4f"
     },
     {
       "path": "tools/validate-realm.mjs",

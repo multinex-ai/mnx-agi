@@ -1,6 +1,6 @@
 # MemQ capability and workflow contract
 
-This is a provider-adapter contract. No live service integration is bundled or verified by installation. Discover names, argument schemas, result schemas and permissions on the actual connection before use. Do not invent aliases or substitute a similarly named operation.
+This is a provider-adapter contract. The default installation does not configure or verify a live service connection. An optional experimental Codex adapter covers isolated plan reads and conditional writes; broader workflows still require a compatible, verified connection. Discover names, argument schemas, result schemas and permissions on the actual connection before use. Do not invent aliases or substitute a similarly named operation.
 
 ## Connection and scope
 

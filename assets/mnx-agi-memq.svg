@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" role="img" aria-labelledby="title description">
+  <title id="title">MNX-AGI Recursive Agent Harness + MemQ</title>
+  <desc id="description">Across agents. Across sessions. Compounding knowledge. A bounded loop connects recall, action, verification and learning to persistent memory.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101b34"/><stop offset="1" stop-color="#09111e"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#9b8aff"/><stop offset="1" stop-color="#55e6c1"/></linearGradient>
+  </defs>
+  <rect width="1440" height="560" rx="24" fill="url(#bg)"/>
+  <rect x="1" y="1" width="1438" height="558" rx="23" fill="none" stroke="#2c3b54"/>
+  <g font-family="Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="64" y="70" fill="#55e6c1" font-size="16" font-weight="700" letter-spacing="4">MULTINEX AI</text>
+    <text x="64" y="145" fill="#f5f7ff" font-size="64" font-weight="750">MNX-AGI <tspan fill="#8795ad" font-weight="400">+</tspan> <tspan fill="#55e6c1">MemQ</tspan></text>
+    <text x="64" y="198" fill="#d4dcf0" font-size="28">Recursive Agent Harness + Persistent Memory</text>
+    <rect x="64" y="232" width="1312" height="2" fill="url(#accent)" opacity="0.7"/>
+    <text x="64" y="293" fill="#f5f7ff" font-size="31" font-weight="650">Across agents. Across sessions. Compounding knowledge.</text>
+    <text x="64" y="338" fill="#a9b8d0" font-size="22">Bring your models. Connect your tools. Build on what your agents learn.</text>
+    <g transform="translate(64 389)">
+      <rect width="233" height="66" rx="13" fill="#1b2741" stroke="#445879"/>
+      <text x="116" y="41" text-anchor="middle" fill="#d6ceff" font-size="22" font-weight="600">Recall</text>
+      <path d="M249 33 H285 M277 25 L285 33 L277 41" fill="none" stroke="#8795ad" stroke-width="2"/>
+      <rect x="301" width="233" height="66" rx="13" fill="#1b2741" stroke="#445879"/>
+      <text x="417" y="41" text-anchor="middle" fill="#e2e8f6" font-size="22" font-weight="600">Plan + Act</text>
+      <path d="M550 33 H586 M578 25 L586 33 L578 41" fill="none" stroke="#8795ad" stroke-width="2"/>
+      <rect x="602" width="233" height="66" rx="13" fill="#1b2741" stroke="#445879"/>
+      <text x="718" y="41" text-anchor="middle" fill="#e2e8f6" font-size="22" font-weight="600">Verify</text>
+      <path d="M851 33 H887 M879 25 L887 33 L879 41" fill="none" stroke="#8795ad" stroke-width="2"/>
+      <rect x="903" width="409" height="66" rx="13" fill="#112f31" stroke="#359e8b"/>
+      <text x="1107" y="41" text-anchor="middle" fill="#7befcf" font-size="22" font-weight="600">Remember + Refine</text>
+      <path d="M1107 79 V102 H116 V80 M108 88 L116 80 L124 88" fill="none" stroke="#55e6c1" stroke-width="2"/>
+      <rect x="447" y="85" width="410" height="30" fill="#0c1423"/>
+      <text x="652" y="107" text-anchor="middle" fill="#a9b8d0" font-size="17">Verified knowledge feeds the next cycle</text>
+    </g>
+  </g>
+</svg>
