@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "98738616d36012336262501a32759fb33439242bd86083d6c139b823839d5073"
+      "sha256": "22bf2cd2b758e99f0651143c0f063a8d24e507bbf5c21af987514d65ef96e33c"
     },
     {
       "path": "SECURITY.md",
@@ -28,7 +28,11 @@
     },
     {
       "path": "assets/mnx-agi-memq.svg",
-      "sha256": "7281a485679a136799c13355a02e76ccdd17df244ccb8978f5b361daa5a44013"
+      "sha256": "903e63ee8fdaea7d27a409c3f4667797f8a9aaf8947bfe02f150f69d964c7ec5"
+    },
+    {
+      "path": "assets/multinex-mark.svg",
+      "sha256": "f2e34d1ac9ecc507847137f227ee9f4ce765fb0cf05cb9056b880352eaa4d0bf"
     },
     {
       "path": "bin/mnx-agi.mjs",
@@ -51,8 +55,12 @@
       "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
     {
+      "path": "docs/BRAND.md",
+      "sha256": "e8ec25c00b3c365f234641c451493ddfe556b70ac9a429e10c219c2a5b7b99df"
+    },
+    {
       "path": "docs/HARNESS_MODULES.md",
-      "sha256": "6dc6ef375398ed11fe183e0ff9c50cf5416728c564badf867825e8be9a6bfd43"
+      "sha256": "5d6e1b3c1371abba81d9bc043c35ebee702405e421d576bd105efa8d2638e212"
     },
     {
       "path": "docs/INSTALL.md",
@@ -72,11 +80,15 @@
     },
     {
       "path": "docs/MEMQ_PAIRING.md",
-      "sha256": "bde14ea8febf252c229292e6483fd93354c8300b5ce5964fa5dd57ca485267e5"
+      "sha256": "1d92ab10462afbb65bdc41d5d6be0a061d2cc56a23a428739505856320da8b54"
     },
     {
       "path": "docs/POSITIONING.md",
-      "sha256": "73126f630b51b94997186116e2951f7fe3ef9ba7f08d6158a84e5889e233e72d"
+      "sha256": "9afd8d1f42cca3fac165f5cb79eef583241e078ae65ec124d4aee29e669d5cc9"
+    },
+    {
+      "path": "docs/QUICKSTART.md",
+      "sha256": "c03308c9a91a0f210bee057b83572a372f84b6ed4b105ae8c13e4953bc9b0f63"
     },
     {
       "path": "docs/RELEASE.md",
@@ -93,6 +105,10 @@
     {
       "path": "docs/SKILLS.md",
       "sha256": "5849ed5eaee7cd85bdd9d48dae70d578d0eda588549541afd0c3e50a92070f4f"
+    },
+    {
+      "path": "docs/VECTOR_TRANSLATION.md",
+      "sha256": "a3d2e070d96ab46baa8a4c48a0c0ea7ec3c4034819403d4bc236b01c1e0bb8b4"
     },
     {
       "path": "examples/federated.realm.json",
@@ -112,7 +128,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "f0aa1c1e2a4a402665c6b1106fe83b1c4d9e3f602cf043f54593310bac4027c9"
+      "sha256": "35c4e4a9b63fe0b9bf28d7b9d596e4836be08de7e8bef64740cf9ae580ec8cf3"
     },
     {
       "path": "profiles/multinex.md",

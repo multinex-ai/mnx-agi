@@ -8,6 +8,7 @@ MNX-AGI packages an operating discipline that can travel across compatible agent
 |---|---|---|
 | Repeatable agent work | Core lifecycle, eight focused skills, memory planner, and evaluation scorer | The host executes the work; the planner and scorer do not run an autonomous agent loop |
 | Persistent context | MemQ capability contract and recall, checkpoint, and learning workflows | Requires a configured connection with verified scope; no local memory database is bundled |
+| Vector interoperability | Provider-neutral source/target profile contracts for the configured MemQ service | Translation availability and retrieval quality must be verified per profile; the narrow Codex gateway does not expose translation |
 | Scoped tool operations | Optional runtime checks and an experimental Codex-to-MemQ plan gateway | System-wide enforcement and individual-principal isolation remain separate acceptance requirements |
 | Coordinated work | Ownership, revision, checkpoint, and handoff rules | A live scheduler, distributed lock service, shared blackboard, and agent spawner are not bundled |
 | Model choice | Provider-neutral core and a bounded decision-routing skill | The deployment supplies model clients, routing implementation, and approved fallback destinations |

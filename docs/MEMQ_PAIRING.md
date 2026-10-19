@@ -6,6 +6,8 @@ MNX-AGI organizes how agents work. MemQ retains the selected knowledge they can 
 
 This is reusable infrastructure for existing agent hosts and applications. The adoption unit is a workflow, skill, memory connection, or verified adapter. Teams can adopt these pieces together without moving their work into a custom desktop or operating system.
 
+For the user, the payoff is direct: less re-explaining, a clearer starting point after interruption, and useful decisions that remain available when tools or models change. MemQ's [universal vector-translation interfaces](VECTOR_TRANSLATION.md) address supported embedding dimensions; source-backed context and checkpoints provide continuity independently of any particular model's context window.
+
 ## Two complementary responsibilities
 
 | MNX-AGI: the harness | MemQ: the memory layer |

@@ -10,13 +10,27 @@ MNX-AGI is reusable agent infrastructure: a model-agnostic Recursive Agent Harne
 
 ## GitHub description
 
-Model-agnostic Recursive Agent Harness + MemQ: reusable agent infrastructure for coordinated workflows, persistent memory across supported agents and sessions, and compounding verified knowledge.
+MNX-AGI + MemQ: a model-agnostic Recursive Agent Harness that helps agents remember, resume, and build on verified work, with persistent memory and universal vector-translation interfaces for supported embeddings.
 
 ## Short copy
 
 Bring your models. Connect your tools. Build on what your agents learn.
 
 MNX-AGI guides the work. MemQ carries the knowledge forward. Together, they are designed for seamless continuity across compatible agents, with explicit project boundaries and evidence-based learning.
+
+Switch models. Keep the context. Build on what works.
+
+## Explain the benefit before the mechanism
+
+| Mechanism | User-facing benefit |
+|---|---|
+| Persistent memory | Spend less time repeating the brief and more time moving the work forward |
+| Portable harness and scoped handoffs | Carry approved context into the next supported agent, tool, or session |
+| Verified learning loop | Keep a useful fix or decision available for the next task |
+| Universal vector-translation interfaces | Evaluate supported embedding formats within a common memory workflow as the model stack evolves |
+| Source and checkpoint provenance | See why a decision was made and where the next agent should resume |
+
+Use “universal vector translation” with its [compatibility definition](VECTOR_TRANSLATION.md). Dimension conversion alone does not establish semantic equivalence between embedding models. The customer promise is portable, reusable knowledge with verified compatibility, not lossless conversion between every model.
 
 ## Reusable infrastructure thesis
 
