@@ -4,6 +4,10 @@
 
 MNX-AGI organizes how agents work. MemQ retains the selected knowledge they can reuse. The pairing is designed for continuity across compatible models, authorized agents, and sessions: keep useful context available, preserve progress through interruption, and build on verified outcomes.
 
+This is reusable infrastructure for existing agent hosts and applications. The adoption unit is a workflow, skill, memory connection, or verified adapter. Teams can adopt these pieces together without moving their work into a custom desktop or operating system.
+
+For the user, the payoff is direct: less re-explaining, a clearer starting point after interruption, and useful decisions that remain available when tools or models change. MemQ's [universal vector-translation interfaces](VECTOR_TRANSLATION.md) address supported embedding dimensions; source-backed context and checkpoints provide continuity independently of any particular model's context window.
+
 ## Two complementary responsibilities
 
 | MNX-AGI: the harness | MemQ: the memory layer |
@@ -51,4 +55,4 @@ Handoffs carry the minimum useful projection: objective, current revision, compl
 
 Start with one supported host, one verified memory connection, and one bounded task. Verify persistence, exact read-back, stale-write rejection, wrong-scope rejection, interruption recovery, and available host controls. Then evaluate authorized handoffs before extending to team coordination or federation.
 
-See [installation](INSTALL.md), [memory workflows](MEMORY_WORKFLOWS.md), [MemQ contract](MEMQ_CONTRACT.md), [runtime integration](RUNTIME.md), [experimental host guard](MEMQ_ENFORCEMENT_CANDIDATE.md), and [acceptance criteria](ACCEPTANCE.md).
+See [installation](INSTALL.md), [reusable infrastructure modules](HARNESS_MODULES.md), [memory workflows](MEMORY_WORKFLOWS.md), [MemQ contract](MEMQ_CONTRACT.md), [runtime integration](RUNTIME.md), [experimental host guard](MEMQ_ENFORCEMENT_CANDIDATE.md), and [acceptance criteria](ACCEPTANCE.md).

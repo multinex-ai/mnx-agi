@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+  <title id="title">Multinex mark</title>
+  <desc id="desc">Compact gold chevron Multinex M mark.</desc>
+  <defs>
+    <linearGradient id="gold" x1="7" y1="7" x2="64" y2="59" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF0A6"/>
+      <stop offset="0.42" stop-color="#FFC857"/>
+      <stop offset="1" stop-color="#9B6215"/>
+    </linearGradient>
+    <linearGradient id="goldEdge" x1="12" y1="2" x2="58" y2="61" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF8C7" stop-opacity="0.95"/>
+      <stop offset="0.48" stop-color="#DDA635" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#5C3507" stop-opacity="0.82"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M9 13L22 6V27L9 35V13Z" fill="url(#gold)"/>
+    <path d="M9 37L22 29V51L9 59V37Z" fill="url(#gold)"/>
+    <path d="M63 13L50 6V27L63 35V13Z" fill="url(#gold)"/>
+    <path d="M63 37L50 29V51L63 59V37Z" fill="url(#gold)"/>
+    <path d="M24 7L36 19L48 7V25L36 37L24 25V7Z" fill="url(#goldEdge)"/>
+    <path d="M24 31L36 43L48 31V50L36 62L24 50V31Z" fill="url(#gold)"/>
+    <path d="M14 16L19 13V26L14 29V16Z" fill="#FFF5B8" opacity="0.24"/>
+    <path d="M58 16L53 13V26L58 29V16Z" fill="#FFF5B8" opacity="0.16"/>
+    <path d="M29 12L36 19L43 12" fill="none" stroke="#FFF2A7" stroke-opacity="0.24" stroke-width="1.5"/>
+    <path d="M29 36L36 43L43 36" fill="none" stroke="#FFF2A7" stroke-opacity="0.18" stroke-width="1.5"/>
+  </g>
+</svg>
