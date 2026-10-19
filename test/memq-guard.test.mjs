@@ -62,3 +62,21 @@ test('linked worktree belonging to denied repository is rejected', t => {
   const linked = path.join(f.root, 'linked'); git(['worktree', 'add', '--detach', linked]);
   assert.throws(() => verifyWorkspace(f.config, linked), /workspace_denied/);
 });
+
+test('a nested repository does not inherit its parent workspace memory', t => {
+  const f = fixture(t), nested = path.join(f.root, 'different-project'); fs.mkdirSync(nested);
+  execFileSync('git', ['init'], { cwd: nested, stdio: 'ignore' });
+  assert.throws(() => verifyWorkspace(f.config, nested), /workspace_repository_mismatch/);
+});
+
+test('unresolved repository ownership fails closed from a descendant', t => {
+  const f = fixture(t), nested = path.join(f.root, 'src'); fs.mkdirSync(nested);
+  fs.writeFileSync(path.join(f.root, '.git'), 'gitdir: missing-repository\n');
+  assert.throws(() => verifyWorkspace(f.config, nested), /git_ownership_unresolved/);
+});
+
+test('an ordinary subdirectory of the same repository keeps its binding', t => {
+  const f = fixture(t); execFileSync('git', ['init'], { cwd: f.root, stdio: 'ignore' });
+  const nested = path.join(f.root, 'src'); fs.mkdirSync(nested);
+  assert.equal(verifyWorkspace(f.config, nested), fs.realpathSync(nested));
+});
