@@ -18,3 +18,5 @@ Checkpoint meaningful progress and retain evidence references. A handoff include
 Before merging results, recheck artifact revision, permission, independent verification and acceptance criteria. Report partial outcomes honestly; one worker completing does not complete the parent objective. Do not run mutating lifecycle sweeps or broad synchronization merely for housekeeping.
 
 Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.
+
+Use [the tool coverage map](references/MEMQ_TOOL_COVERAGE.md) to select among currently exposed capabilities. Installed skills do not grant access to tools withheld by the host.
