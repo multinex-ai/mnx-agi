@@ -1,7 +1,7 @@
 {
   "name": "@multinex-ai/mnx-agi",
   "version": "1.2.1",
-  "description": "Portable AI operating constitution, realm validation and MemQ workflow skills with reversible installation.",
+  "description": "Model-agnostic Recursive Agent Harness paired with MemQ for persistent memory across supported agents and sessions, turning verified work into reusable knowledge.",
   "type": "module",
   "license": "Apache-2.0",
   "private": true,

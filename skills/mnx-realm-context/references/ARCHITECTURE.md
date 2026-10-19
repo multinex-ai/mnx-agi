@@ -2,6 +2,8 @@
 
 Integration architecture. The installer is implemented; the remote components below require separate adapters. Configuration examples are synthetic and do not activate services. Directory names and namespace labels do not create access rights.
 
+MNX-AGI is positioned as a Recursive Agent Harness paired with MemQ: verified work feeds a bounded cycle of recall, execution, verification, and retained learning. The layers below define its integration and disclosure boundaries.
+
 ## Layers
 
 ```mermaid
@@ -20,7 +22,7 @@ flowchart TD
     X --> T["Authorized peer realm"]
 ```
 
-The resolver supplies effective constraints, defaults, evidence provenance and available capabilities. The harness enforces them at tool boundaries. Skills advise the agent; they are not an enforcement engine. A Jev-style adapter may route among allowed choices after eligibility filtering. Every eventual side effect is checked again.
+The resolver supplies effective constraints, defaults, evidence provenance and available capabilities. A deployed harness adapter must enforce them at tool boundaries. Skills advise the agent; they are not an enforcement engine. A Jev-style adapter may route among allowed choices after eligibility filtering. Every eventual side effect is checked again.
 
 ## Filesystem layout
 
