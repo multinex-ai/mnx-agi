@@ -3,8 +3,8 @@
 import { spawn } from 'node:child_process';
 import { createInterface } from 'node:readline';
 import assert from 'node:assert/strict';
-const [launcher, cwd, planId] = process.argv.slice(2);
-if (!launcher || !cwd || !planId) throw new Error('Usage: probe-memq-host launcher workspace unique-synthetic-plan-id');
+const [launcher, cwd, planId, mode] = process.argv.slice(2);
+if (!launcher || !cwd || !planId || (mode && mode !== '--resume-only')) throw new Error('Usage: probe-memq-host launcher workspace unique-synthetic-plan-id [--resume-only]');
 const child = spawn(launcher, ['app-server'], { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
 child.stderr.resume();
 const pending = new Map(); let id = 0;
@@ -32,13 +32,15 @@ try {
   assert.equal(directDenied, true, 'direct upstream remains callable in this host');
   console.log(JSON.stringify({ check: 'direct_memq_host_call', denied: true }));
   const call = (tool, args) => rpc('mcpServer/tool/call', { threadId: thread.id, server: 'mnx_memq_guard', tool, arguments: args });
-  const write = await call('plan_write', { plan_id: planId, expected_state_version: 0, state_patch: { synthetic: true, probe: 'guard-host-7319' } });
-  assert.notEqual(write.isError, true, 'synthetic conditional write failed');
+  if (!mode) {
+    const write = await call('plan_write', { plan_id: planId, expected_state_version: 0, state_patch: { synthetic: true, probe: 'guard-host-7319' } });
+    assert.notEqual(write.isError, true, 'synthetic conditional write failed');
+  }
   const read = await call('plan_read', { plan_id: planId });
   assert.notEqual(read.isError, true);
   const body = JSON.parse(read.content[0].text);
   assert.equal(body.state.probe, 'guard-host-7319'); assert.equal(body.state_version, 1);
-  for (const [name, tool, args] of [
+  for (const [name, tool, args] of mode ? [] : [
     ['stale_version', 'plan_write', { plan_id: planId, expected_state_version: 0, state_patch: { probe: 'must-not-apply' } }],
     ['namespace_override', 'plan_read', { plan_id: planId, namespace: 'org:synthetic-denied' }],
     ['foreign_plan', 'plan_read', { plan_id: 'synthetic-other-realm' }],
@@ -48,5 +50,5 @@ try {
   }
   const final = JSON.parse((await call('plan_read', { plan_id: planId })).content[0].text);
   assert.equal(final.state.probe, 'guard-host-7319'); assert.equal(final.state_version, 1);
-  console.log(JSON.stringify({ hostRoundTrip: true, conditionalWrite: true, readBack: true, unchangedAfterDenials: true, systemSealed: false }));
+  console.log(JSON.stringify({ hostRoundTrip: true, conditionalWrite: !mode, readBack: true, freshSessionResume: mode === '--resume-only', unchangedAfterDenials: true, systemSealed: false }));
 } finally { child.kill(); }

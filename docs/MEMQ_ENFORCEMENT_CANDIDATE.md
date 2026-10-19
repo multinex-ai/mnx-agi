@@ -38,6 +38,8 @@ node tools/probe-memq-host.mjs /absolute/path/to/candidate-launcher /srv/example
 
 The probe starts a real Codex app-server host, inventories its MCP tools, rejects a direct upstream call, writes a synthetic plan with expected version zero, reads it back, attempts a stale write and scope overrides, then verifies unchanged state. Use a fresh plan ID for each run. Synthetic plans remain in the provider; the adapter does not expose deletion. Passing this probe proves the tested host route, not universal OS isolation or a clean-machine installation.
 
+Repeat the command with the same plan ID and `--resume-only` to verify exact retrieval from a newly started host process without repeating the write. The configured workspace must resolve to the same Git repository as the calling directory; nested repositories do not inherit its memory binding. Launchers must preserve the actual working directory rather than force every invocation into an allowed project.
+
 ## Required before default activation
 
 1. Put the broker, configuration, runtime binaries and host requirements under administrator control, beyond the agent's writable filesystem. Define the OS user/service boundary and ownership explicitly.

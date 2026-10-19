@@ -4,10 +4,10 @@ Install the harness, verify that your host loads it, then connect MemQ for the p
 
 ## 1. Download and verify a stable release
 
-Requirements: macOS or Linux, Node.js 22 or later, `curl`, `tar`, and either `sha256sum` or `shasum`. This example pins the published v1.2.1 release. The main branch may contain newer documentation and experimental source that is not in that archive.
+Requirements: macOS or Linux, Node.js 22 or later, `curl`, `tar`, and either `sha256sum` or `shasum`. This example pins v1.3.0. The experimental adapter is included in the archive but remains a separately configured integration.
 
 ```sh
-version=1.2.1
+version=1.3.0
 work_dir="$(mktemp -d)" || exit 1
 cd "$work_dir" || exit 1
 release_url="https://github.com/multinex-ai/mnx-agi/releases/download/v$version"

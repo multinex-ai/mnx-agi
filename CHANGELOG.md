@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+
+- Presents MNX-AGI as a Recursive Agent Harness paired with MemQ, with Multinex branding, live repository badges, a benefit-led pairing guide, and a verified installation quickstart.
+- Documents vector-translation interfaces and distinguishes dimension adaptation from demonstrated semantic retrieval compatibility.
+- Includes an opt-in experimental Codex-to-MemQ plan gateway and live host acceptance probe. The default installation remains guidance and local validation; system-wide enforcement is not claimed.
+- Strengthens project-switch context rules and rejects nested-repository memory inheritance and unresolved Git ownership in the experimental guard.
+- Preserves private account-routing instructions during upgrade. Global installation targets Codex and Claude Code; ChatGPT cloud installation remains separate.
+
 ## 1.2.1
 
 - Rechecks authorization and transfer expiry after an asynchronous audit write, so audit latency cannot extend a permission window. Adds a regression test for the delayed-audit case.

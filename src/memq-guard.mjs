@@ -6,18 +6,35 @@ import { unwrapMemq } from './codex-memq-client.mjs';
 const fail = code => { throw new Error(code); };
 const within = (root, candidate) => candidate === root || candidate.startsWith(root + path.sep);
 
+function repositoryOwner(directory) {
+  let cursor = directory, hasGitMarker = false;
+  while (true) {
+    if (fs.existsSync(path.join(cursor, '.git'))) { hasGitMarker = true; break; }
+    const parent = path.dirname(cursor);
+    if (parent === cursor) break;
+    cursor = parent;
+  }
+  try {
+    const common = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], {
+      cwd: directory, encoding: 'utf8', timeout: 5000, stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+    return fs.realpathSync(common);
+  } catch {
+    if (hasGitMarker) fail('git_ownership_unresolved');
+    return null;
+  }
+}
+
 export function verifyWorkspace(config, cwd) {
   const root = fs.realpathSync(config.workspace), actual = fs.realpathSync(cwd);
   if (!within(root, actual)) fail('workspace_not_allowed');
-  const candidates = [actual, root];
-  try {
-    const common = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], { cwd: actual, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
-    candidates.push(fs.realpathSync(common));
-  } catch (error) { if (fs.existsSync(path.join(actual, '.git'))) fail('git_ownership_unresolved'); }
+  const actualOwner = repositoryOwner(actual), expectedOwner = repositoryOwner(root);
+  const candidates = [actual, root, actualOwner].filter(Boolean);
   for (const denied of config.deniedRoots) {
     const canonical = fs.existsSync(denied) ? fs.realpathSync(denied) : path.resolve(denied);
     if (candidates.some(candidate => within(canonical, candidate))) fail('workspace_denied');
   }
+  if (actualOwner !== expectedOwner) fail('workspace_repository_mismatch');
   return actual;
 }
 
