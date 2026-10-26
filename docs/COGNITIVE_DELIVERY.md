@@ -28,11 +28,13 @@ The manifest included in a commit must describe that committed source and packag
 | M13 | Optional training/controller adapters | Data rights, actual resource fit, model rollback and retention evidence |
 | M14 | Optional functional mechanism experiments | No consciousness percentage or self-report optimization target |
 
-## First task queue
+## Verified M01 and next task queue
 
-M01-01 freezes the common contracts. M01-02 hardens founding canonicalization and pinned expectations. M01-03 validates complete persisted state and checks execution capacity before side effects. M01-04 freezes versioned MemQ interfaces. M01-05 binds evaluations to skill/task/environment artifacts and independent split authority. These local changes precede real enrollment and unattended execution.
+M01-01 through M01-05 are implemented and verified locally. The isolated rc.1 candidate passed all 144 Node tests and release/package integrity checks; the paired MemQ candidate passed 63 targeted tests, entrypoint type-check and three cross-repository tests. Signing/schema/fixture bytes match across runtimes. Earlier unsigned pilot receipts and incomplete persisted operations are deliberately refused. Public v1 behavior remains compatible.
 
-Task owner roles are proposed responsibilities, not assignments or credentials. No background agents or recurring work are created by this document. No completion date is promised. The canonical backlog records estimated engineer-days and explicit dependencies.
+The next eligible tasks are M02-01 (approved founding artifact enrollment contract), M03-01 (experience/provenance storage contract) and M10-01 (independent evaluation protocol). No production founder key or evaluator was enrolled. Service recovery is tracked separately in MemQ and does not close M04/M08 durable ownership requirements.
+
+Task owner roles describe responsibilities; the canonical backlog records the actual authorized M01 subagent assignment. Assignments do not issue credentials. No background agents or recurring work are created by this document. No completion date is promised. The canonical backlog records estimated engineer-days and explicit dependencies.
 
 ## Commit and acceptance convention
 
