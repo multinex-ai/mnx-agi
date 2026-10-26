@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multinex cognitive instance founding manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "systemId", "realm", "createdAt", "founder", "accordSha256", "amendmentPolicySha256", "keyId"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "systemId": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "realm": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "keyId": { "type": "string", "minLength": 1, "maxLength": 1024 },
+    "accordSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "amendmentPolicySha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "founder": {
+      "type": "object", "additionalProperties": false,
+      "required": ["displayName", "role", "identityRef"],
+      "properties": {
+        "displayName": { "const": "Christopher Rijos" },
+        "role": { "const": "Supreme Architect" },
+        "identityRef": { "type": "string", "minLength": 1, "maxLength": 1024 }
+      }
+    }
+  }
+}

@@ -79,6 +79,14 @@
       "sha256": "e8ec25c00b3c365f234641c451493ddfe556b70ac9a429e10c219c2a5b7b99df"
     },
     {
+      "path": "docs/COGNITIVE_DELIVERY.md",
+      "sha256": "6d08071999643451999aa865911bb5ab653af11008f3da4a702963d2e28e8ea3"
+    },
+    {
+      "path": "docs/COGNITIVE_PILOT.md",
+      "sha256": "46d14fea9cd3eaea3db8c4d6cee5e30aac91052b5fcb60b38112593c6788e77e"
+    },
+    {
       "path": "docs/HARNESS_MODULES.md",
       "sha256": "5d6e1b3c1371abba81d9bc043c35ebee702405e421d576bd105efa8d2638e212"
     },
@@ -165,6 +173,10 @@
     {
       "path": "profiles/portable.md",
       "sha256": "829fe6c7a478ca4cd7e89914060d82d6ab647db7d3d7e2fde5f64d19d9917d97"
+    },
+    {
+      "path": "schemas/genesis.schema.json",
+      "sha256": "81c6aca0b5875f6c3d1a48c9596425cc27e56be50d647b50875530f65807a1bc"
     },
     {
       "path": "schemas/realm.schema.json",
@@ -383,12 +395,20 @@
       "sha256": "8d130623368c4c14fa1dec3f0ea44e0a1140f6f1ff7d9b73262442c83bc224ad"
     },
     {
+      "path": "src/cognitive-session.mjs",
+      "sha256": "bcfaf005fcc112aceafee7cd95a0a96979c3f5df743bf56602b95ef326f17055"
+    },
+    {
       "path": "src/evaluate.mjs",
       "sha256": "ece70218df92398c1f47d0e07fb0fdf2f37589ea2107f66fda4848805f05bcde"
     },
     {
       "path": "src/files.mjs",
       "sha256": "829448e50553bab85d0863f93536b974deb485fc981019412bb03b220f29093a"
+    },
+    {
+      "path": "src/genesis.mjs",
+      "sha256": "8a836965885ec6524bb81d9b4357f99a0c37ab24fc040a2f5e88006f90363f43"
     },
     {
       "path": "src/host-enforcement.mjs",
@@ -415,8 +435,20 @@
       "sha256": "36dca8b6254a492b0330aa7af0e09965b3c36c0b187248d7c2fd7ce78b6313ea"
     },
     {
+      "path": "test/cognitive-session.test.mjs",
+      "sha256": "a8df74ba57e8672c4faca52b5108ac80a7eac3e8a2674204a064ef5f34f0b5f4"
+    },
+    {
       "path": "test/evaluate.test.mjs",
       "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
+    },
+    {
+      "path": "test/fixtures/genesis.mjs",
+      "sha256": "cc35018d6b5d7229e6545508e064fbb4b838e4489a4254e4b52d6ca7f69796ea"
+    },
+    {
+      "path": "test/genesis.test.mjs",
+      "sha256": "86e80d7f084e15ffe458bb6d38f93fc0c8d304122b204005641784d3c41ae3e5"
     },
     {
       "path": "test/host-enforcement.test.mjs",
