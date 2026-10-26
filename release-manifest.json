@@ -84,7 +84,7 @@
     },
     {
       "path": "docs/COGNITIVE_PILOT.md",
-      "sha256": "46d14fea9cd3eaea3db8c4d6cee5e30aac91052b5fcb60b38112593c6788e77e"
+      "sha256": "37e34f71179d0bbdcaff7952fc7fd94d289ccd2791e1c9a0cf8125de43656ae9"
     },
     {
       "path": "docs/HARNESS_MODULES.md",
@@ -175,12 +175,20 @@
       "sha256": "829fe6c7a478ca4cd7e89914060d82d6ab647db7d3d7e2fde5f64d19d9917d97"
     },
     {
+      "path": "schemas/cognitive-state.schema.json",
+      "sha256": "b36f561f4fea45c83d099e84412b1d07b57ae2091ce3e3cb9261b0d59383d265"
+    },
+    {
       "path": "schemas/genesis.schema.json",
       "sha256": "81c6aca0b5875f6c3d1a48c9596425cc27e56be50d647b50875530f65807a1bc"
     },
     {
       "path": "schemas/realm.schema.json",
       "sha256": "8d3019e47f1d5d26b11613a38a6882cff3b76daab34c6d668bed1921ab279d66"
+    },
+    {
+      "path": "schemas/skill.schema.json",
+      "sha256": "2fa42ec9b27360233f24121fe5122fb9822277a5dcf01bf3c8d12bea2a2fbda8"
     },
     {
       "path": "skills/mnx-decision-routing/SKILL.md",
@@ -395,8 +403,16 @@
       "sha256": "8d130623368c4c14fa1dec3f0ea44e0a1140f6f1ff7d9b73262442c83bc224ad"
     },
     {
+      "path": "src/cognitive-contracts.mjs",
+      "sha256": "128418d80c185650abdd3c77389f998dfc0d0ac71cc58dd918ea7380ac2d79b4"
+    },
+    {
+      "path": "src/cognitive-contracts.schema.json",
+      "sha256": "6bba5967af9485f72db8ed39c874db57461df15206d47b79758d9f81d61e2865"
+    },
+    {
       "path": "src/cognitive-session.mjs",
-      "sha256": "bcfaf005fcc112aceafee7cd95a0a96979c3f5df743bf56602b95ef326f17055"
+      "sha256": "0ad68eee061e04cc7b029e7a74eeae7c4ebf369a81ccabad08353b6c6eb55cdb"
     },
     {
       "path": "src/evaluate.mjs",
@@ -408,7 +424,7 @@
     },
     {
       "path": "src/genesis.mjs",
-      "sha256": "8a836965885ec6524bb81d9b4357f99a0c37ab24fc040a2f5e88006f90363f43"
+      "sha256": "8322028ac35fd4637108c7a8c245f54a17682c4f33b77c7558372a2f35c59010"
     },
     {
       "path": "src/host-enforcement.mjs",
@@ -435,12 +451,24 @@
       "sha256": "36dca8b6254a492b0330aa7af0e09965b3c36c0b187248d7c2fd7ce78b6313ea"
     },
     {
+      "path": "test/cognitive-contracts.test.mjs",
+      "sha256": "d21daa0e6fee54529d15e8119032548b07bcbfaaaedc402c0230553cea70ae9a"
+    },
+    {
       "path": "test/cognitive-session.test.mjs",
-      "sha256": "a8df74ba57e8672c4faca52b5108ac80a7eac3e8a2674204a064ef5f34f0b5f4"
+      "sha256": "216535d0eb70e5193bc1503c5d2be831e1e6f6131889bdcc77f03a67bfe1b54a"
     },
     {
       "path": "test/evaluate.test.mjs",
       "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
+    },
+    {
+      "path": "test/fixtures/cognitive-contract-fixtures.json",
+      "sha256": "6e040e73d74e615c6c0c863441c416b41ddf20bae7603a203bd8ea3e9219ead1"
+    },
+    {
+      "path": "test/fixtures/evaluation.mjs",
+      "sha256": "78966660a5634fbb7286e3b90c73b1ef71b365be81bc1e7c3e74a86985a00ec2"
     },
     {
       "path": "test/fixtures/genesis.mjs",
@@ -448,7 +476,7 @@
     },
     {
       "path": "test/genesis.test.mjs",
-      "sha256": "86e80d7f084e15ffe458bb6d38f93fc0c8d304122b204005641784d3c41ae3e5"
+      "sha256": "b29c6e569ecaa68184465cc86b0a9e68dabb9c03e0e0d07ec5a5bb4addfafdfb"
     },
     {
       "path": "test/host-enforcement.test.mjs",

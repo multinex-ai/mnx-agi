@@ -17,3 +17,13 @@ Existing runtime methods and installation defaults are unchanged. This pilot doe
 Run `node --test test/genesis.test.mjs test/cognitive-session.test.mjs` for local contract tests, then the full package test and release checks. The MemQ repository includes an explicit cross-repository integration test that requires this repository as a sibling checkout. It replaces both adapters while retaining its synthetic conditional backend, verifies source-signed evidence, and executes an activated skill under the same genesis.
 
 Before active deployment: bind the real founder identity, sign the reviewed Accord, qualify live R2 persistence and the managed host path, add operational reconciliation and migration tooling, and run independently verified tasks with real model adapters. These remain acceptance gates, not properties implied by the unit tests.
+
+## M01 contract hardening compatibility
+
+The opt-in local cognitive adapter now uses the shared cognitive v1 schema and canonical JSON v1 bytes. Sparse arrays, non-finite values, ambiguous timestamps, unsafe keys, oversized payloads and unknown executable fields are refused. Persisted operations retain their task and digest; trials must reference the exact completed operation, and an active skill must still satisfy qualification when loaded.
+
+Evaluation adapters receive a `receiptBinding` containing the exact skill digest, task digest, environment revision, scope binding digest and operation ID. They return a strict Ed25519-signed receipt using `evaluationSigningBytes`. Host configuration supplies `evaluationPolicy.trustedEvaluators`; each evaluator is bound to a public key, split authority and allowed splits. The signed receipt also carries its independently assigned source group. Candidate task text cannot select an evaluator key or create independent held-out evidence. Production evaluator enrollment remains M02/M05 work.
+
+This intentionally rejects the earlier pilot's unsigned evaluator results and incomplete persisted operation/trial shapes. Existing pilot state must be explicitly migrated or restarted in an isolated test instance; it is never silently promoted. No deployed cognitive-state migration is performed by these changes. Empty evaluator configuration permits observations/proposals but cannot qualify new skills.
+
+The session preflights bounded task/result/state capacity before dispatch. A known pre-dispatch denial is recorded as `not_dispatched`, preserving the operation ID; an uncertain result after dispatch retains its durable `dispatching` reservation and requires reconciliation. This is not proof of exactly-once side effects or full reconciliation support. Host authorization is checked again after the durable dispatch marker.
