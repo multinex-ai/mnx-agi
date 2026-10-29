@@ -404,7 +404,7 @@
     },
     {
       "path": "src/cognitive-contracts.mjs",
-      "sha256": "128418d80c185650abdd3c77389f998dfc0d0ac71cc58dd918ea7380ac2d79b4"
+      "sha256": "2120ff2806e34f6f12281d15a7438522ad07a2c085dee5b53285679a803ed942"
     },
     {
       "path": "src/cognitive-contracts.schema.json",
@@ -452,7 +452,7 @@
     },
     {
       "path": "test/cognitive-contracts.test.mjs",
-      "sha256": "d21daa0e6fee54529d15e8119032548b07bcbfaaaedc402c0230553cea70ae9a"
+      "sha256": "e322677a345914603fe13a0e15d0545f21a6b214ac10ae5280e234fcb4fe6fea"
     },
     {
       "path": "test/cognitive-session.test.mjs",

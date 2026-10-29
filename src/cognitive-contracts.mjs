@@ -12,9 +12,14 @@ export function canonicalJson(value, depth = 0) {
   if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
   if (Array.isArray(value)) {
-    if (Reflect.ownKeys(value).length !== value.length + 1 || value.some((_, i) => !Object.hasOwn(value, i))) fail('non_json_array');
-    for (let i = 0; i < value.length; i++) if (!Object.hasOwn(value, i)) fail('non_json_array');
-    return `[${value.map(v => canonicalJson(v, depth + 1)).join(',')}]`;
+    if (Object.getPrototypeOf(value) !== Array.prototype || Reflect.ownKeys(value).length !== value.length + 1) fail('non_json_array');
+    const items = [];
+    for (let i = 0; i < value.length; i++) {
+      const descriptor = Object.getOwnPropertyDescriptor(value, String(i));
+      if (!descriptor || !Object.hasOwn(descriptor, 'value')) fail('non_json_array');
+      items.push(canonicalJson(descriptor.value, depth + 1));
+    }
+    return `[${items.join(',')}]`;
   }
   if (value && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype) {
     const keys = Object.keys(value).sort();

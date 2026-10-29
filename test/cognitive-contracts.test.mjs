@@ -13,3 +13,26 @@ test('shared contract parser rejects non-JSON executable values and unsafe neste
   }
   assert.equal(canonicalJson({ 'é': '🧠\n', a: [1, -0, null] }), '{"a":[1,0,null],"é":"🧠\\n"}');
 });
+test('array index accessors are rejected before canonicalization or contract validation invokes them', () => {
+  for (const enumerable of [true, false]) {
+    let calls = 0;
+    const values = [0];
+    Object.defineProperty(values, '0', { enumerable, get() { return ++calls; } });
+    assert.throws(() => canonicalJson(values), /non_json_array/);
+    assert.throws(() => validateContract('skill', { id: 'a', environment: 'e', procedure: values }), /non_json_array/);
+    assert.equal(calls, 0);
+  }
+});
+test('changed array prototypes cannot substitute callbacks or alternate canonical values', () => {
+  let calls = 0;
+  const values = [1];
+  Object.setPrototypeOf(values, {
+    some() { calls++; return false; }, map() { calls++; return [2]; }, every() { calls++; return true; },
+  });
+  assert.throws(() => canonicalJson(values), /non_json_array/);
+  assert.throws(() => validateContract('skill', { id: 'a', environment: 'e', procedure: values }), /non_json_array/);
+  assert.equal(calls, 0);
+  const stable = [1];
+  Object.defineProperty(stable, '0', { value: 1, enumerable: false });
+  assert.equal(canonicalJson(stable), '[1]');
+});
