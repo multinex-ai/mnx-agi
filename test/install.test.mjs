@@ -14,6 +14,17 @@ const realm = fs.readFileSync(new URL('../examples/local.realm.json', import.met
 function fixture(t) { const p = fs.mkdtempSync(path.join(os.tmpdir(), 'mnx test ')); t.after(() => fs.rmSync(p, { recursive: true, force: true })); return p; }
 function bundle(version = '1.0.0') { return { version, digest: hash(version), files: new Map([['constitution/CORE.md', Buffer.from(`# Core ${version}\n`) ], ['examples/local.realm.json', realm], ['skills/mnx-example/SKILL.md', Buffer.from('example')], ['bin/mnx-agi.mjs', Buffer.from('console.log("ok")')]]) }; }
 const globalOptions = { scope: 'global', hosts: ['codex','claude'] };
+test('the release installs all eleven workflow skills for both hosts', t => {
+  const target = fixture(t);
+  const release = loadBundle(root);
+  const skills = [...release.files.keys()].filter(name => /^skills\/[^/]+\/SKILL.md$/.test(name));
+  assert.equal(skills.length, 11);
+  install(release, target, globalOptions);
+  for (const name of skills) for (const directory of ['.agents/skills', '.claude/skills']) {
+    const relative = name.slice('skills/'.length);
+    assert.deepEqual(fs.readFileSync(path.join(target, directory, relative)), release.files.get(name));
+  }
+});
 function write(root, name, content) { fs.mkdirSync(path.dirname(path.join(root, name)), { recursive: true }); fs.writeFileSync(path.join(root, name), content); }
 function read(root, name) { return fs.readFileSync(path.join(root, name), 'utf8'); }
 

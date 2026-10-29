@@ -2,15 +2,18 @@ import { spawn, execFileSync } from 'node:child_process';
 import { createInterface } from 'node:readline';
 
 // Uses Codex's OAuth client. Never reads, exports, or copies its credentials.
-export async function connectCodex({ executable = 'codex', cwd, server, timeoutMs = 45000 }) {
-  const inventory = JSON.parse(execFileSync(executable, ['mcp', 'list', '--json'], { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }));
+export async function connectCodex({ executable = 'codex', cwd, server, timeoutMs = 45000, codexHome }) {
+  // An explicitly provisioned home keeps two independently authenticated test
+  // clients separate. Never seed it by copying another client's credentials.
+  const env = codexHome ? { ...process.env, CODEX_HOME: codexHome } : process.env;
+  const inventory = JSON.parse(execFileSync(executable, ['mcp', 'list', '--json'], { cwd, env, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }));
   if (!inventory.some(item => item.name === server)) throw new Error('upstream_unavailable');
   if (inventory.some(item => !/^[A-Za-z0-9_-]+$/.test(item.name))) throw new Error('unsupported_server_name');
   const upstream = inventory.find(item => item.name === server).transport;
   if (upstream.type !== 'streamable_http' || upstream.url !== 'https://mcp.multinex.ai/mcp/v1') throw new Error('unsupported_upstream');
   const disabled = inventory.filter(item => item.name !== server).map(item => `${item.name}={enabled=false,${item.transport.type === 'streamable_http' ? `url=${JSON.stringify(item.transport.url)}` : 'command="/usr/bin/false"'}}`);
   const overrides = ['-c', `mcp_servers={${[...disabled, `${server}={url=${JSON.stringify(upstream.url)},enabled=true}`].join(',')}}`];
-  const child = spawn(executable, ['app-server', ...overrides], { cwd, stdio: ['pipe', 'pipe', 'pipe'] });
+  const child = spawn(executable, ['app-server', ...overrides], { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
   let sequence = 0, closed = false;
   const pending = new Map();
   const close = () => {
@@ -46,6 +49,12 @@ export async function connectCodex({ executable = 'codex', cwd, server, timeoutM
   try {
     await rpc('initialize', { clientInfo: { name: 'mnx_memq_guard', version: '0.1.0' }, capabilities: { experimentalApi: true } });
     child.stdin.write(JSON.stringify({ method: 'initialized' }) + '\n');
+    if (codexHome) {
+      // A separate home alone does not establish isolation with a shared OS
+      // keyring. Require the effective, host-resolved file-store configuration.
+      const resolved = await rpc('config/read', { cwd, includeLayers: false });
+      if (resolved.config?.mcp_oauth_credentials_store !== 'file') throw new Error('isolated_oauth_store_required');
+    }
     const started = await rpc('thread/start', { cwd, ephemeral: true, approvalPolicy: 'never', sandbox: 'read-only' });
     const threadId = started.thread.id;
     return { close, call: (tool, args) => rpc('mcpServer/tool/call', { threadId, server, tool, arguments: args }) };

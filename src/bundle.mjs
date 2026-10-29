@@ -3,7 +3,7 @@ import path from 'node:path';
 import { hash, walk, relative, safePath } from './files.mjs';
 import { parseStrictJSON } from '../tools/validate-realm.mjs';
 
-export const sourceIgnore = new Set(['.git', 'node_modules', 'dist', '.DS_Store']);
+export const sourceIgnore = new Set(['.git', 'node_modules', 'dist', '.DS_Store', '__pycache__']);
 export function loadBundle(root) {
   const found = walk(root, '', sourceIgnore).filter(p => p !== 'release-manifest.json').sort();
   const raw = fs.readFileSync(path.join(root, 'release-manifest.json'));

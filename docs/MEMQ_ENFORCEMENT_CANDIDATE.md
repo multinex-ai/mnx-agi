@@ -2,6 +2,8 @@
 
 Status: implemented adapter and live-test harness; **not a sealed system installation**. This does not change the constitution's version or the installed package doctor's `runtimeVerified` result.
 
+See [managed host enforcement](MANAGED_HOST_ENFORCEMENT.md) for policy preparation, credential isolation, the two-account probe, and activation gates. Strict principal binding is available only when the live service returns a verifiable authenticated subject; it cannot be inferred from the organization namespace.
+
 The first integration exposes only `plan_read` and `plan_write`. It uses a fixed organization namespace and plan-ID prefix, checks the workspace's canonical path and Git common directory against denied roots, performs a fresh MemQ handshake before each operation, requires conditional writes, and withholds results with a different namespace or plan ID. Unknown tools and arguments are denied. An unavailable audit sink prevents dispatch. Requests are not automatically retried, including ambiguous writes.
 
 The provider connection is Codex's supported app-server MCP interface using its existing OAuth client. The adapter never reads or exports OAuth credentials. No agent turn or model inference is needed for the acceptance probe. Child app-server configuration disables known unrelated MCP connections. The host launcher must separately disable direct upstream access. Codex merges server configuration: declaring one server does not remove other configured servers.

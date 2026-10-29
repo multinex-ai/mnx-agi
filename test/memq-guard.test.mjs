@@ -80,3 +80,24 @@ test('an ordinary subdirectory of the same repository keeps its binding', t => {
   const nested = path.join(f.root, 'src'); fs.mkdirSync(nested);
   assert.equal(verifyWorkspace(f.config, nested), fs.realpathSync(nested));
 });
+
+test('strict principal binding rejects a handshake with only organization scope', async t => {
+  const f = fixture(t);
+  const guard = createMemqGuard({ config: { ...f.config, requirePrincipal: true, principal: 'fixture-subject-a' }, cwd: f.root, call: f.call, audit: async () => {} });
+  await assert.rejects(guard.execute('plan_read', { plan_id: 'mnx-test-one' }), /principal_mismatch/);
+  assert.deepEqual(f.calls.map(x => x.tool), ['reunion']);
+});
+
+test('another subject in the same organization cannot use a strict binding', async t => {
+  const f = fixture(t);
+  const guard = createMemqGuard({ config: { ...f.config, requirePrincipal: true, principal: 'fixture-subject-a' }, cwd: f.root, audit: async () => {}, call: async (tool, args) => {
+    if (tool === 'reunion') return envelope({ access: { namespace: f.config.namespace, namespace_scoped: true, auth_source: 'oauth_billing_manager', authenticated_subject: 'fixture-subject-b' } });
+    assert.fail('memory dispatch must not occur');
+  } });
+  await assert.rejects(guard.execute('plan_write', { plan_id: 'mnx-test-one', expected_state_version: 0, state_patch: {} }), /principal_mismatch/);
+});
+
+test('strict binding requires an expected subject, supplied by trusted host configuration', t => {
+  const f = fixture(t);
+  assert.throws(() => createMemqGuard({ config: { ...f.config, requirePrincipal: true }, cwd: f.root, call: f.call, audit: async () => {} }), /principal_binding_required/);
+});

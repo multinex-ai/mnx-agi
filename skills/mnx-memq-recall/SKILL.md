@@ -18,3 +18,5 @@ Return a compact context summary with useful source references and unresolved un
 Use [adaptive memory workflows](references/MEMORY_WORKFLOWS.md) for task-specific retrieval, stopping conditions, compaction, learning quality and performance evaluation.
 
 Read [runtime verification](references/RUNTIME.md) when integrating a host adapter, probing search visibility, evaluating learning exclusion or testing grants. Keep local contract tests, live service checks and behavioral evaluations separate.
+
+Use [the tool coverage map](references/MEMQ_TOOL_COVERAGE.md) to select among currently exposed capabilities. Installed skills do not grant access to tools withheld by the host.

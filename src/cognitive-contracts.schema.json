@@ -1,0 +1,490 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mnx:cognitive-contracts:v1",
+  "$defs": {
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "service": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "principal": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "namespace": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "realm": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "service",
+        "principal",
+        "namespace",
+        "realm"
+      ]
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "pattern": "\\S"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "metadata"
+      ]
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "verified": {
+          "type": "boolean"
+        },
+        "reward": {
+          "enum": [
+            "observe",
+            "reinforce",
+            "avoid"
+          ]
+        },
+        "sourceEventId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "verified",
+        "reward",
+        "sourceEventId"
+      ]
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "procedure": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "environment",
+        "procedure"
+      ]
+    },
+    "evaluationReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "sourceEventId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "split": {
+          "enum": [
+            "practice",
+            "held_out"
+          ]
+        },
+        "evidenceRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "skillDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "taskDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "environmentRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "evaluatorId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "splitAuthorityId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "independentSourceGroup": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "observedAt": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]{86}==$"
+        },
+        "bindingDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "operationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "passed",
+        "sourceEventId",
+        "split",
+        "evidenceRef",
+        "skillDigest",
+        "taskDigest",
+        "environmentRevision",
+        "evaluatorId",
+        "splitAuthorityId",
+        "independentSourceGroup",
+        "observedAt",
+        "signature",
+        "bindingDigest",
+        "operationId"
+      ]
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "record": {
+          "$ref": "#/$defs/record"
+        },
+        "scope": {
+          "$ref": "#/$defs/binding"
+        },
+        "origin": {
+          "enum": [
+            "environment",
+            "simulation",
+            "model",
+            "human"
+          ]
+        },
+        "evidenceState": {
+          "enum": [
+            "unverified",
+            "verified",
+            "derived"
+          ]
+        },
+        "modelRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "environmentRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "sourceLineage": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "pattern": "\\S"
+          },
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "record",
+        "scope",
+        "origin",
+        "evidenceState",
+        "modelRevision",
+        "environmentRevision",
+        "sourceLineage"
+      ]
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "genesisDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "experiences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "record": {
+                "$ref": "#/$defs/record"
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "outcome": {
+                "$ref": "#/$defs/outcome"
+              }
+            },
+            "required": [
+              "record",
+              "digest",
+              "outcome"
+            ]
+          },
+          "maxItems": 1000
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "manifest": {
+                "$ref": "#/$defs/skill"
+              },
+              "digest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "status": {
+                "enum": [
+                  "candidate",
+                  "active"
+                ]
+              },
+              "trials": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "operationId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 256,
+                      "pattern": "\\S"
+                    },
+                    "receipt": {
+                      "$ref": "#/$defs/evaluationReceipt"
+                    }
+                  },
+                  "required": [
+                    "operationId",
+                    "receipt"
+                  ]
+                },
+                "maxItems": 128
+              }
+            },
+            "required": [
+              "manifest",
+              "digest",
+              "status",
+              "trials"
+            ]
+          },
+          "maxItems": 128
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256,
+                "pattern": "\\S"
+              },
+              "inputDigest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "kind": {
+                "enum": [
+                  "evaluate",
+                  "execute"
+                ]
+              },
+              "skillDigest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "taskDigest": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "result": {},
+              "task": {}
+            },
+            "required": [
+              "id",
+              "inputDigest",
+              "kind",
+              "skillDigest",
+              "taskDigest",
+              "result",
+              "task"
+            ]
+          },
+          "maxItems": 1000
+        },
+        "pending": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/pending"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "binding",
+        "genesisDigest",
+        "experiences",
+        "skills",
+        "operations",
+        "pending"
+      ]
+    },
+    "pending": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "inputDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "kind": {
+          "enum": [
+            "evaluate",
+            "execute"
+          ]
+        },
+        "skillDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "taskDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "phase": {
+          "enum": [
+            "reserved",
+            "dispatching"
+          ]
+        },
+        "task": {}
+      },
+      "required": [
+        "id",
+        "inputDigest",
+        "kind",
+        "skillDigest",
+        "taskDigest",
+        "phase",
+        "task"
+      ]
+    }
+  }
+}

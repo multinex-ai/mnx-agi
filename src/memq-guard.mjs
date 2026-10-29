@@ -44,13 +44,17 @@ export function createMemqGuard({ config, call, cwd = process.cwd(), audit }) {
   config = structuredClone(config);
   if (!config.namespace?.startsWith('org:') || !/^[a-z0-9-]{8,80}-$/.test(config.planPrefix ?? '') ||
       !Array.isArray(config.deniedRoots) || !config.deniedRoots.length || typeof audit !== 'function') fail('invalid_guard_configuration');
+  // A strict installation must pin a service-issued subject. A namespace, email
+  // supplied by the caller, or a remembered browser login is not that subject.
+  if (config.requirePrincipal === true && (typeof config.principal !== 'string' || !config.principal.trim())) fail('principal_binding_required');
   verifyWorkspace(config, cwd);
   async function identity() {
     verifyWorkspace(config, cwd);
     const value = unwrapMemq(await call('reunion', { include_status: false }));
     const access = value.access;
     if (access?.namespace !== config.namespace || access.namespace_scoped !== true || access.auth_source !== 'oauth_billing_manager') fail('identity_mismatch');
-    return { namespace: access.namespace, authenticated: true };
+    if (config.requirePrincipal === true && access.authenticated_subject !== config.principal) fail('principal_mismatch');
+    return { namespace: access.namespace, authenticated: true, principalVerified: config.requirePrincipal === true };
   }
   async function dispatch(tool, input, state) {
     const args = structuredClone(input);
