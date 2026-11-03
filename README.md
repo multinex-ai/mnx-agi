@@ -73,12 +73,13 @@ Cross-agent continuity applies to compatible, configured agents authorized for t
 
 ## Install
 
-Requires Node.js 22 or later on macOS or Linux. Download a tagged archive and its `SHA256SUMS` from [GitHub Releases](https://github.com/multinex-ai/mnx-agi/releases), verify the archive checksum, extract it, then run the following commands from the extracted directory. The [step-by-step quickstart](docs/QUICKSTART.md) includes download, verification, connection, and recovery instructions.
+Requires Node.js 22 or later on macOS or Linux. The source candidate adds [first-run Accord setup](docs/FIRST_RUN.md). Download a release that includes `setup` and its `SHA256SUMS` from [GitHub Releases](https://github.com/multinex-ai/mnx-agi/releases), or use a reviewed source checkout, verify it, then run the commands below. The [stable v1.3.0 quickstart](docs/QUICKSTART.md) uses the compatible `init` command; it does not include the new setup flow.
 
 ```sh
 node bin/mnx-agi.mjs verify-package
-node bin/mnx-agi.mjs init --global --hosts codex,claude --dry-run
-node bin/mnx-agi.mjs init --global --hosts codex,claude
+node bin/mnx-agi.mjs setup --global --hosts codex,claude --dry-run
+# Review constitution/CORE.md and the selected profile before adopting:
+node bin/mnx-agi.mjs setup --global --hosts codex,claude --accept-accord
 node bin/mnx-agi.mjs doctor --global
 ```
 

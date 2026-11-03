@@ -1,5 +1,11 @@
 # Changelog
 
+## First-run configuration
+
+- Add preview-first setup, explicit Accord adoption and private local preferences with no credential collection or remote calls.
+- Preserve existing client rules and accepted configuration; require explicit replacement for changed adoption and support rollback.
+- Report pending, accepted and review-required adoption separately from memory authentication and enforcement.
+
 ## Public package boundary
 
 - Keep organization-bound pilot implementation and internal delivery notes in a private extension; retain the supported harness and public MemQ contracts.

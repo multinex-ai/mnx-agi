@@ -4,6 +4,8 @@ Use a reviewed tagged release and its published checksum. The CLI runs locally a
 
 ## Global installation
 
+For explicit first-run review and private configuration, follow [FIRST_RUN.md](FIRST_RUN.md). Legacy `init` remains compatible and creates a pending adoption record; it does not record human acceptance.
+
 `node bin/mnx-agi.mjs init --global --hosts codex,claude`
 
 Select only hosts you use; the default is Codex. The home directory defaults to the current OS user's home. `--dir PATH` can target an isolated test home. Non-default CODEX_HOME and CLAUDE_CONFIG_DIR installations require explicit manual host integration; do not assume the default paths are active there.
@@ -12,6 +14,7 @@ Select only hosts you use; the default is Codex. The home directory defaults to 
 |---|---|
 | `.mnx-agi/package/` | Verified package copy |
 | `.mnx-agi/install.json` | Managed file hashes and installation scope |
+| `.mnx-agi/accord.json` | Private preferences, exact core digest and adoption status |
 | `.mnx-agi/backups/` | Private pre-change contents for recovery |
 | `.codex/AGENTS.md` | Codex global core block, preserving existing instructions |
 | `.agents/skills/mnx-*/` | Codex skills |

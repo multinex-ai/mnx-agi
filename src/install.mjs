@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { atomicWrite, exists, hash, relative, rootPath, safePath, utf8 } from './files.mjs';
 import { parseStrictJSON } from '../tools/validate-realm.mjs';
+import { accordPath, makeAccord, parseAccord, inspectAccord } from './accord.mjs';
 
 const stateName = '.mnx-agi/install.json';
 const pendingName = '.mnx-agi/pending.json';
@@ -12,6 +13,13 @@ const read = (root, name) => { const f = safePath(root, name); return exists(f) 
 const digest = bytes => bytes === null ? null : hash(bytes);
 const json = value => Buffer.from(JSON.stringify(value, null, 2) + '\n');
 const quote = value => "'" + value.replaceAll("'", "'\\''") + "'";
+function readAccord(root) {
+  const file = safePath(root, accordPath);
+  if (!exists(file)) return null;
+  const st = fs.statSync(file);
+  if (st.mode & 0o077 || (process.getuid && st.uid !== process.getuid()) || st.size > 16384) throw new Error('Accord configuration must be a private, owner-controlled file of supported size');
+  return fs.readFileSync(file);
+}
 
 function blockParts(bytes) {
   const text = utf8(bytes ?? Buffer.alloc(0));
@@ -24,7 +32,7 @@ function blockParts(bytes) {
 }
 function allowed(name, scope) {
   relative(name);
-  if (name.startsWith('.mnx-agi/package/') || name === stateName) return true;
+  if (name.startsWith('.mnx-agi/package/') || name === stateName || name === accordPath) return true;
   if (/^\.agents\/skills\/mnx-[a-z-]+\//.test(name)) return true;
   if (scope === 'global') return name === '.local/bin/mnx-agi' || name === '.codex/AGENTS.md' || name === '.claude/CLAUDE.md' || /^\.claude\/skills\/mnx-[a-z-]+\//.test(name);
   return ['AGENTS.md', '.realm/realm.json', '.realm/policy.md'].includes(name);
@@ -58,9 +66,16 @@ export function verify(target, scope) {
     catch { errors.push(`Unsafe or malformed installation file: ${f.path}`); }
   }
   if (scope === 'global' && state.hosts.includes('codex') && exists(path.join(root, '.codex/AGENTS.override.md'))) errors.push('Codex AGENTS.override.md shadows the installed global AGENTS.md');
-  return { ok: !errors.length, version: state.version, scope, errors, runtimeVerified: false };
+  let accord;
+  try {
+    const bytes = readAccord(root);
+    if (bytes === null && state.files.some(f => f.path === accordPath)) throw new Error('Missing Accord configuration');
+    accord = inspectAccord(bytes, read(root, '.mnx-agi/package/constitution/CORE.md'), scope, state.hosts);
+  }
+  catch { errors.push('Invalid private Accord configuration'); }
+  return { ok: !errors.length, version: state.version, scope, errors, accord, runtimeVerified: false };
 }
-export function install(bundle, target, { scope = 'project', hosts = ['codex'], dryRun = false } = {}) {
+export function install(bundle, target, { scope = 'project', hosts = ['codex'], dryRun = false, configuration, acceptAccord = false, replaceConfiguration = false } = {}) {
   if (!['project', 'global'].includes(scope) || !hosts.length || hosts.some(h => !['codex','claude'].includes(h)) || new Set(hosts).size !== hosts.length) throw new Error('Invalid scope or hosts');
   if (scope === 'project' && (hosts.length !== 1 || hosts[0] !== 'codex')) throw new Error('Project installation supports the AGENTS.md host; use global for Claude');
   const root = rootPath(target);
@@ -70,9 +85,12 @@ export function install(bundle, target, { scope = 'project', hosts = ['codex'], 
   if (scope === 'global' && hosts.includes('codex') && exists(path.join(root, '.codex/AGENTS.override.md'))) throw new Error('Codex AGENTS.override.md shadows AGENTS.md; reconcile it before installing');
   const desired = new Map();
   const add = (name, bytes, kind = 'managed', mode = 0o600) => desired.set(name, { bytes: Buffer.from(bytes), kind, mode });
+  const core = bundle.files.get('constitution/CORE.md');
+  const proposedAccord = makeAccord(core, { scope, hosts, configuration, accepted: acceptAccord });
+  add(accordPath, json(proposedAccord), 'scaffold');
   for (const [name, bytes] of bundle.files) add(`.mnx-agi/package/${name}`, bytes);
   const hostFiles = scope === 'global' ? hosts.map(h => h === 'codex' ? '.codex/AGENTS.md' : '.claude/CLAUDE.md') : ['AGENTS.md'];
-  const body = `${begin}\n${utf8(bundle.files.get('constitution/CORE.md'))}\nLocal project and account-routing instructions remain applicable. Resolve task ownership before private memory access, including explicit project targets and linked worktrees. Read the adopted realm policy when present. A local declaration never proves remote authorization.\n${end}`;
+  const body = `${begin}\n${utf8(core)}\nLocal project and account-routing instructions remain applicable. Resolve task ownership before private memory access, including explicit project targets and linked worktrees. Read the adopted realm policy when present. Read this installation's private .mnx-agi/accord.json for declared preferences and adoption status, then the selected profile under .mnx-agi/package/profiles/. Pending or changed Accord adoption requires review; preferences never override project constraints, host permissions or remote authorization.\n${end}`;
   for (const name of hostFiles) add(name, body, 'block');
   const skillRoots = scope === 'global' ? hosts.map(h => h === 'codex' ? '.agents/skills' : '.claude/skills') : ['.agents/skills'];
   for (const [name, bytes] of bundle.files) if (name.startsWith('skills/')) for (const skillRoot of skillRoots) add(`${skillRoot}/${name.slice(7)}`, bytes);
@@ -84,10 +102,21 @@ export function install(bundle, target, { scope = 'project', hosts = ['codex'], 
   }
   const oldFiles = new Map((old?.files ?? []).map(f => [f.path, f]));
   const changes = [], records = [];
+  let effectiveAccord;
   for (const [name, item] of desired) {
-    const before = read(root, name), previous = oldFiles.get(name);
+    const before = name === accordPath ? readAccord(root) : read(root, name), previous = oldFiles.get(name);
+    if (name === accordPath && before === null && previous) throw new Error('Private Accord configuration was removed; restore it or roll back');
     let after = item.bytes, ownedHash = hash(after);
-    if (item.kind === 'scaffold' && before !== null) { after = before; ownedHash = hash(before); }
+    if (item.kind === 'scaffold' && before !== null) {
+      if (name === accordPath) {
+        const existing = parseAccord(before);
+        if (existing.scope !== scope || JSON.stringify(existing.hosts) !== JSON.stringify(hosts)) throw new Error('Accord scope or hosts differ from this installation');
+        const same = JSON.stringify(existing.preferences) === JSON.stringify(proposedAccord.preferences) && existing.adoption.coreDigest === proposedAccord.adoption.coreDigest && existing.adoption.state === proposedAccord.adoption.state;
+        if (!acceptAccord || same) after = before;
+        else if (!replaceConfiguration && (existing.adoption.state === 'accepted' || !previous || hash(before) !== previous.hash)) throw new Error('Existing Accord configuration differs; review it and use --replace-configuration explicitly');
+      } else after = before;
+      ownedHash = hash(after);
+    }
     else if (item.kind === 'block') {
       const parts = blockParts(before);
       if (parts.block !== null && hash(parts.block) !== ownedHash && (!previous || previous.hash !== hash(parts.block))) throw new Error(`Managed block conflict: ${name}`);
@@ -97,6 +126,7 @@ export function install(bundle, target, { scope = 'project', hosts = ['codex'], 
       if (after.length > 30000) throw new Error(`Instruction file would exceed the supported size budget: ${name}`);
     } else if (before !== null && hash(before) !== ownedHash && (!previous || hash(before) !== previous.hash)) throw new Error(`File conflict: ${name}`);
     else if (before === null && previous) throw new Error(`Managed file removed: ${name}`);
+    if (name === accordPath) effectiveAccord = after;
     records.push({ path: name, kind: item.kind, hash: ownedHash });
     if (digest(before) !== digest(after)) changes.push({ path: name, before, after, mode: before ? fs.statSync(safePath(root, name)).mode & 0o777 : item.mode });
   }
@@ -114,7 +144,7 @@ export function install(bundle, target, { scope = 'project', hosts = ['codex'], 
   safePath(root, '.mnx-agi/backups', true);
   safePath(root, pendingName);
   safePath(root, '.mnx-agi/last-backup.json');
-  const result = { ok: true, dryRun, scope, version: bundle.version, changed: changes.map(c => c.path), runtimeVerified: false };
+  const result = { ok: true, dryRun, scope, version: bundle.version, changed: changes.map(c => c.path), accord: inspectAccord(effectiveAccord, core, scope, hosts), runtimeVerified: false };
   if (dryRun || !changes.length) return result;
   const id = crypto.randomUUID();
   const snapshot = { schemaVersion: 1, scope, changes: changes.map(c => ({ path: c.path, before: c.before?.toString('base64') ?? null, afterHash: digest(c.after), mode: c.mode })) };
