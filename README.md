@@ -103,6 +103,8 @@ For a project, run `node bin/mnx-agi.mjs init --dir /path/to/project`. This inst
 
 The default installer provides instructions, skills, and local validation. Authentication, host enforcement, distributed ownership, and federation are deployment responsibilities. `runtimeVerified: false` remains the default until the actual integration is verified. Host permissions and service-side controls remain authoritative; private account mappings stay outside this public package.
 
+This public repository is limited to the harness and its supported integration surface. Organization-specific identity bindings, internal roadmaps, private product extensions and service implementation details stay outside the package. See [public disclosure scope](docs/PUBLIC_SCOPE.md).
+
 ## Adaptive memory planning
 
 Use `node bin/mnx-agi.mjs memory-plan examples/memory-plan.json` to produce a bounded candidate workflow from available capability declarations and task signals. Read [adaptive memory workflows](docs/MEMORY_WORKFLOWS.md) for retrieval stopping rules, evidence quality and evaluation. The planner is offline and advisory; it does not authenticate or call MemQ.

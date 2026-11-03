@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "aa61faf3beccc9e86c4243695ae8f366a0bb30137e2632a600f6d8bae894c2ca"
+      "sha256": "c6858492fefad9cf6c17bf4ba153047f385daa259eb3dd6dc77b179085c5473c"
     },
     {
       "path": "LICENSE",
@@ -20,11 +20,11 @@
     },
     {
       "path": "README.md",
-      "sha256": "c5cb6c6e0d39e5de3169cd9db5a82166af77bd1ea7167d1597dd019a7f1536b0"
+      "sha256": "41111f8241f6e04cb65e8f392aeffc8250079d1e2230cfdd3f54aeb0c175e740"
     },
     {
       "path": "SECURITY.md",
-      "sha256": "17e7c442a584eb8421701f033d8bf3b0d828b90eaebed4b0ff00d35fc252b7bc"
+      "sha256": "fecc7e63bef152e694b9cfd1ea7851475d8b375c86f65c6d217a5773344a4435"
     },
     {
       "path": "assets/mnx-agi-memq.svg",
@@ -79,14 +79,6 @@
       "sha256": "e8ec25c00b3c365f234641c451493ddfe556b70ac9a429e10c219c2a5b7b99df"
     },
     {
-      "path": "docs/COGNITIVE_DELIVERY.md",
-      "sha256": "6d20eb4bea341c892a115cef036c31224d8ff6f246820f68efd19d03518f765a"
-    },
-    {
-      "path": "docs/COGNITIVE_PILOT.md",
-      "sha256": "37e34f71179d0bbdcaff7952fc7fd94d289ccd2791e1c9a0cf8125de43656ae9"
-    },
-    {
       "path": "docs/HARNESS_MODULES.md",
       "sha256": "5d6e1b3c1371abba81d9bc043c35ebee702405e421d576bd105efa8d2638e212"
     },
@@ -96,7 +88,7 @@
     },
     {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
-      "sha256": "5cf5ba25940851a13988b29472a354d8060d3e946bf0ca13ceda65fa91be717b"
+      "sha256": "f4cd13dbed6a22c5df50a1e3b5e2481c8a27bfe171077bcf393a4f2030f6d933"
     },
     {
       "path": "docs/MEMORY_WORKFLOWS.md",
@@ -123,12 +115,16 @@
       "sha256": "9afd8d1f42cca3fac165f5cb79eef583241e078ae65ec124d4aee29e669d5cc9"
     },
     {
+      "path": "docs/PUBLIC_SCOPE.md",
+      "sha256": "d4252887d6e67cb87ed8f2c0d4388bde269c29c58ef397a58ef751c7cc91f46e"
+    },
+    {
       "path": "docs/QUICKSTART.md",
       "sha256": "bc63ef92e84e6eadb7dcb2d221b23c0cc77ec174a915a9e35b7b286cbf03bcc8"
     },
     {
       "path": "docs/RELEASE.md",
-      "sha256": "5bc5ed4fd2dac9a0ea67367d1d62d2256ee85b2d51d5e61b22f2626450d08cb9"
+      "sha256": "0854ab2ecdf7e51a730ba14bdc877c388b0bce48b2848b823a4e37fed74ce42c"
     },
     {
       "path": "docs/RESEARCH.md",
@@ -164,7 +160,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "55e55635c63882fbb67e06f2dcb3d5e7825b1f8aea6a763f4fb805d4cb98d308"
+      "sha256": "f289034d696cd1526fe233c7e0e6936383b5baabb31e4de515233bf86bdb06de"
     },
     {
       "path": "profiles/multinex.md",
@@ -175,20 +171,8 @@
       "sha256": "829fe6c7a478ca4cd7e89914060d82d6ab647db7d3d7e2fde5f64d19d9917d97"
     },
     {
-      "path": "schemas/cognitive-state.schema.json",
-      "sha256": "b36f561f4fea45c83d099e84412b1d07b57ae2091ce3e3cb9261b0d59383d265"
-    },
-    {
-      "path": "schemas/genesis.schema.json",
-      "sha256": "81c6aca0b5875f6c3d1a48c9596425cc27e56be50d647b50875530f65807a1bc"
-    },
-    {
       "path": "schemas/realm.schema.json",
       "sha256": "8d3019e47f1d5d26b11613a38a6882cff3b76daab34c6d668bed1921ab279d66"
-    },
-    {
-      "path": "schemas/skill.schema.json",
-      "sha256": "2fa42ec9b27360233f24121fe5122fb9822277a5dcf01bf3c8d12bea2a2fbda8"
     },
     {
       "path": "skills/mnx-decision-routing/SKILL.md",
@@ -403,18 +387,6 @@
       "sha256": "8d130623368c4c14fa1dec3f0ea44e0a1140f6f1ff7d9b73262442c83bc224ad"
     },
     {
-      "path": "src/cognitive-contracts.mjs",
-      "sha256": "2120ff2806e34f6f12281d15a7438522ad07a2c085dee5b53285679a803ed942"
-    },
-    {
-      "path": "src/cognitive-contracts.schema.json",
-      "sha256": "6bba5967af9485f72db8ed39c874db57461df15206d47b79758d9f81d61e2865"
-    },
-    {
-      "path": "src/cognitive-session.mjs",
-      "sha256": "0ad68eee061e04cc7b029e7a74eeae7c4ebf369a81ccabad08353b6c6eb55cdb"
-    },
-    {
       "path": "src/evaluate.mjs",
       "sha256": "ece70218df92398c1f47d0e07fb0fdf2f37589ea2107f66fda4848805f05bcde"
     },
@@ -423,12 +395,8 @@
       "sha256": "829448e50553bab85d0863f93536b974deb485fc981019412bb03b220f29093a"
     },
     {
-      "path": "src/genesis.mjs",
-      "sha256": "8322028ac35fd4637108c7a8c245f54a17682c4f33b77c7558372a2f35c59010"
-    },
-    {
       "path": "src/host-enforcement.mjs",
-      "sha256": "658c31d721a585c5dd825e12bcb8ae2b4877a3567f33e3c6bc35ae2b830a6271"
+      "sha256": "026d99b1692189655be4dd6b414084ddf18caacd44b5eb49a74d41e2106810c0"
     },
     {
       "path": "src/install.mjs",
@@ -451,36 +419,12 @@
       "sha256": "36dca8b6254a492b0330aa7af0e09965b3c36c0b187248d7c2fd7ce78b6313ea"
     },
     {
-      "path": "test/cognitive-contracts.test.mjs",
-      "sha256": "e322677a345914603fe13a0e15d0545f21a6b214ac10ae5280e234fcb4fe6fea"
-    },
-    {
-      "path": "test/cognitive-session.test.mjs",
-      "sha256": "216535d0eb70e5193bc1503c5d2be831e1e6f6131889bdcc77f03a67bfe1b54a"
-    },
-    {
       "path": "test/evaluate.test.mjs",
       "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
     },
     {
-      "path": "test/fixtures/cognitive-contract-fixtures.json",
-      "sha256": "6e040e73d74e615c6c0c863441c416b41ddf20bae7603a203bd8ea3e9219ead1"
-    },
-    {
-      "path": "test/fixtures/evaluation.mjs",
-      "sha256": "78966660a5634fbb7286e3b90c73b1ef71b365be81bc1e7c3e74a86985a00ec2"
-    },
-    {
-      "path": "test/fixtures/genesis.mjs",
-      "sha256": "cc35018d6b5d7229e6545508e064fbb4b838e4489a4254e4b52d6ca7f69796ea"
-    },
-    {
-      "path": "test/genesis.test.mjs",
-      "sha256": "b29c6e569ecaa68184465cc86b0a9e68dabb9c03e0e0d07ec5a5bb4addfafdfb"
-    },
-    {
       "path": "test/host-enforcement.test.mjs",
-      "sha256": "c9b1cf58a930d96bf62c4e02d375f48235df0f3a2bfa316d193c9995169361a3"
+      "sha256": "e8c73a9a1537a6ecc0c943440c66311f9e18579307763d494cfec8320c18d035"
     },
     {
       "path": "test/install.test.mjs",
@@ -493,6 +437,10 @@
     {
       "path": "test/memq-guard.test.mjs",
       "sha256": "e62eac33074894d7baaead74637acce3eb69d4e94948411782a85ac46866e7e8"
+    },
+    {
+      "path": "test/public-content.test.mjs",
+      "sha256": "e667ef0537fa0924b3afaf39b75ba8673b9a8bfd76168b6425d8d90fba4b8a5a"
     },
     {
       "path": "test/realm.test.mjs",
@@ -512,7 +460,7 @@
     },
     {
       "path": "tools/check-release.mjs",
-      "sha256": "69e3a8b9eeedd38882f365a26fd847397de7ae43c6e5309b94e9a74006ed2f13"
+      "sha256": "003ccf390ef2cc28568eae98cbbee392fdaffb1ea08e6ef9df52298a278434d9"
     },
     {
       "path": "tools/prepare-managed-hosts.mjs",
@@ -525,6 +473,10 @@
     {
       "path": "tools/probe-memq-host.mjs",
       "sha256": "f5e3943fe4dc7c72eb68a1c302d62f74a2d3d0aefbd613a4d836c0901f4f3a25"
+    },
+    {
+      "path": "tools/public-content.mjs",
+      "sha256": "3ef5fddd734bcc181800bdcb639a68c8b651fcbf7287ff0b1335c7c97a79c970"
     },
     {
       "path": "tools/validate-realm.mjs",

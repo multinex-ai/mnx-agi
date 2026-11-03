@@ -1,5 +1,11 @@
 # Changelog
 
+## Public package boundary
+
+- Keep organization-bound pilot implementation and internal delivery notes in a private extension; retain the supported harness and public MemQ contracts.
+- Replace client-specific enforcement evidence with a generic excluded-project boundary.
+- Add disclosure checks for private artifacts, real account identifiers, credentials and machine paths. Earlier public history is not rewritten.
+
 ## 1.4.0-rc.1 (prerelease)
 
 - Adds optional strict authenticated-subject binding to the MemQ plan guard. Missing subject evidence fails closed; current namespace-only handshakes do not satisfy this mode.

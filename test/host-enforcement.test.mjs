@@ -33,7 +33,7 @@ test('files, emails and synthetic namespace failures cannot establish live accou
   assert.ok(result.missing.includes('live_cross_account_denials'));
 });
 test('a claimed full set of gates is still not a system-wide attestation', () => {
-  const evidence = { credentialIsolation: true, codexPolicyObserved: true, claudePolicyObserved: true, shellBypassDenied: true, pluginBypassDenied: true, configOverrideDenied: true, injectedToolBypassDenied: true, galileoBoundaryVerified: true, principalBindingVerified: true, crossAccountReadDenied: true, crossAccountWriteDenied: true, freshSessionResume: true, accounts: [{subject:'one',namespace:'org:one'}, {subject:'two',namespace:'org:two'}], checkedAt: 100 };
+  const evidence = { credentialIsolation: true, codexPolicyObserved: true, claudePolicyObserved: true, shellBypassDenied: true, pluginBypassDenied: true, configOverrideDenied: true, injectedToolBypassDenied: true, excludedProjectBoundaryVerified: true, principalBindingVerified: true, crossAccountReadDenied: true, crossAccountWriteDenied: true, freshSessionResume: true, accounts: [{subject:'one',namespace:'org:one'}, {subject:'two',namespace:'org:two'}], checkedAt: 100 };
   const result = auditEnforcement({ brokerExecutable: '/opt/managed/gateway', io: protectedIo, evidence, now: 101 });
   assert.equal(result.readyForAcceptance, true);
   assert.equal(result.systemSealed, false);

@@ -1,6 +1,8 @@
 # Release process
 
 1. Review source, policy changes and public disclosure scope. Keep client names, real accounts/namespaces, credentials, local paths, transcripts, private audits and local backups outside the repository.
+
+   Apply [public package scope](PUBLIC_SCOPE.md). Removal from the current tree does not retract earlier public copies. Private extensions must have their own maintained source and acceptance checks; they must not be pulled into the public archive by an integration test or build script.
 2. Update package/core version and compatibility notes. Synchronize skill references with `node tools/build-skills.mjs`.
 3. Run `npm run manifest`, `npm test` and `npm run check`. Review the complete manifest change. Test install/verify/rollback in an isolated home.
 4. Commit the reviewed tree, run CI, and tag the exact commit. Create the archive from that commit with `git archive`, not from a working directory containing private files.
