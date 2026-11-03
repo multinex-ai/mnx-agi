@@ -1,6 +1,6 @@
 # MemQ workflow coverage
 
-The package installs eleven focused skills for each selected host. These workflows cover the MemQ tool families below without loading every workflow into every task. Tool names describe the catalog inspected during development; discover current schemas and permissions on the active connection before use. A catalog entry is not a permission grant or a promise of deployment support.
+The package installs twelve focused skills for each selected host. These workflows cover the MemQ tool families below without loading every workflow into every task. Tool names describe the catalog inspected during development; discover current schemas and permissions on the active connection before use. A catalog entry is not a permission grant or a promise of deployment support.
 
 | Task | Packaged workflow | Relevant provider tools, when exposed and authorized |
 |---|---|---|
@@ -21,9 +21,9 @@ Aliases and overlapping retrieval paths are alternatives, not a checklist of cal
 
 ## Enforced host capability limits
 
-The experimental credential broker exposes `plan_read` and `plan_write`, mapped to provider `plan_state_read` and `plan_state_write`. Its fixed OS-identity binding, allowed plan prefix, conditional version, current OAuth subject and namespace checks apply before dispatch. It does **not** expose the provider's search, ingestion, learning, commons or lifecycle catalog.
+The experimental credential broker exposes `context_read`, `checkpoint_write`, `plan_read` and `plan_write`, mapped to provider `plan_state_read` and `plan_state_write`. The compact tools project only a validated checkpoint and support unchanged-version responses. Its fixed OS-identity binding, allowed plan prefix, conditional version, current OAuth subject and namespace checks apply before dispatch. It does **not** expose the provider's search, ingestion, learning, commons or lifecycle catalog.
 
-All eleven skills can be installed while some operations remain unavailable. A skill must report an unavailable capability and continue independent work where possible. It must never use a direct provider connection, another account or a wider namespace to bypass the host boundary. Expanding the broker requires a separately reviewed adapter and tests for the new operation's input, output, authorization and side effects.
+All twelve skills can be installed while some operations remain unavailable. A skill must report an unavailable capability and continue independent work where possible. It must never use a direct provider connection, another account or a wider namespace to bypass the host boundary. Expanding the broker requires a separately reviewed adapter and tests for the new operation's input, output, authorization and side effects.
 
 ## Retrieval and vector evaluation
 
@@ -35,4 +35,4 @@ For learning changes, compare against a simpler recall-only baseline. Preserve p
 
 Use the package's global installation for Codex and Claude or its project installation for Codex. No additional third-party skill repository is required for these workflows. Existing similarly named local skills are preserved; packaged `mnx-*` skills form the versioned set managed by the installer.
 
-The release tests verify that all eleven entry points and their references install byte-for-byte for both hosts. Local checks establish installation integrity. Actual model selection of a skill, connection availability, service authorization, operation success and mandatory enforcement require their own observed acceptance evidence.
+The release tests verify that all twelve entry points and their references install byte-for-byte for both hosts. Local checks establish installation integrity. Actual model selection of a skill, connection availability, service authorization, operation success and mandatory enforcement require their own observed acceptance evidence.

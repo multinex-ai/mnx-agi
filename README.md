@@ -8,124 +8,85 @@
 [![Memory: MemQ](https://img.shields.io/badge/memory-MemQ-78E7EF?style=flat-square&labelColor=080C12)](https://multinex.ai/memq/)
 [![CI status](https://img.shields.io/github/actions/workflow/status/multinex-ai/mnx-agi/validate.yml?branch=main&label=CI&style=flat-square&labelColor=080C12)](https://github.com/multinex-ai/mnx-agi/actions/workflows/validate.yml)
 
-**[Install the harness](#install) · [Connect memory](docs/QUICKSTART.md) · [Explore the pairing](docs/MEMQ_PAIRING.md) · [Review the evidence](docs/ACCEPTANCE.md)**
+**[First-run setup](docs/FIRST_RUN.md) · [Installation and recovery](docs/INSTALL.md) · [Pair with MemQ](docs/MEMQ_PAIRING.md) · [Public scope](docs/PUBLIC_SCOPE.md)**
 
 ## Recursive Agent Harness + MemQ
 
-**Across agents. Across sessions. Compounding knowledge.**
+**Across agents. Across sessions. Build on verified work.**
 
-Make useful work compound. MNX-AGI is a model-agnostic **Recursive Agent Harness**, paired with **[MemQ](https://multinex.ai/memq/)** for persistent memory. It gives supported AI agents a shared way to plan, act, verify, remember, and improve—so the next task, session, or authorized agent can build on what is already known.
+MNX-AGI gives compatible agents a common way to plan, act, verify and resume. It installs a small Accord, focused skills and local configuration tools. Pair it with an authenticated [MemQ](https://multinex.ai/memq/) connection to retain selected decisions, evidence and task checkpoints across authorized sessions.
 
-**Bring your models. Connect your tools. Build on what your agents learn.**
+Bring your models and use the supported hosts you already work in. The public harness supplies operating guidance and testable integration boundaries; MemQ supplies persistent memory. Installation alone does not connect every AI app, grant access to another project, or establish general intelligence.
 
-**Reusable agent infrastructure for coordinated work and lasting memory.** Adopt MNX-AGI in the agent hosts and applications you already use. Carry objectives, verified decisions, progress, and reusable procedures across supported models and authorized sessions through MemQ.
+## Install and configure on first run
 
-MNX-AGI supplies the operating rules, focused skills, realm boundaries, and evaluation loop. MemQ supplies durable context through a configured memory connection. Together, they are designed to make continuity feel seamless across compatible agents while keeping each project's access and ownership explicit.
+Requires Node.js 22 or later on macOS or Linux. No runtime npm dependencies, model key or administrator password is needed for the default instruction/skill installation. Obtain a reviewed archive and its checksum from [GitHub Releases](https://github.com/multinex-ai/mnx-agi/releases), or use a reviewed source checkout.
 
-- **Remember across sessions.** Retain selected decisions, preferences, verified procedures, and progress checkpoints instead of rebuilding context each time.
-- **Continue across agents.** Let another authorized agent retrieve the same approved knowledge and resume from current artifacts and handoff evidence.
-- **Make knowledge compound.** Reuse a verified lesson, test it against new work, and refine it with fresh evidence. Retained knowledge can accumulate value over time.
-- **Keep your choice of model and tools.** Adopt the harness in supported hosts and connect additional agents through the published adapter contracts.
-- **Bridge supported embedding formats.** MemQ's universal vector-translation interfaces support dimension adaptation within a shared memory workflow. Preserve source-backed knowledge as your stack evolves; validate retrieval quality for each embedding profile. [Understand vector translation](docs/VECTOR_TRANSLATION.md).
-
-### What this changes for you
-
-| When you… | The benefit |
-|---|---|
-| Open a new session | Retrieve saved decisions and next steps instead of rebuilding the brief |
-| Change agents or tools | Carry approved context into another compatible, connected host |
-| Find a fix that works | Retain the verified procedure so future work can start from it |
-| Evolve your model stack | Keep source-backed knowledge portable and evaluate supported vector translation for the new embedding profile |
-| Hand work to a teammate | Share an authorized checkpoint with evidence, open questions, and ownership |
-
-### What makes it recursive?
-
-The output of one verified work cycle becomes useful input to a later cycle:
-
-```mermaid
-flowchart LR
-    M[("MemQ\nApproved persistent memory")] --> R["Recall relevant context"]
-    R --> P["Plan and act"]
-    P --> V["Verify the outcome"]
-    V --> K["Checkpoint and learn"]
-    K --> M
-    V --> E["Evaluate and refine the workflow"]
-    E --> P
-```
-
-Recursion here means bounded feedback and reuse. Each cycle keeps an objective, acceptance criteria, permission boundaries, and stopping conditions. Changes to skills or policy are reviewed and evaluated before adoption. Compounding refers to reusable knowledge and better continuity; measured performance gains require behavioral evaluation.
-
-Explore the [MNX-AGI + MemQ pairing](docs/MEMQ_PAIRING.md), [reusable infrastructure modules](docs/HARNESS_MODULES.md), [eleven workflow skills](docs/SKILLS.md), and [architecture](docs/ARCHITECTURE.md).
-
-### Compatibility and readiness
-
-| Surface | What is available |
-|---|---|
-| Codex and Claude Code | Reversible installation of core instructions and eleven self-contained skills |
-| MemQ | Recall, checkpoint, learning, and handoff workflows; a configured connection and verified account scope are required |
-| Universal vector translation | MemQ-side dimension-adaptation interfaces; supported profiles and retrieval quality require deployment-specific validation |
-| Other models and agent hosts | Model-agnostic rules and adapter contracts; host integration and acceptance testing are required |
-| Isolated credential broker | Experimental macOS service installer and fixed-identity plan interface; separate enrollment and host containment remain required |
-| Guarded Codex-to-MemQ route | Experimental adapter for isolated plan reads and conditional writes, with a live acceptance probe |
-| Team coordination and federation | Explicit contracts and acceptance gates; deployment requires verified ownership, grants, and service controls |
-
-Cross-agent continuity applies to compatible, configured agents authorized for the same knowledge. Installing the package does not connect every AI app automatically. MNX-AGI is the product name; the package makes no claim of general intelligence or automatic model training.
-
-## Install
-
-Requires Node.js 22 or later on macOS or Linux. The source candidate adds [first-run Accord setup](docs/FIRST_RUN.md). Download a release that includes `setup` and its `SHA256SUMS` from [GitHub Releases](https://github.com/multinex-ai/mnx-agi/releases), or use a reviewed source checkout, verify it, then run the commands below. The [stable v1.3.0 quickstart](docs/QUICKSTART.md) uses the compatible `init` command; it does not include the new setup flow.
+The source candidate includes the setup flow below. Stable v1.3.0 uses the compatible `init` command in the [version-pinned quickstart](docs/QUICKSTART.md). Use a release that includes `setup` before running these commands:
 
 ```sh
 node bin/mnx-agi.mjs verify-package
 node bin/mnx-agi.mjs setup --global --hosts codex,claude --dry-run
-# Review constitution/CORE.md and the selected profile before adopting:
+# Read constitution/CORE.md and the selected profile before adoption:
 node bin/mnx-agi.mjs setup --global --hosts codex,claude --accept-accord
 node bin/mnx-agi.mjs doctor --global
 ```
 
-Existing instructions are preserved outside a clearly marked managed block. Eleven self-contained skills are installed for each selected host. The executable is placed at `~/.local/bin/mnx-agi`; use that path directly if it is not on your PATH. Start a new host session to load the updated global instructions. Skills are available when the host next refreshes its skill inventory.
+Setup previews without writing until adoption is explicit. It records the exact core digest and local preferences in private `.mnx-agi/accord.json`, preserves existing instructions outside its managed block, and keeps recovery snapshots locally. Select one host with `--hosts codex` or `--hosts claude`. Start a fresh host session to load the new guidance.
 
-Install only the hosts you use: choose `--hosts codex`, `--hosts claude`, or both. A successful installation makes the harness guidance available. Connect MemQ separately, verify the intended account and namespace, and complete a bounded read/write acceptance check before relying on persistent memory. The default `doctor` command checks the local installation; it does not test the remote connection.
+[Configure your profile and memory references](docs/FIRST_RUN.md), including local-only defaults, an optional Rust/TypeScript preference, excluded-project policy references, changed-policy review, and explicit configuration replacement. Project realm policies and actual host permissions remain authoritative.
 
-For a project, run `node bin/mnx-agi.mjs init --dir /path/to/project`. This installs AGENTS.md guidance, skills and a customizable local-only `.realm` configuration. Review and ignore private project state before committing it. See [installation and recovery](docs/INSTALL.md).
+## What is installed
 
-## What is included
-
-| Component | Status |
+| Component | Purpose |
 |---|---|
-| [Core constitution](constitution/CORE.md) and optional profiles | Adoptable instructions, embedded in host instruction files |
-| [Eleven skills](docs/SKILLS.md) | Installed self-contained workflows; no automatic network activity |
-| [Realm schema](schemas/realm.schema.json), examples and validator | Offline structure and consistency validation |
-| Installation, upgrade, verification and rollback CLI | Local files, conflict detection, backups and integrity manifest |
-| [Memory contract](docs/MEMQ_CONTRACT.md) | Capability and identity requirements for a connected service |
-| [MemQ pairing guide](docs/MEMQ_PAIRING.md) | Cross-session continuity, cross-agent reuse, and the recursive learning loop |
-| [Federation architecture](docs/ARCHITECTURE.md) | Integration contract; requires an external gateway and authorization |
-| [Research](docs/RESEARCH.md) and [acceptance criteria](docs/ACCEPTANCE.md) | Primary-source rationale and explicit implementation boundaries |
+| [Common Accord](constitution/CORE.md) | A bounded work lifecycle, evidence requirements and ownership boundaries |
+| [Twelve focused skills](docs/SKILLS.md) | Recall, compact checkpoints, coordination, learning, ingestion, operations and maintenance workflows |
+| Private local configuration | Profile, selected core adoption, memory references and project exclusions |
+| Realm schema and offline validator | Check declared structure and consistency without granting remote access |
+| Install, upgrade, doctor and rollback tools | Reversible local file changes, conflict checks and package integrity |
+| [Runtime contract](docs/RUNTIME.md) | Scope, authorization and receipt requirements for an explicitly integrated host adapter |
 
-The default installer provides instructions, skills, and local validation. Authentication, host enforcement, distributed ownership, and federation are deployment responsibilities. `runtimeVerified: false` remains the default until the actual integration is verified. Host permissions and service-side controls remain authoritative; private account mappings stay outside this public package.
+For a project, omit `--global` and use `--dir /path/to/project`. Custom host homes require the integration described in [installation and recovery](docs/INSTALL.md). Filesystem installation does not install this package into ChatGPT cloud chats or retroactively update running sessions.
 
-This public repository is limited to the harness and its supported integration surface. Organization-specific identity bindings, internal roadmaps, private product extensions and service implementation details stay outside the package. See [public disclosure scope](docs/PUBLIC_SCOPE.md).
+## How the MemQ pairing works
 
-## Adaptive memory planning
+1. Configure the intended MemQ connection in the actual host using its supported OAuth sign-in.
+2. Resolve the active project and verify the returned service, principal, namespace and project binding.
+3. Retrieve only the context needed for the next action; verify the result of the work.
+4. Save one concise checkpoint with evidence and current artifact revisions, then read it back.
+5. In a new authorized session or compatible host, repeat identity checks and resume from that checkpoint.
 
-Use `node bin/mnx-agi.mjs memory-plan examples/memory-plan.json` to produce a bounded candidate workflow from available capability declarations and task signals. Read [adaptive memory workflows](docs/MEMORY_WORKFLOWS.md) for retrieval stopping rules, evidence quality and evaluation. The planner is offline and advisory; it does not authenticate or call MemQ.
+Each verified cycle supplies useful context to the next. That is the recursive loop: bounded feedback and reuse, with explicit permission boundaries and stopping conditions. Knowledge reuse can improve continuity; measured performance improvement requires evaluation.
 
-## Opt-in runtime integration and evaluation
+The [compact-memory workflow](docs/COMPACT_MEMORY.md) limits repeated context and supports version reuse. The evaluation target is 30% fewer whole-task AI tokens and 30% lower combined AI/memory cost without reducing correctness, recovery or isolation. **That target is not a measured result.**
 
-The [runtime boundary](docs/RUNTIME.md) checks current scope, policy, capability gates and operation receipts for calls routed through a trusted host adapter. It includes bounded search-visibility polling and paired evaluation scoring. It is not automatically wired into host tools, and synthetic contract tests do not prove live federation or model performance.
+## Enforcement is a separate integration
 
-The experimental [MemQ host integration candidate](docs/MEMQ_ENFORCEMENT_CANDIDATE.md) adds a narrow stdio gateway and a live Codex-host acceptance probe. It is separately configured and does not establish a sealed system installation or change the default installer's enforcement status.
+The default installer makes instructions and skills available. It does not issue credentials, enforce remote ACLs, provide exclusive task ownership or configure federation. `doctor` distinguishes local adoption from unverified memory and enforcement.
 
-[Managed host enforcement](docs/MANAGED_HOST_ENFORCEMENT.md) describes the prepared Codex/Claude policies, independent account tests, and the credential-broker and OS boundaries required before activation. Policy generation alone is not enforcement.
+The [experimental macOS broker and isolated-host installer](docs/ISOLATED_HOSTS.md) can separate credentials from a dedicated agent identity. Enrollment, host authentication and live acceptance remain separate steps. Those launchers cover their process trees; ordinary desktop apps, other CLI launches and cloud agents are outside that boundary. Review [managed host acceptance](docs/MANAGED_HOST_ENFORCEMENT.md) before activating policies.
 
-## Develop and verify
+Keep customer identities, real namespaces, founder bindings, transcripts, internal roadmaps and product extensions private. This public repository contains the harness and supported integration contracts. [Disclosure checks](docs/PUBLIC_SCOPE.md) supplement manual review; cleaning the current tree does not retract previously published history.
+
+## Guides and verification
+
+| Guide | Use it for |
+|---|---|
+| [First run](docs/FIRST_RUN.md) | Review and adopt the Accord, configure private preferences |
+| [Install and recovery](docs/INSTALL.md) | Host paths, upgrades, conflicts and rollback |
+| [MemQ pairing](docs/MEMQ_PAIRING.md) | Scoped continuity across sessions and compatible hosts |
+| [MemQ contract](docs/MEMQ_CONTRACT.md) | Identity, capabilities and privacy requirements |
+| [Compact memory](docs/COMPACT_MEMORY.md) | Bounded checkpoints and honest efficiency measurement |
+| [Acceptance](docs/ACCEPTANCE.md) | Evidence required before broadening adoption |
+| [Public scope](docs/PUBLIC_SCOPE.md) | What belongs in releases and what remains private |
 
 ```sh
 npm test
+npm run test:broker
 npm run check
-node bin/mnx-agi.mjs validate examples/local.realm.json
 ```
 
-There are no runtime npm dependencies. After an intentional source change, run `node tools/build-skills.mjs` and `npm run manifest`, review the changed hashes, and rerun the checks. A matching manifest detects drift; its trust depends on obtaining the release through a trusted channel. It is not a cryptographic signature.
+After an intentional source change, synchronize skill references and rebuild the manifest. Release archives must come from the exact reviewed commit. Checksums detect drift and depend on a trusted distribution channel; they are not signatures.
 
-Licensed under [Apache-2.0](LICENSE). Security reporting and scope: [SECURITY.md](SECURITY.md). Release procedures: [docs/RELEASE.md](docs/RELEASE.md).
+Licensed under [Apache-2.0](LICENSE). [Security reporting](SECURITY.md) · [Release process](docs/RELEASE.md).

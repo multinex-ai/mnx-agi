@@ -40,7 +40,7 @@ node bin/mnx-agi.mjs doctor --global
 
 Use `--hosts codex` or `--hosts claude` to install just one host. Review the dry-run output before applying it. The installer preserves instructions outside its managed block, makes a private backup, and refuses conflicting changes. Resolve a reported conflict using [installation and recovery](INSTALL.md); do not erase existing account-routing instructions.
 
-Expected result: `ok: true` for local verification, eight installed skills per selected host, and `runtimeVerified: false`. That last value is expected: installation makes the operating guidance available, while service authentication and runtime enforcement require separate checks.
+Expected result: `ok: true` for local verification, the workflow skills included in the selected release, and `runtimeVerified: false`. That last value is expected: installation makes the operating guidance available, while service authentication and runtime enforcement require separate checks.
 
 Start a fresh session in the selected host and check that the MNX core and relevant skills are available. Custom `CODEX_HOME` or `CLAUDE_CONFIG_DIR` locations require manual integration as described in the installation guide. ChatGPT cloud chats are a separate installation surface.
 

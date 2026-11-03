@@ -30,7 +30,16 @@ AUTHORITY = "https://billing.multinex.ai"
 SOCKET = "/var/db/mnx-memq-socket/broker.sock"
 MAX_FRAME = 32768
 MAX_RESPONSE = 1024 * 1024
+CHECKPOINT_KEY = "mnx_compact_v1"
+CHECKPOINT_FIELDS = ("acceptance", "done", "next", "blockers", "constraints", "pending_effects", "evidence")
+CHECKPOINT_SCHEMA = {"type": "object", "additionalProperties": False, "required": ["schema_version", "objective", *CHECKPOINT_FIELDS, "artifacts"], "properties": {
+    "schema_version": {"const": 1}, "objective": {"type": "string", "maxLength": 800},
+    **{name: {"type": "array", "maxItems": 8, "items": {"type": "string", "maxLength": 500}} for name in CHECKPOINT_FIELDS},
+    "artifacts": {"type": "array", "maxItems": 8, "items": {"type": "object", "additionalProperties": False, "required": ["ref", "revision"], "properties": {"ref": {"type": "string", "maxLength": 500}, "revision": {"type": "string", "maxLength": 200}}}},
+}}
 TOOLS = [
+    {"name": "context_read", "description": "Read only a bounded task checkpoint; use known_version to avoid repeating unchanged context.", "inputSchema": {"type": "object", "additionalProperties": False, "required": ["plan_id"], "properties": {"plan_id": {"type": "string"}, "max_bytes": {"type": "integer", "minimum": 1000, "maximum": 12000}, "known_version": {"type": "integer", "minimum": 0}}}},
+    {"name": "checkpoint_write", "description": "Conditionally replace one concise evidence-linked checkpoint; never append a transcript.", "inputSchema": {"type": "object", "additionalProperties": False, "required": ["plan_id", "expected_state_version", "checkpoint"], "properties": {"plan_id": {"type": "string"}, "expected_state_version": {"type": "integer", "minimum": 0}, "checkpoint": CHECKPOINT_SCHEMA}}},
     {"name": "plan_read", "description": "Read a plan in this OS identity's fixed realm.", "inputSchema": {"type": "object", "additionalProperties": False, "required": ["plan_id"], "properties": {"plan_id": {"type": "string"}}}},
     {"name": "plan_write", "description": "Conditionally update a plan in this OS identity's fixed realm.", "inputSchema": {"type": "object", "additionalProperties": False, "required": ["plan_id", "expected_state_version", "state_patch"], "properties": {"plan_id": {"type": "string"}, "expected_state_version": {"type": "integer", "minimum": 0}, "state_patch": {"type": "object"}}}},
 ]
@@ -130,7 +139,7 @@ class HTTP:
     def request(self, url, payload, headers=None, form=False):
         if url not in (RESOURCE, AUTHORITY + "/oauth/token", AUTHORITY + "/oauth/register"):
             raise Denied("destination_refused")
-        body = urllib.parse.urlencode(payload).encode() if form else json.dumps(payload, allow_nan=False).encode()
+        body = urllib.parse.urlencode(payload).encode() if form else json.dumps(payload, ensure_ascii=False, allow_nan=False).encode()
         request_headers = {"Content-Type": "application/x-www-form-urlencoded" if form else "application/json", "Accept": "application/json, text/event-stream"}
         request_headers.update(headers or {})
         request = urllib.request.Request(url, data=body, headers=request_headers, method="POST")
@@ -267,19 +276,74 @@ def verify_identity(result, policy):
         raise Denied("principal_identity_mismatch")
 
 
+def safe_version(value):
+    return isinstance(value, int) and not isinstance(value, bool) and 0 <= value <= 9007199254740991
+
+
+def validate_checkpoint(value):
+    keys = {"schema_version", "objective", "artifacts", *CHECKPOINT_FIELDS}
+    exact_keys(value, keys, keys)
+    def text(value, limit):
+        return isinstance(value, str) and 0 < len(value) <= limit
+    if type(value["schema_version"]) is not int or value["schema_version"] != 1 or not text(value["objective"], 800):
+        raise Denied("invalid_checkpoint")
+    for name in CHECKPOINT_FIELDS:
+        items = value[name]
+        if not isinstance(items, list) or len(items) > 8 or any(not text(item, 500) for item in items):
+            raise Denied("invalid_checkpoint")
+    artifacts = value["artifacts"]
+    if not isinstance(artifacts, list) or len(artifacts) > 8:
+        raise Denied("invalid_checkpoint")
+    for artifact in artifacts:
+        exact_keys(artifact, {"ref", "revision"}, {"ref", "revision"})
+        if not text(artifact["ref"], 500) or not text(artifact["revision"], 200):
+            raise Denied("invalid_checkpoint")
+    if len(json.dumps(value, ensure_ascii=False, allow_nan=False).encode()) > 10000:
+        raise Denied("checkpoint_too_large")
+    return value
+
+
+def compact_result(result, arguments):
+    version = result.get("state_version")
+    if not safe_version(version) or not isinstance(result.get("state"), dict):
+        raise Denied("invalid_plan_result")
+    checkpoint = result["state"].get(CHECKPOINT_KEY)
+    if isinstance(checkpoint, str):
+        checkpoint = strict_json(checkpoint)
+    response = {"plan_id": result["plan_id"], "state_version": version, "checkpoint": None}
+    if checkpoint is not None:
+        validate_checkpoint(checkpoint)
+        if arguments.get("known_version") == version:
+            return {"plan_id": result["plan_id"], "state_version": version, "unchanged": True}
+        response["checkpoint"] = checkpoint
+    raw = json.dumps(response, ensure_ascii=False, allow_nan=False).encode()
+    if len(raw) > arguments.get("max_bytes", 6000):
+        # Never silently drop constraints, evidence or pending side effects.
+        raise Denied("context_budget_exceeded")
+    return response
+
+
 def validate_operation(tool, arguments, realm):
-    if tool not in ("plan_read", "plan_write"):
+    if tool not in ("plan_read", "plan_write", "context_read", "checkpoint_write"):
         raise Denied("tool_not_allowed")
-    allowed = {"plan_id"} if tool == "plan_read" else {"plan_id", "expected_state_version", "state_patch"}
-    exact_keys(arguments, allowed, allowed)
+    allowed = {"plan_read": {"plan_id"}, "plan_write": {"plan_id", "expected_state_version", "state_patch"}, "context_read": {"plan_id", "max_bytes", "known_version"}, "checkpoint_write": {"plan_id", "expected_state_version", "checkpoint"}}[tool]
+    required = {"plan_id"} if tool in ("plan_read", "context_read") else allowed
+    exact_keys(arguments, allowed, required)
     plan = arguments["plan_id"]
     if not isinstance(plan, str) or not re.fullmatch(r"[a-zA-Z0-9-]{1,160}", plan) or not plan.startswith(realm["plan_prefix"]):
         raise Denied("plan_not_allowed")
-    if tool == "plan_write":
+    if tool in ("plan_write", "checkpoint_write"):
         version = arguments["expected_state_version"]
-        if isinstance(version, bool) or not isinstance(version, int) or not 0 <= version <= 9007199254740991 or not isinstance(arguments["state_patch"], dict):
+        if not safe_version(version) or (tool == "plan_write" and not isinstance(arguments["state_patch"], dict)):
             raise Denied("conditional_write_required")
-    if len(json.dumps(arguments, allow_nan=False).encode()) > 16384:
+    if tool == "checkpoint_write":
+        validate_checkpoint(arguments["checkpoint"])
+    if tool == "context_read":
+        if "known_version" in arguments and not safe_version(arguments["known_version"]):
+            raise Denied("invalid_known_version")
+        if "max_bytes" in arguments and (type(arguments["max_bytes"]) is not int or not 1000 <= arguments["max_bytes"] <= 12000):
+            raise Denied("invalid_context_budget")
+    if len(json.dumps(arguments, ensure_ascii=False, allow_nan=False).encode()) > 16384:
         raise Denied("payload_too_large")
 
 
@@ -305,9 +369,27 @@ class Broker:
             operation = secrets.token_hex(12)
             self.audit({"operation": operation, "realm": hashlib.sha256(name.encode()).hexdigest(), "tool": tool, "phase": "dispatching"})
             try:
-                result = call("plan_state_read" if tool == "plan_read" else "plan_state_write", dict(arguments, namespace=realm["namespace"]))
+                if tool == "checkpoint_write":
+                    # Store as one scalar so the provider's recursive object
+                    # merge cannot retain removed fields or legacy extras.
+                    checkpoint = json.dumps(arguments["checkpoint"], ensure_ascii=False, allow_nan=False)
+                    upstream_args = {"plan_id": arguments["plan_id"], "expected_state_version": arguments["expected_state_version"], "state_patch": {CHECKPOINT_KEY: checkpoint}}
+                elif tool == "context_read":
+                    upstream_args = {"plan_id": arguments["plan_id"], "include_artifacts": False, "include_messages": False}
+                else:
+                    upstream_args = dict(arguments)
+                read = tool in ("plan_read", "context_read")
+                result = call("plan_state_read" if read else "plan_state_write", dict(upstream_args, namespace=realm["namespace"]))
                 if result.get("namespace") != realm["namespace"] or result.get("plan_id") != arguments["plan_id"]:
                     raise Denied("response_scope_mismatch")
+                if tool == "checkpoint_write":
+                    applied = result.get("applied")
+                    expected = arguments["expected_state_version"]
+                    if type(applied) is not bool or not safe_version(result.get("state_version")) or result["state_version"] != expected + (1 if applied else 0):
+                        raise Denied("checkpoint_receipt_mismatch")
+                    result = {"plan_id": result["plan_id"], "state_version": result["state_version"], "write_acknowledged": True, "readback_required": True}
+                elif tool == "context_read":
+                    result = compact_result(result, arguments)
                 self.audit({"operation": operation, "tool": tool, "phase": "returned"})
                 return result
             except Exception:
@@ -513,7 +595,7 @@ def connect(request, filename=SOCKET):
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as stream:
         stream.settimeout(90)
         stream.connect(filename)
-        stream.sendall(json.dumps(request, allow_nan=False).encode() + b"\n")
+        stream.sendall(json.dumps(request, ensure_ascii=False, allow_nan=False).encode() + b"\n")
         raw = stream.makefile("rb").readline(MAX_RESPONSE + 1)
         if len(raw) > MAX_RESPONSE:
             raise Denied("response_too_large")
@@ -549,7 +631,7 @@ def client():
                     params = request.get("params")
                     exact_keys(params, {"name", "arguments"}, {"name", "arguments"})
                     value = connect({"kind": "tool", "tool": params["name"], "arguments": params["arguments"]})
-                    result = {"content": [{"type": "text", "text": json.dumps(value, allow_nan=False)}]}
+                    result = {"content": [{"type": "text", "text": json.dumps(value, ensure_ascii=False, allow_nan=False)}]}
                 except Exception:
                     result = {"isError": True, "content": [{"type": "text", "text": "Request denied or outcome unconfirmed. Read before retrying a write."}]}
             else:
@@ -557,7 +639,7 @@ def client():
             response = {"jsonrpc": "2.0", "id": request["id"], "result": result}
         except Exception:
             response = {"jsonrpc": "2.0", "id": request.get("id") if isinstance(request, dict) else None, "error": {"code": -32600, "message": "Invalid or unsupported request"}}
-        print(json.dumps(response, allow_nan=False), flush=True)
+        print(json.dumps(response, ensure_ascii=False, allow_nan=False), flush=True)
         if len(raw) > MAX_FRAME:
             break
 

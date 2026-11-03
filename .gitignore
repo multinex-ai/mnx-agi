@@ -8,3 +8,5 @@ dist/
 .realm/outbox/
 .realm/evidence/
 *.tgz
+
+__pycache__/

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0-rc.2
+
+- Add compact checkpoint read/write operations with encoded-byte limits, version reuse, conditional writes and exact read-back requirements.
+- Add an isolated native host installer and digest-checked broker policy configuration. These components remain separately enrolled and accepted integrations.
+- Include the compact-memory skill and whole-task token/combined-cost scoring. The 30% target remains unmeasured.
+
 ## First-run configuration
 
 - Add preview-first setup, explicit Accord adoption and private local preferences with no credential collection or remote calls.
