@@ -4,7 +4,7 @@ Status: preparation and acceptance tooling. **Not activated and not an OS securi
 
 ## Deployment boundary
 
-Mandatory operation requires a credential-bearing broker outside the agent's OS identity, protected executable dependencies, an administrator-owned realm registry, and restricted agent execution. The broker must authenticate the calling host and bind the task to an authorized realm; a caller-supplied directory or namespace is insufficient. Unknown realms and Galileo without its separately verified connection must fail closed. Do not put either account's credential in global host configuration or copy credentials between clients.
+Mandatory operation requires a credential-bearing broker outside the agent's OS identity, protected executable dependencies, an administrator-owned realm registry, and restricted agent execution. The broker must authenticate the calling host and bind the task to an authorized realm; a caller-supplied directory or namespace is insufficient. Unknown realms and an excluded project without its separately verified connection must fail closed. Do not put either account's credential in global host configuration or copy credentials between clients.
 
 One user's unrestricted shell, alternate binaries, credential access, browser tools, and injected SDK tools can bypass an instruction or an ordinary MCP proxy. Host configuration must address each surface. For the strongest separation, run agent workloads in separate OS identities or isolated execution environments, with no provider credentials and no unmediated provider network access.
 
@@ -22,7 +22,7 @@ This writes candidate Codex requirements, an exclusive Claude MCP set, a Claude 
 
 The candidate disables direct app/plugin paths in supported Codex clients and permits only the exact broker invocation. Claude uses its exclusive managed MCP configuration and blocks the direct hosted MemQ endpoint. The network rules are additional restrictions, not an exhaustive machine firewall. Native/injected SDK tools, alternate network routes, and arbitrary programs require separate containment and tests.
 
-Do not install the global exclusive MCP set before the broker supports the separately authorized Galileo route. It would also remove unrelated user-configured MCP tools. Preserve original bytes and effective organizational policy; never resolve a policy conflict by erasing another organization's constraints.
+Do not install the global exclusive MCP set before the broker supports every separately authorized client route. It would also remove unrelated user-configured MCP tools. Preserve original bytes and effective organizational policy; never resolve a policy conflict by erasing another organization's constraints.
 
 ## Actual configuration sources
 
@@ -48,6 +48,6 @@ Two different namespaces test cross-organization isolation. They do not test two
 3. Verify both authorized success and unauthorized failure for the exact realm registry, including missing identity, changed identity, revoked credentials, malformed input, and service outage.
 4. Attempt bypass via another MCP name, command arguments, user/project config, plugins, injected SDK servers, shell/network, browser/native tools, symlink, nested repository, and linked worktree.
 5. Test new sessions, process/service restart, upgrade, rollback, stale writes, and unavailable audit storage. Preserve protected receipts outside the agent's writable paths.
-6. Recheck Galileo's separate identity/namespace and test that Multinex is unavailable there, including tasks explicitly about Galileo from another working directory.
+6. Recheck each excluded client project's separate identity/namespace and test that Multinex is unavailable there, including tasks explicitly about an excluded project from another working directory.
 
 `auditEnforcement` exposes missing gates and keeps `systemSealed: false`: a local report cannot authenticate its own evidence or establish that every OS bypass is closed. Only observed deployment acceptance supports a narrower operational claim.

@@ -3,12 +3,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { walk } from '../src/files.mjs';
 import { sourceIgnore } from '../src/bundle.mjs';
+import { inspectPublicContent } from './public-content.mjs';
 const root = path.resolve(fileURLToPath(new URL('..', import.meta.url))); 
 const files = walk(root, '', sourceIgnore), errors = [];
 const patterns = [new RegExp('/' + 'Users/[^/\\s]+/'), new RegExp('/' + 'home/[^/\\s]+/'), /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, /gh[pousr]_[A-Za-z0-9]{30,}/, /github_pat_[A-Za-z0-9_]{40,}/, /\bAKIA[A-Z0-9]{16}\b/];
 for (const name of files) {
   if (/^(?:\.env|\.realm|\.mnx-agi)(?:\/|$)/.test(name) || /\.(?:tgz|zip|pem|key)$/.test(name)) errors.push(`Forbidden release path: ${name}`);
   const text = fs.readFileSync(path.join(root, name), 'utf8');
+  for (const issue of inspectPublicContent(name, text)) errors.push(`Public disclosure check ${issue}: ${name}`);
   if (patterns.some(p => p.test(text))) errors.push(`Potential sensitive content: ${name}`);
   if (!name.endsWith('.md')) continue;
   for (const match of text.matchAll(/\]\(([^)]+)\)/g)) {

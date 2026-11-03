@@ -9,3 +9,5 @@ Supported release line: 1.x. Validate downloaded release checksums and review so
 The installer rejects symlink destinations and path traversal, preserves unrelated instructions, and refuses conflicting content. It assumes a trusted local account and serialized installation. It does not protect against a malicious process running as the same OS user. Backups can contain private data and are never appropriate release artifacts.
 
 No telemetry, automatic updates, credential collection or remote memory calls are implemented by the CLI. Remote adapters must satisfy the identity, authorization and behavioral gates in docs/ACCEPTANCE.md before use with private data.
+
+Public disclosure scope and the boundary between this package and private organization extensions are defined in [PUBLIC_SCOPE.md](docs/PUBLIC_SCOPE.md). A successful pattern check does not certify that arbitrary product knowledge is safe to publish.

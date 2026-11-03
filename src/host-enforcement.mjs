@@ -78,7 +78,7 @@ export function auditEnforcement({ brokerExecutable, evidence = {}, io = fs, now
   gate('credential_isolation', evidence.credentialIsolation === true);
   gate('host_policy_observed', evidence.codexPolicyObserved === true && evidence.claudePolicyObserved === true);
   gate('bypass_denials', evidence.shellBypassDenied === true && evidence.pluginBypassDenied === true && evidence.configOverrideDenied === true && evidence.injectedToolBypassDenied === true);
-  gate('galileo_separate', evidence.galileoBoundaryVerified === true);
+  gate('excluded_project_separate', evidence.excludedProjectBoundaryVerified === true);
   gate('principal_binding', evidence.principalBindingVerified === true);
   const a = evidence.accounts?.[0], b = evidence.accounts?.[1];
   gate('two_independent_accounts', !!a?.subject && !!b?.subject && a.subject !== b.subject && !!a.namespace && !!b.namespace && a.namespace !== b.namespace);
