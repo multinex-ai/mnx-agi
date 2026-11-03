@@ -42,7 +42,13 @@ class FakeTransport:
             previous = self.records.get(key, {"state_version": 0, "state": {}})
             if args["expected_state_version"] != previous["state_version"]:
                 raise m.Denied("stale_version")
-            self.records[key] = {"state_version": previous["state_version"] + 1, "state": args["state_patch"]}
+            def merge(base, patch):
+                out = copy.deepcopy(base)
+                for key, value in patch.items():
+                    out[key] = merge(out[key], value) if isinstance(value, dict) and isinstance(out.get(key), dict) else copy.deepcopy(value)
+                return out
+            self.records[key] = {"state_version": previous["state_version"] + 1, "state": merge(previous["state"], args["state_patch"])}
+            return {"namespace": "org:foreign" if self.foreign_result else self.namespace, "plan_id": key, "state_version": self.records[key]["state_version"], "applied": True}
         return dict(self.records.get(key, {}), namespace="org:foreign" if self.foreign_result else self.namespace, plan_id=key)
 
     def call_with_tokens(self, tool, args, credentials):
@@ -84,6 +90,90 @@ class BrokerTest(unittest.TestCase):
                 connection, _ = server.accept()
                 with connection:
                     self.assertEqual(m.peer_uid(connection), os.getuid())
+
+    def checkpoint(self):
+        return {"schema_version": 1, "objective": "Resume the verified task", "acceptance": ["Tests pass"], "done": ["Inspected source"], "next": ["Run focused tests"], "blockers": [], "constraints": ["Keep other projects separate"], "pending_effects": [], "evidence": ["test:fixture"], "artifacts": [{"ref": "src/example.js", "revision": "abc123"}]}
+
+    def test_compact_roundtrip_omits_full_state_and_reuses_version(self):
+        request = {"tool": "checkpoint_write", "arguments": {"plan_id": self.read["arguments"]["plan_id"], "expected_state_version": 0, "checkpoint": self.checkpoint()}}
+        receipt = self.broker.execute(os.getuid(), request)
+        self.assertTrue(receipt["write_acknowledged"])
+        self.assertTrue(receipt["readback_required"])
+        self.assertNotIn("checkpoint", receipt)
+        transport = self.transports["project-one"]
+        transport.records[request["arguments"]["plan_id"]]["state"]["private_transcript"] = "must not be returned"
+        compact = {"tool": "context_read", "arguments": {"plan_id": request["arguments"]["plan_id"]}}
+        result = self.broker.execute(os.getuid(), compact)
+        self.assertEqual(result["checkpoint"], self.checkpoint())
+        self.assertNotIn("private_transcript", json.dumps(result))
+        compact["arguments"]["known_version"] = result["state_version"]
+        self.assertEqual(self.broker.execute(os.getuid(), compact), {"plan_id": result["plan_id"], "state_version": result["state_version"], "unchanged": True})
+
+    def test_compact_boundary_rejects_foreign_scope_and_unknown_arguments(self):
+        for tool in ["context_read", "checkpoint_write"]:
+            args = {"plan_id": self.read["arguments"]["plan_id"]}
+            if tool == "checkpoint_write":
+                args.update(expected_state_version=0, checkpoint=self.checkpoint())
+            for field in ["namespace", "realm", "uid", "access_token"]:
+                with self.subTest(tool=tool, field=field), self.assertRaises(m.Denied):
+                    self.broker.execute(os.getuid(), {"tool": tool, "arguments": dict(args, **{field: "forged"})})
+            with self.assertRaises(m.Denied):
+                self.broker.execute(os.getuid(), {"tool": tool, "arguments": dict(args, plan_id="mnx-project-two-fixture")})
+            self.transports["project-one"].subject = "wrong-subject"
+            with self.assertRaisesRegex(m.Denied, "principal_identity_mismatch"):
+                self.broker.execute(os.getuid(), {"tool": tool, "arguments": args})
+            self.transports["project-one"].subject = "subject-one"
+
+    def test_compact_read_validates_legacy_data_and_never_truncates_obligations(self):
+        result = {"plan_id": "mnx-project-one-fixture", "state_version": 1, "state": {m.CHECKPOINT_KEY: self.checkpoint()}}
+        self.assertIsNone(m.compact_result(dict(result, state={}), {})["checkpoint"])
+        for checkpoint in [dict(self.checkpoint(), transcript="forbidden"), dict(self.checkpoint(), schema_version=True), dict(self.checkpoint(), next=[{}]), dict(self.checkpoint(), done=["x"] * 9)]:
+            with self.assertRaises(m.Denied):
+                m.compact_result(dict(result, state={m.CHECKPOINT_KEY: checkpoint}), {})
+        large = self.checkpoint()
+        large["constraints"] = ["界" * 500] * 7
+        with self.assertRaisesRegex(m.Denied, "checkpoint_too_large"):
+            m.validate_checkpoint(large)
+        result["state"][m.CHECKPOINT_KEY]["constraints"] = ["critical requirement " * 20] * 3
+        with self.assertRaisesRegex(m.Denied, "context_budget_exceeded"):
+            m.compact_result(result, {"max_bytes": 1000})
+
+    def test_compact_stale_write_and_audit_failure_do_not_retry(self):
+        args = {"plan_id": self.read["arguments"]["plan_id"], "expected_state_version": 0, "checkpoint": self.checkpoint()}
+        self.broker.execute(os.getuid(), {"tool": "checkpoint_write", "arguments": args})
+        with self.assertRaises(m.Denied):
+            self.broker.execute(os.getuid(), {"tool": "checkpoint_write", "arguments": args})
+        self.assertEqual(len([x for x in self.transports["project-one"].calls if x[0] == "plan_state_write"]), 2)
+        for value in [True, -1, 1.2, 9007199254740992]:
+            with self.assertRaises(m.Denied):
+                self.broker.execute(os.getuid(), {"tool": "context_read", "arguments": {"plan_id": args["plan_id"], "known_version": value}})
+
+    def test_compact_write_bad_receipt_can_be_reconciled_without_rewrite(self):
+        args = {"plan_id": self.read["arguments"]["plan_id"], "expected_state_version": 0, "checkpoint": self.checkpoint()}
+        transport = self.transports["project-one"]
+        original = transport.call
+        def call(tool, arguments):
+            result = original(tool, arguments)
+            if tool == "plan_state_write":
+                result["state_version"] = True
+            return result
+        transport.call = call
+        with self.assertRaisesRegex(m.Denied, "checkpoint_receipt_mismatch"):
+            self.broker.execute(os.getuid(), {"tool": "checkpoint_write", "arguments": args})
+        result = self.broker.execute(os.getuid(), {"tool": "context_read", "arguments": {"plan_id": args["plan_id"]}})
+        self.assertEqual(result["checkpoint"], args["checkpoint"])
+        self.assertEqual(len([x for x in transport.calls if x[0] == "plan_state_write"]), 1)
+
+    def test_compact_unicode_budget_and_legacy_replacement_are_consistent(self):
+        checkpoint = self.checkpoint()
+        checkpoint["constraints"] = ["界" * 500] * 5
+        plan = self.read["arguments"]["plan_id"]
+        self.transports["project-one"].records[plan] = {"state_version": 1, "state": {m.CHECKPOINT_KEY: {"transcript": "old malformed object"}, "other": "retain me"}}
+        self.broker.execute(os.getuid(), {"tool": "checkpoint_write", "arguments": {"plan_id": plan, "expected_state_version": 1, "checkpoint": checkpoint}})
+        result = self.broker.execute(os.getuid(), {"tool": "context_read", "arguments": {"plan_id": plan, "max_bytes": 12000}})
+        self.assertEqual(result["checkpoint"], checkpoint)
+        self.assertNotIn("transcript", json.dumps(result))
+        self.assertEqual(self.transports["project-one"].records[plan]["state"]["other"], "retain me")
 
     def test_unknown_peer_is_denied_before_upstream(self):
         with self.assertRaisesRegex(m.Denied, "peer_not_allowed"):

@@ -8,7 +8,7 @@ No existing Codex or Claude credential is imported. Enrollment uses a separate O
 
 ## Stage and inspect
 
-Requires macOS, `/usr/bin/python3` with Python 3.9 or later, and a reviewed package. First run the focused tests:
+Requires macOS, Python 3.9 or later, the root-owned Python runtime supplied by Apple Command Line Tools, and a reviewed package. The sandboxed broker client uses `/Library/Developer/CommandLineTools/usr/bin/python3` directly; it does not depend on the active Xcode selector or an external temporary cache. Installation rejects a missing or unprotected runtime. First run the focused tests:
 
 ```sh
 npm run test:broker
@@ -29,7 +29,9 @@ Enter the password only at the operating system's local prompt. Installation cre
 
 A reviewed nonempty policy must already bind the intended immutable subject and namespace. A root operator can then run the installed Python program with `--login REALM`; it prints an authorization URL and login ID, never a token. `--login-status ID` returns the enrollment result. Keep these enrollment outputs private. Check the status and an authorized synthetic operation before treating the connection as ready. Do not weaken subject checks when the hosted provider has not yet shipped the identity field.
 
-The initial empty installation is deliberately unusable by agents. This version does not implement a general in-place upgrade, automatic realm provisioning or managed host activation. Changes to installed root-owned policy require a separately reviewed administrative change and service restart. Do not map an unrestricted desktop user to multiple projects or trust a model-supplied working directory as the isolation boundary.
+The initial empty installation is deliberately unusable by agents. This version does not implement a general code upgrade, automatic realm provisioning or managed host activation. To replace the root-owned policy, use the installed `install_macos.py --configure FILE --expected-digest SHA256 --current-policy-digest SHA256` as an administrator. It validates the whole policy before mutation, rejects administrator peer identities, saves the prior policy and receipt, and restarts the service. Review the exact candidate and current digests first. Do not map an unrestricted desktop user to multiple projects or trust a model-supplied working directory as the isolation boundary.
+
+The compact interface adds `context_read` and `checkpoint_write` alongside the legacy plan operations. See [compact memory](../docs/COMPACT_MEMORY.md) for the bounded checkpoint schema, required read-back and 30% measured-efficiency target. The target is not a claimed saving.
 
 ## Host acceptance and recovery
 

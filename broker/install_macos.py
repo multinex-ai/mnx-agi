@@ -17,7 +17,16 @@ SOCKET_DIR = Path("/var/db/mnx-memq-socket")
 PLIST = Path("/Library/LaunchDaemons/ai.multinex.memq-broker.plist")
 USER = "_mnx_memq"
 LABEL = "ai.multinex.memq-broker"
+PYTHON = Path("/Library/Developer/CommandLineTools/usr/bin/python3")
 FILES = ("memq_broker.py", "install_macos.py", "client", "policy.json", "service.plist")
+
+
+def policy_api(source):
+    # Run only the reviewed broker bytes, already hashed by read_stage for an
+    # install. This keeps staging and runtime on the same strict policy parser.
+    namespace = {"__name__": "mnx_policy_validation"}
+    exec(compile(source, "reviewed_memq_broker.py", "exec"), namespace)
+    return namespace["strict_json"], namespace["validate_policy"]
 
 
 def digest(raw):
@@ -26,6 +35,16 @@ def digest(raw):
 
 def command(*args):
     return subprocess.run(args, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout
+
+
+def validate_peers(policy, service_uid=None):
+    for uid in policy["peers"]:
+        if int(uid) == service_uid:
+            raise RuntimeError("Service identity cannot be an agent")
+        name = command("/usr/bin/id", "-un", uid).strip()
+        check = subprocess.run(["/usr/sbin/dseditgroup", "-o", "checkmember", "-m", name, "admin"], text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if check.returncode not in (0, 67) or not check.stdout.startswith("no "):
+            raise RuntimeError("Agent must be an independently provisioned non-administrator identity")
 
 
 def safe_directory(path):
@@ -43,11 +62,13 @@ def safe_directory(path):
 def stage(output, policy_path):
     if output.exists():
         raise RuntimeError("Stage directory already exists")
-    policy = json.loads(policy_path.read_text()) if policy_path else {"version": 1, "peers": {}, "realms": {}}
-    policy.update(state_dir=str(STATE), socket=str(SOCKET_DIR / "broker.sock"))
-    output.mkdir(mode=0o700)
     source = Path(__file__).with_name("memq_broker.py").read_bytes()
-    client = ('#!/bin/sh\n[ "$#" -eq 0 ] || exit 64\nexec /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/python3 -I -B ' + "'" + str(ROOT / "broker/memq_broker.py") + "' --client\n").encode()
+    parse, validate = policy_api(source)
+    policy = parse(policy_path.read_text()) if policy_path else {"version": 1, "peers": {}, "realms": {}}
+    policy.update(state_dir=str(STATE), socket=str(SOCKET_DIR / "broker.sock"))
+    validate(policy)
+    output.mkdir(mode=0o700)
+    client = ('#!/bin/sh\n[ "$#" -eq 0 ] || exit 64\nexec /usr/bin/env -i PATH=/usr/bin:/bin ' + str(PYTHON) + ' -I -B ' + "'" + str(ROOT / "broker/memq_broker.py") + "' --client\n").encode()
     plist = {"Label": LABEL, "ProgramArguments": ["/usr/bin/env", "-i", "PATH=/usr/bin:/bin", "/usr/bin/python3", "-I", "-B", str(ROOT / "broker/memq_broker.py"), "--serve", str(ROOT / "broker/policy.json")], "UserName": USER, "GroupName": "nobody", "RunAtLoad": True, "KeepAlive": True, "ProcessType": "Background", "Umask": 0o077, "StandardOutPath": "/dev/null", "StandardErrorPath": str(STATE / "service-error.log")}
     blobs = {"memq_broker.py": source, "install_macos.py": Path(__file__).read_bytes(), "client": client, "policy.json": (json.dumps(policy, indent=2) + "\n").encode(), "service.plist": plistlib.dumps(plist)}
     manifest = {"version": 1, "files": {name: digest(raw) for name, raw in blobs.items()}, "installsManagedPolicies": False}
@@ -82,11 +103,20 @@ def install(directory, expected):
         raise RuntimeError("macOS administrator authentication required")
     blobs, manifest = read_stage(directory, expected)
     # Validate staged policy using its reviewed source, without starting service.
-    policy = json.loads(blobs["policy.json"])
+    parse, validate = policy_api(blobs["memq_broker.py"])
+    policy = validate(parse(blobs["policy.json"]))
     if policy.get("state_dir") != str(STATE) or policy.get("socket") != str(SOCKET_DIR / "broker.sock"):
         raise RuntimeError("Unexpected service paths")
     if not isinstance(policy.get("peers"), dict) or not isinstance(policy.get("realms"), dict):
         raise RuntimeError("Invalid policy")
+    validate_peers(policy)
+    runtime = PYTHON.resolve(strict=True)
+    if not str(runtime).startswith("/Library/Developer/CommandLineTools/") or not runtime.is_file():
+        raise RuntimeError("Trusted Command Line Tools Python runtime required")
+    safe_directory(runtime.parent)
+    runtime_stat = runtime.stat()
+    if runtime_stat.st_uid != 0 or runtime_stat.st_mode & 0o022 or not os.access(runtime, os.X_OK):
+        raise RuntimeError("Unprotected Python runtime")
     for path in [ROOT, PLIST.parent, STATE.parent, SOCKET_DIR.parent]:
         safe_directory(path)
     # No overwrites until an explicit, reviewed upgrade path is implemented.
@@ -99,7 +129,7 @@ def install(directory, expected):
     except subprocess.CalledProcessError:
         users = command("/usr/bin/dscl", ".", "-list", "/Users", "UniqueID")
         used = {int(line.rsplit(None, 1)[1]) for line in users.splitlines()}
-        uid = next((value for value in range(499, 449, -1) if value not in used), None)
+        uid = next((value for value in range(499, 449, -1) if value not in used and str(value) not in policy["peers"]), None)
         if uid is None:
             raise RuntimeError("No unallocated service UID")
         command("/usr/bin/dscl", ".", "-create", "/Users/" + USER)
@@ -151,20 +181,73 @@ def rollback():
     print(json.dumps({"rolledBack": True, "backup": str(backup), "credentialsPreserved": True}))
 
 
+def configure(candidate, expected, current_digest):
+    if sys.platform != "darwin" or os.geteuid() != 0:
+        raise RuntimeError("macOS administrator authentication required")
+    safe_directory(ROOT / "broker")
+    policy_path = ROOT / "broker/policy.json"
+    receipt_path = ROOT / "broker/installation.json"
+    for target in [policy_path, receipt_path, ROOT / "broker/memq_broker.py"]:
+        st = target.lstat()
+        if not stat.S_ISREG(st.st_mode) or st.st_uid != 0 or st.st_mode & 0o022:
+            raise RuntimeError("Unprotected broker file")
+    receipt = json.loads(receipt_path.read_text())
+    source = (ROOT / "broker/memq_broker.py").read_bytes()
+    if digest(source) != receipt["manifest"]["files"]["memq_broker.py"]:
+        raise RuntimeError("Installed broker code changed")
+    original = policy_path.read_bytes()
+    raw = candidate.read_bytes()
+    if digest(original) != current_digest or digest(raw) != expected:
+        raise RuntimeError("Policy digest changed; review again")
+    parse, validate = policy_api(source)
+    policy = validate(parse(raw))
+    if policy["state_dir"] != str(STATE) or policy["socket"] != str(SOCKET_DIR / "broker.sock"):
+        raise RuntimeError("Unexpected service paths")
+    validate_peers(policy, receipt["serviceUid"])
+    backup = ROOT / "backups" / str(uuid.uuid4())
+    backup.mkdir(parents=True, mode=0o700)
+    (backup / "policy.json").write_bytes(original)
+    (backup / "installation.json").write_bytes(receipt_path.read_bytes())
+    temp = policy_path.with_name("policy." + str(uuid.uuid4()) + ".tmp")
+    with temp.open("xb") as stream:
+        stream.write(raw)
+        stream.flush()
+        os.fsync(stream.fileno())
+    temp.chmod(0o644)
+    temp.replace(policy_path)
+    receipt["manifest"]["files"]["policy.json"] = expected
+    receipt["lastPolicyBackup"] = str(backup)
+    temporary_receipt = receipt_path.with_suffix(".tmp")
+    with temporary_receipt.open("x") as stream:
+        json.dump(receipt, stream, indent=2)
+        stream.flush()
+        os.fsync(stream.fileno())
+    temporary_receipt.chmod(0o644)
+    temporary_receipt.replace(receipt_path)
+    command("/bin/launchctl", "kickstart", "-k", "system/" + LABEL)
+    print(json.dumps({"configured": True, "policySha256": expected, "backup": str(backup), "managedPoliciesActivated": False}))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--stage", type=Path)
     action.add_argument("--install", type=Path)
     action.add_argument("--rollback", action="store_true")
+    action.add_argument("--configure", type=Path)
     parser.add_argument("--policy", type=Path)
     parser.add_argument("--expected-digest")
+    parser.add_argument("--current-policy-digest")
     args = parser.parse_args()
     try:
         if args.stage:
             stage(args.stage.resolve(), args.policy)
         elif args.rollback:
             rollback()
+        elif args.configure:
+            if not args.expected_digest or not args.current_policy_digest:
+                raise RuntimeError("Expected candidate and current policy digests are required")
+            configure(args.configure, args.expected_digest, args.current_policy_digest)
         elif not args.expected_digest:
             raise RuntimeError("Expected reviewed manifest digest is required")
         else:
