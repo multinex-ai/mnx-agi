@@ -82,7 +82,8 @@ class HostTest(unittest.TestCase):
     @unittest.skipUnless(sys.platform == "darwin", "macOS sandbox integration")
     def test_real_sandbox_allows_workspace_but_denies_sibling_and_child_escape(self):
         with tempfile.TemporaryDirectory() as root:
-            root = Path(root).resolve()
+            # Keep the /var alias: a canonical-only fixture hid live failures.
+            root = Path(root)
             home, package = root / "home", root / "package"
             home.mkdir()
             package.mkdir()
@@ -94,6 +95,7 @@ class HostTest(unittest.TestCase):
             def run(*command):
                 return subprocess.run(["/usr/bin/sandbox-exec", "-f", str(policy), *command], env={"PATH": "/usr/bin:/bin", "HOME": str(home)}, capture_output=True, text=True, timeout=10)
             self.assertEqual(run("/bin/cat", str(allowed)).stdout, "allowed-fixture")
+            self.assertEqual(run("/bin/cat", str(allowed.resolve())).stdout, "allowed-fixture")
             for command in [("/bin/cat", str(denied)), ("/bin/sh", "-c", '/bin/cat "$1"', "sh", str(denied))]:
                 result = run(*command)
                 self.assertNotEqual(result.returncode, 0)
@@ -101,6 +103,19 @@ class HostTest(unittest.TestCase):
             link = home / "escape"
             link.symlink_to(denied)
             self.assertNotEqual(run("/bin/cat", str(link)).returncode, 0)
+
+    @unittest.skipUnless(sys.platform == "darwin" and Path("/Library/Developer/CommandLineTools/usr/bin/python3").exists(), "macOS Command Line Tools runtime")
+    def test_real_sandbox_runs_trusted_python_without_xcode_selector_or_external_temp(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            home, package = root / "home", root / "package"
+            home.mkdir()
+            package.mkdir()
+            policy = package / "sandbox.sb"
+            policy.write_text(m.profile(home, package))
+            result = subprocess.run(["/usr/bin/sandbox-exec", "-f", str(policy), "/Library/Developer/CommandLineTools/usr/bin/python3", "-I", "-B", "-c", "print('runtime-ok')"], env={"PATH": "/usr/bin:/bin", "HOME": str(home.resolve()), "TMPDIR": str(home.resolve())}, capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(result.stdout.strip(), "runtime-ok")
 
 
 if __name__ == "__main__":

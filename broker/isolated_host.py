@@ -47,7 +47,14 @@ def profile(home, package):
     services = ["com.apple.system.logger", "com.apple.trustd.agent", "com.apple.networkd", "com.apple.SystemConfiguration.configd", "com.apple.system.opendirectoryd.libinfo", "com.apple.system.opendirectoryd.membership"]
     mach = "\n".join("(allow mach-lookup (global-name " + json.dumps(service) + "))" for service in services)
     broker_files = "\n".join("(allow file-read* (literal " + json.dumps(str(p)) + "))" for p in [ROOT / "bin/mnx-memq-broker", ROOT / "broker/memq_broker.py"])
-    return '(version 1)\n(deny default)\n(allow process*)\n(allow sysctl-read)\n(allow network*)\n(allow file-read* (literal "/"))\n' + mach + '\n' + reads + '\n' + broker_files + '\n(allow file-read* (subpath "/dev"))\n(allow file-write* (literal "/dev/null") (literal "/dev/tty"))\n(allow file-write* (subpath ' + json.dumps(str(home.resolve())) + '))\n'
+    # Resolving permitted paths requires metadata on their ancestors and aliases.
+    # This does not allow reading sibling file contents.
+    metadata = set()
+    for item in [*(Path(p) for p in roots), ROOT / "bin/mnx-memq-broker", ROOT / "broker/memq_broker.py", Path("/Library/Developer/CommandLineTools/usr/bin/python3"), home, package]:
+        metadata.update(item.parents)
+        metadata.update(item.resolve().parents)
+    ancestors = '(allow file-read-metadata ' + ' '.join('(literal ' + json.dumps(str(p)) + ')' for p in sorted(metadata)) + ')\n'
+    return '(version 1)\n(deny default)\n(allow process*)\n(allow sysctl-read)\n(allow network*)\n(allow file-read* (literal "/"))\n' + ancestors + mach + '\n' + reads + '\n' + broker_files + '\n(allow file-read* (subpath "/dev"))\n(allow file-write* (literal "/dev/null") (literal "/dev/tty"))\n(allow file-write* (subpath ' + json.dumps(str(home.resolve())) + '))\n'
 
 
 def stage(output, name, package, codex, claude):
@@ -191,7 +198,7 @@ def launch(name, host, arguments):
     config = json.loads((target / "host.json").read_text())
     if os.getuid() != config["uid"]:
         raise RuntimeError("Wrong managed execution identity")
-    home = Path(config["home"])
+    home = Path(config["home"]).resolve(strict=True)
     os.chdir(home / "workspace")
     os.environ.clear()
     os.environ.update(HOME=str(home), TMPDIR=str(home / "tmp"), PATH="/usr/bin:/bin", CODEX_HOME=str(home / ".codex"), CLAUDE_CONFIG_DIR=str(home / ".claude"), TERM="xterm-256color")

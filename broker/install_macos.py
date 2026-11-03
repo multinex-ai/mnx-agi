@@ -17,6 +17,7 @@ SOCKET_DIR = Path("/var/db/mnx-memq-socket")
 PLIST = Path("/Library/LaunchDaemons/ai.multinex.memq-broker.plist")
 USER = "_mnx_memq"
 LABEL = "ai.multinex.memq-broker"
+PYTHON = Path("/Library/Developer/CommandLineTools/usr/bin/python3")
 FILES = ("memq_broker.py", "install_macos.py", "client", "policy.json", "service.plist")
 
 
@@ -67,7 +68,7 @@ def stage(output, policy_path):
     policy.update(state_dir=str(STATE), socket=str(SOCKET_DIR / "broker.sock"))
     validate(policy)
     output.mkdir(mode=0o700)
-    client = ('#!/bin/sh\n[ "$#" -eq 0 ] || exit 64\nexec /usr/bin/env -i PATH=/usr/bin:/bin /usr/bin/python3 -I -B ' + "'" + str(ROOT / "broker/memq_broker.py") + "' --client\n").encode()
+    client = ('#!/bin/sh\n[ "$#" -eq 0 ] || exit 64\nexec /usr/bin/env -i PATH=/usr/bin:/bin ' + str(PYTHON) + ' -I -B ' + "'" + str(ROOT / "broker/memq_broker.py") + "' --client\n").encode()
     plist = {"Label": LABEL, "ProgramArguments": ["/usr/bin/env", "-i", "PATH=/usr/bin:/bin", "/usr/bin/python3", "-I", "-B", str(ROOT / "broker/memq_broker.py"), "--serve", str(ROOT / "broker/policy.json")], "UserName": USER, "GroupName": "nobody", "RunAtLoad": True, "KeepAlive": True, "ProcessType": "Background", "Umask": 0o077, "StandardOutPath": "/dev/null", "StandardErrorPath": str(STATE / "service-error.log")}
     blobs = {"memq_broker.py": source, "install_macos.py": Path(__file__).read_bytes(), "client": client, "policy.json": (json.dumps(policy, indent=2) + "\n").encode(), "service.plist": plistlib.dumps(plist)}
     manifest = {"version": 1, "files": {name: digest(raw) for name, raw in blobs.items()}, "installsManagedPolicies": False}
@@ -109,6 +110,13 @@ def install(directory, expected):
     if not isinstance(policy.get("peers"), dict) or not isinstance(policy.get("realms"), dict):
         raise RuntimeError("Invalid policy")
     validate_peers(policy)
+    runtime = PYTHON.resolve(strict=True)
+    if not str(runtime).startswith("/Library/Developer/CommandLineTools/") or not runtime.is_file():
+        raise RuntimeError("Trusted Command Line Tools Python runtime required")
+    safe_directory(runtime.parent)
+    runtime_stat = runtime.stat()
+    if runtime_stat.st_uid != 0 or runtime_stat.st_mode & 0o022 or not os.access(runtime, os.X_OK):
+        raise RuntimeError("Unprotected Python runtime")
     for path in [ROOT, PLIST.parent, STATE.parent, SOCKET_DIR.parent]:
         safe_directory(path)
     # No overwrites until an explicit, reviewed upgrade path is implemented.

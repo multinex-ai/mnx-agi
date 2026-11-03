@@ -32,4 +32,6 @@ Launchers are installed at `/Library/Application Support/MNX-AGI/bin/mnx-example
 
 Each model host requires its own authorized sign-in in this new home. Codex is explicitly configured to use its private file credential store. Do not copy tokens from another home or read credentials to troubleshoot. Verify native CLI startup, tool inventory, correct-scope read/write, fresh-session resume, and denied foreign workspace, symlink and child-process access. Test actual account isolation separately from mocked fixtures.
 
+The launcher canonicalizes the managed home before constructing host environment paths. The sandbox permits metadata on the ancestors needed to resolve approved paths, including the system's `/var` alias, while data access remains restricted to the selected roots. Positive workspace access and negative sibling/symlink access are both acceptance gates. The sandboxed broker client requires the protected Command Line Tools Python runtime; the active Xcode launcher is not a supported sandbox dependency.
+
 The normal global skill installer remains reversible and independent. Global exclusive MCP policy activation needs separate effective-policy and excluded-project compatibility checks. An installed launcher is not proof of all-system enforcement; report the exact tested process boundary.

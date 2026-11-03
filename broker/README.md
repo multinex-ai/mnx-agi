@@ -8,7 +8,7 @@ No existing Codex or Claude credential is imported. Enrollment uses a separate O
 
 ## Stage and inspect
 
-Requires macOS, `/usr/bin/python3` with Python 3.9 or later, and a reviewed package. First run the focused tests:
+Requires macOS, Python 3.9 or later, the root-owned Python runtime supplied by Apple Command Line Tools, and a reviewed package. The sandboxed broker client uses `/Library/Developer/CommandLineTools/usr/bin/python3` directly; it does not depend on the active Xcode selector or an external temporary cache. Installation rejects a missing or unprotected runtime. First run the focused tests:
 
 ```sh
 npm run test:broker

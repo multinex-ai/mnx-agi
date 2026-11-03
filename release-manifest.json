@@ -44,15 +44,15 @@
     },
     {
       "path": "broker/README.md",
-      "sha256": "e6bf641b1df931652ab78df4db50a13c0fc022301f32076320d10e6f01100fae"
+      "sha256": "8f94c2b698235195370489a54a31568b8bfc7e6b53416135794498901925cf97"
     },
     {
       "path": "broker/install_macos.py",
-      "sha256": "d70c91c510db2f957f6812eeb2eb1484492fab98dbb2f46b04b7d1c7871ee026"
+      "sha256": "b40e439e563b750cb5cacb6421c1ac2a4676e1ff235e3212d7c84b17219942ee"
     },
     {
       "path": "broker/isolated_host.py",
-      "sha256": "1e5223c2ecc561dc17b55ee43e3607b37e6d06eec191b511525b3d882898402f"
+      "sha256": "01955dc3814f4fac49c8aa9775a96fbb1f38c7107446f839cab49deeba1e6bbc"
     },
     {
       "path": "broker/memq_broker.py",
@@ -64,7 +64,7 @@
     },
     {
       "path": "broker/test_host.py",
-      "sha256": "bc2517fbc61e230862fcdb04d3fab63fef9a62827a804bf629afa808e0d10414"
+      "sha256": "0aef0fb7b134c447e5e551e8f53c41ae329898390936fce64c2b072e82aa449d"
     },
     {
       "path": "broker/test_install.py",
@@ -104,7 +104,7 @@
     },
     {
       "path": "docs/ISOLATED_HOSTS.md",
-      "sha256": "5a7fc1d55bb6fde4aa18b5207755e40410b9df5dbe9b776a91713bb6b86976a6"
+      "sha256": "d357c233ff470b948658928f34ca5708f73aaa7f73a0df818c8b6787ae301cd4"
     },
     {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
