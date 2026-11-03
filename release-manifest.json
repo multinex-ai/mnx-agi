@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "c6858492fefad9cf6c17bf4ba153047f385daa259eb3dd6dc77b179085c5473c"
+      "sha256": "9f31fe2345e0bd4709dbeb02fbbb9675040895c8a7b13124536369e9fc7194d5"
     },
     {
       "path": "LICENSE",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "41111f8241f6e04cb65e8f392aeffc8250079d1e2230cfdd3f54aeb0c175e740"
+      "sha256": "da1e930301ca25c97c855645b5c07cf1ba81f666462d6ae0670c015dbab06238"
     },
     {
       "path": "SECURITY.md",
@@ -36,7 +36,7 @@
     },
     {
       "path": "bin/mnx-agi.mjs",
-      "sha256": "6b59f320b0c4110e352c4a0042000e47b650dee393ac1c038fef2913af58cafb"
+      "sha256": "4ba4b468ba03145de61b50d5230053c7d6dbc638c2c5e469e5c4562b560b6235"
     },
     {
       "path": "bin/mnx-memq-guard.mjs",
@@ -79,12 +79,16 @@
       "sha256": "e8ec25c00b3c365f234641c451493ddfe556b70ac9a429e10c219c2a5b7b99df"
     },
     {
+      "path": "docs/FIRST_RUN.md",
+      "sha256": "8f1834cf40b471f038bdaedf45a11f5e3c4d5af2ca57449e817e5153771c503c"
+    },
+    {
       "path": "docs/HARNESS_MODULES.md",
       "sha256": "5d6e1b3c1371abba81d9bc043c35ebee702405e421d576bd105efa8d2638e212"
     },
     {
       "path": "docs/INSTALL.md",
-      "sha256": "13befc7f47deaa928f4a20b882f23702376fdacbf09d6dd3f732d82de276e8a5"
+      "sha256": "a13fec91aaba91845129e80969b5c9d934812762924319573a9eeac34f84e993"
     },
     {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
@@ -379,6 +383,10 @@
       "sha256": "7449029327b1eeafb45abdf9d4c606c046ce59f415850bcec0de786799cd193c"
     },
     {
+      "path": "src/accord.mjs",
+      "sha256": "9b8a3eb3ef638f67e5b544004ee867cd866e24af80444a83d53840ea867218a0"
+    },
+    {
       "path": "src/bundle.mjs",
       "sha256": "b947e2dab705924e6a926fb4560f52a0881f0fd4320b2fc631b6d0ce84ccba46"
     },
@@ -400,7 +408,7 @@
     },
     {
       "path": "src/install.mjs",
-      "sha256": "160a551f06741e7305e8abac80fc1221c2d61e7b626565a48878b3a00f8acfc6"
+      "sha256": "970365cd834e5e87b9e12021ad7b93be7e127fbd589f2f183555ba0fa2b06a13"
     },
     {
       "path": "src/memory-plan.mjs",
@@ -413,6 +421,10 @@
     {
       "path": "src/runtime.mjs",
       "sha256": "4469686b03245486df7219efb3182b6065890b3c046515ff5b4a18be5ba938c4"
+    },
+    {
+      "path": "test/accord.test.mjs",
+      "sha256": "fccc1133ff53ba97bc53b29b676bf84196f719b3977f18d5fc8c426e07590f7e"
     },
     {
       "path": "test/codex-client.test.mjs",
