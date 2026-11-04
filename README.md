@@ -14,13 +14,15 @@
 
 **Across agents. Across sessions. Compounding knowledge.**
 
-Make useful work compound. MNX-AGI is a model-agnostic **Recursive Agent Harness**, paired with **[MemQ](https://multinex.ai/memq/)** for persistent memory. It gives supported AI agents a shared way to plan, act, verify, remember, and improve—so the next task, session, or authorized agent can build on what is already known.
+Make useful work compound. MNX-AGI is a model-agnostic **Recursive Agent Harness**, paired with **[MemQ by Multinex](https://multinex.ai/memq/)** for persistent memory. It gives supported AI agents a shared way to plan, act, verify, remember, and improve—so the next task, session, or authorized agent can build on what is already known.
 
 **Bring your models. Connect your tools. Build on what your agents learn.**
 
 **Reusable agent infrastructure for coordinated work and lasting memory.** Adopt MNX-AGI in the agent hosts and applications you already use. Carry objectives, verified decisions, progress, and reusable procedures across supported models and authorized sessions through MemQ.
 
 MNX-AGI supplies the operating rules, focused skills, realm boundaries, and evaluation loop. MemQ supplies durable context through a configured memory connection. Together, they are designed to make continuity feel seamless across compatible agents while keeping each project's access and ownership explicit.
+
+**Verify your first working connection:** follow the [MemQ activation quickstart](https://multinex.ai/docs/memq/quickstart/), confirm the intended account and namespace, save a synthetic checkpoint, and retrieve its decision and next step in a fresh client session. Signup, a connection badge, and a write acknowledgment are separate from verified recall. MemQ remembers what your workflow saves; it does not automatically import every conversation.
 
 - **Remember across sessions.** Retain selected decisions, preferences, verified procedures, and progress checkpoints instead of rebuilding context each time.
 - **Continue across agents.** Let another authorized agent retrieve the same approved knowledge and resume from current artifacts and handoff evidence.

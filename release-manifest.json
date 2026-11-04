@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "da1e930301ca25c97c855645b5c07cf1ba81f666462d6ae0670c015dbab06238"
+      "sha256": "f3d7a6927a185dd9bb79e70707d6292c5cedcc7dcb3e65afe5adf4a7abe03b31"
     },
     {
       "path": "SECURITY.md",
@@ -108,7 +108,7 @@
     },
     {
       "path": "docs/MEMQ_PAIRING.md",
-      "sha256": "1d92ab10462afbb65bdc41d5d6be0a061d2cc56a23a428739505856320da8b54"
+      "sha256": "5b1464ad7a5d5f132380937f6f49562fb081a20042a20e0dc435171cc85d595f"
     },
     {
       "path": "docs/MEMQ_TOOL_COVERAGE.md",
@@ -164,7 +164,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "f289034d696cd1526fe233c7e0e6936383b5baabb31e4de515233bf86bdb06de"
+      "sha256": "fa7c7121f13d36f9971978723544ab5bb7c44f9ba1ed73da54ee03c966b5dd42"
     },
     {
       "path": "profiles/multinex.md",
