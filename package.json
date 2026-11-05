@@ -1,7 +1,7 @@
 {
   "name": "@multinex-ai/mnx-agi",
   "version": "1.4.0-rc.1",
-  "description": "MNX-AGI + MemQ: a model-agnostic Recursive Agent Harness that helps agents remember, resume, and build on verified work, with persistent memory and universal vector-translation interfaces for supported embeddings.",
+  "description": "MNX-AGI: a model-agnostic recursive agent harness paired with MemQ by Multinex. Plan, act, verify and resume with saved context across compatible agents and authorized sessions.",
   "type": "module",
   "license": "Apache-2.0",
   "private": true,
