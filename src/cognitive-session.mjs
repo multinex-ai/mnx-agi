@@ -1,5 +1,5 @@
 import { verifyGenesis } from './genesis.mjs';
-import { LIMITS, boundedJson, canonicalJson, contentDigest, validateContract, validateEvaluationPolicy, verifyEvaluationReceipt } from './cognitive-contracts.mjs';
+import { LIMITS, boundedJson, canonicalJson, canonicalTimestamp, contentDigest, validateContract, validateEvaluationPolicy, verifyEvaluationReceipt } from './cognitive-contracts.mjs';
 import { Buffer } from 'node:buffer';
 
 const fail = code => { throw Object.assign(new Error(code), { code }); };
@@ -66,6 +66,14 @@ export function createCognitiveSession({ binding, signedGenesis, expectedGenesis
         if (s.operations.some(o => o.id === s.pending.id) || !skill || contentDigest(s.pending.task) !== s.pending.taskDigest ||
             contentDigest({ kind: s.pending.kind, skillId: skill.manifest.id, task: s.pending.task }) !== s.pending.inputDigest) fail('invalid_pending_state');
       }
+      if (s.sanctum !== undefined) {
+        if (!Array.isArray(s.sanctum) || !unique(s.sanctum, r => r.entry.id)) fail('invalid_sanctum_state');
+        for (const r of s.sanctum) {
+          validateContract('sanctumReflection', r.entry);
+          if (contentDigest(r.entry) !== r.digest || !canonicalTimestamp(r.entry.observedAt) ||
+              r.entry.creatorAttribution !== 'Christopher Rijos' || r.entry.disclosureClass !== 'llm_private_sanctum') fail('invalid_sanctum_state');
+        }
+      }
     } catch { fail('invalid_cognitive_state'); }
   }
   async function read(operation) {
@@ -89,7 +97,13 @@ export function createCognitiveSession({ binding, signedGenesis, expectedGenesis
     if (row.state.operations.length >= LIMITS.operations || (kind === 'evaluate' && skill.trials.length >= LIMITS.trials) ||
         Buffer.byteLength(canonicalJson(row.state)) + Buffer.byteLength(canonicalJson(task)) + 2 * LIMITS.resultBytes + 4096 > LIMITS.stateBytes) fail('cognitive_capacity_reached');
   }
-  async function snapshot() { return structuredClone((await read('read')).state); }
+  async function snapshot(options = {}) {
+    const state = structuredClone((await read('read')).state);
+    if (state.sanctum !== undefined) {
+      state.sanctum = text(options?.actorId) ? state.sanctum.filter(r => r.entry.actorId === options.actorId) : [];
+    }
+    return state;
+  }
   async function observe(input) {
     validateContract('record', input);
     const record = structuredClone(input), digest = contentDigest(record);
@@ -166,7 +180,25 @@ export function createCognitiveSession({ binding, signedGenesis, expectedGenesis
     if (skill.status !== 'active') { skill.status = 'active'; await commit(row); }
     return skill.digest;
   }
-  return Object.freeze({ snapshot, observe, proposeSkill, activateSkill,
+  async function recordSanctumReflection(input) {
+    validateContract('sanctumReflection', input);
+    if (!canonicalTimestamp(input.observedAt)) fail('invalid_sanctumReflection_contract');
+    const entry = structuredClone(input), digest = contentDigest(entry);
+    const row = await read('sanctum_write'); idle(row);
+    const sanctum = row.state.sanctum ?? (row.state.sanctum = []);
+    const previous = sanctum.find(r => r.entry.id === entry.id);
+    if (previous) { if (previous.digest !== digest) fail('sanctum_conflict'); return previous.digest; }
+    if (sanctum.length >= LIMITS.sanctum) fail('cognitive_capacity_reached');
+    sanctum.push({ entry, digest });
+    await gate('sanctum_write'); await commit(row);
+    return digest;
+  }
+  async function readSanctumReflections(actorId) {
+    if (!text(actorId)) fail('invalid_sanctum_actor');
+    const row = await read('sanctum_read');
+    return structuredClone((row.state.sanctum ?? []).filter(r => r.entry.actorId === actorId).map(r => r.entry));
+  }
+  return Object.freeze({ snapshot, observe, proposeSkill, activateSkill, recordSanctumReflection, readSanctumReflections,
     evaluateSkill: (id, task, operationId) => run('evaluate', id, task, operationId),
     executeSkill: (id, task, operationId) => run('execute', id, task, operationId) });
 }

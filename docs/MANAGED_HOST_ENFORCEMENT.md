@@ -10,6 +10,8 @@ One user's unrestricted shell, alternate binaries, credential access, browser to
 
 The experimental broker in `broker/` provides a separate credential-owning service and a macOS installer. Its default installation has no realm grants and does not activate host policies. See [broker installation](../broker/README.md). The policy preparation tool does not install or enroll that service. The current Codex-backed guard cannot simply be placed behind a strict MCP allowlist: its own upstream Codex process needs direct MemQ access, which the same allowlist would reject. Leaving an exception for that upstream in the agent's policy would reopen the bypass.
 
+The experimental [isolated CLI installer](ISOLATED_HOSTS.md) supplies a dedicated non-administrator identity and whole-process filesystem sandbox for selected Codex and Claude executables. It is separate from the global policy candidate, and requires its own live sign-in and broker-binding acceptance.
+
 ## Prepare, do not blindly install
 
 Run the preparation tool with a new private output directory and the eventual administrator-controlled broker executable:

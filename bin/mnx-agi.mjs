@@ -13,7 +13,7 @@ const source = fileURLToPath(new URL('..', import.meta.url));
 try {
   const args = process.argv.slice(2), command = args.shift();
   if (!command || command === 'help' || command === '--help') {
-    console.log('MNX-AGI: init | upgrade | verify | doctor | rollback [--global] [--dir PATH] [--hosts codex,claude] [--dry-run]\nMNX-AGI: validate REALM.json | memory-plan INPUT.json | evaluate RUNS.json | verify-package\nNode.js 22+. No remote services are contacted. Backups contain private local instructions; never publish them.');
+    console.log('MNX-AGI: init | upgrade | verify | doctor | rollback [--global] [--dir PATH] [--hosts codex,claude,gemini] [--dry-run]\nMNX-AGI: validate REALM.json | memory-plan INPUT.json | evaluate RUNS.json | verify-package\nNode.js 22+. No remote services are contacted. Backups contain private local instructions; never publish them.');
   } else if (command === 'verify-package') {
     if (args.length) throw new Error('Unexpected argument');
     const b = loadBundle(source); console.log(JSON.stringify({ ok: true, version: b.version, files: b.files.size, manifestDigest: b.digest, runtimeVerified: false }, null, 2));
@@ -41,7 +41,7 @@ try {
     if (command === 'rollback') result = rollback(target, scope, dryRun);
     else if (command === 'verify' || command === 'doctor') {
       result = verify(target, scope);
-      if (command === 'doctor') result = { ...result, node: process.version, memory: 'Not probed; identity and namespace verification required before private access', enforcement: 'Instruction files and local integrity only; no sandbox, gateway, or remote ACL is installed' };
+      if (command === 'doctor') result = { ...result, node: process.version, memory: 'Not probed; identity and namespace verification required before private access', enforcement: 'This check verifies instruction files and local integrity only; it does not inspect separately installed brokers, host sandboxes, or remote ACLs' };
     } else result = install(loadBundle(source), target, { scope, hosts, dryRun });
     console.log(JSON.stringify(result, null, 2)); if (!result.ok) process.exitCode = 1;
   }

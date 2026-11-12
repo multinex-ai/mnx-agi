@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0-rc.2
+
+- Adds bounded compact checkpoint operations, unchanged-version responses, and a compact-memory skill.
+- Adds a measured 30% whole-task token and combined-cost target that preserves correctness, recovery and isolation. No savings are claimed without host usage and cost evidence.
+- Uses the runtime policy validator before privileged installation and adds digest-checked administrative policy configuration.
+
 ## 1.4.0-rc.1 (prerelease)
 
 - Adds optional strict authenticated-subject binding to the MemQ plan guard. Missing subject evidence fails closed; current namespace-only handshakes do not satisfy this mode.

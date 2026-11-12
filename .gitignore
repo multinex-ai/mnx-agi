@@ -8,3 +8,6 @@ dist/
 .realm/outbox/
 .realm/evidence/
 *.tgz
+
+__pycache__/
+target/

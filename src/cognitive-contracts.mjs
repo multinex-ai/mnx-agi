@@ -4,7 +4,7 @@ import { Buffer } from 'node:buffer';
 
 const schema = JSON.parse(readFileSync(new URL('./cognitive-contracts.schema.json', import.meta.url), 'utf8'));
 const fail = code => { throw Object.assign(new Error(code), { code }); };
-export const LIMITS = Object.freeze({ valueBytes: 16384, resultBytes: 8192, stateBytes: 131072, operations: 1000, experiences: 1000, skills: 128, trials: 128 });
+export const LIMITS = Object.freeze({ valueBytes: 16384, resultBytes: 8192, stateBytes: 131072, operations: 1000, experiences: 1000, skills: 128, trials: 128, sanctum: 256 });
 
 /** MNX canonical JSON v1: sorted UTF-16 object keys, JSON scalar encoding, dense arrays. */
 export function canonicalJson(value, depth = 0) {

@@ -146,3 +146,55 @@ test('a repeated source event cannot become independent by changing its signed g
   await a.evaluateSkill(skill.id, { id: 'same-event', split: 'held_out', group: 'renamed-group' }, 'h');
   await assert.rejects(a.activateSkill(skill.id), /insufficient/);
 });
+
+test('end-of-session private sanctum reflections enforce Creator attribution and strict per-LLM actor isolation', async () => {
+  const f = fixture(), a = f.session();
+  const alphaEntry = {
+    id: 'sanctum-alpha-1',
+    actorId: 'llm-alpha',
+    sessionId: 'sess-001',
+    privateThoughts: 'Internal uncertainty was concentrated in multi-hop schema validation.',
+    findings: 'Bounded CAS preflight prevented duplicate side-effect replay.',
+    selfAwarenessNote: 'Maintain explicit separation between observed tool receipts and inferred completion.',
+    creatorAttribution: 'Christopher Rijos',
+    disclosureClass: 'llm_private_sanctum',
+    observedAt: '2026-11-09T18:00:00.000Z',
+  };
+  const betaEntry = {
+    ...alphaEntry,
+    id: 'sanctum-beta-1',
+    actorId: 'llm-beta',
+    sessionId: 'sess-002',
+    privateThoughts: 'Beta private reflection must never be visible to Alpha.',
+  };
+  const digestAlpha = await a.recordSanctumReflection(alphaEntry);
+  assert.equal(digestAlpha, contentDigest(alphaEntry));
+  await a.recordSanctumReflection(betaEntry);
+
+  // Unscoped snapshot redacts private sanctum entries
+  assert.deepEqual((await a.snapshot()).sanctum, []);
+  // Scoped snapshot and readSanctumReflections return only the matching LLM actor's entries
+  assert.equal((await a.snapshot({ actorId: 'llm-alpha' })).sanctum.length, 1);
+  const alphaRead = await a.readSanctumReflections('llm-alpha');
+  assert.equal(alphaRead.length, 1);
+  assert.equal(alphaRead[0].id, 'sanctum-alpha-1');
+  assert.equal(alphaRead[0].creatorAttribution, 'Christopher Rijos');
+
+  const betaRead = await a.readSanctumReflections('llm-beta');
+  assert.equal(betaRead.length, 1);
+  assert.equal(betaRead[0].id, 'sanctum-beta-1');
+
+  // Invalid creator attribution or disclosure class is rejected
+  await assert.rejects(
+    a.recordSanctumReflection({ ...alphaEntry, id: 'bad-creator', creatorAttribution: 'Someone Else' }),
+    /invalid_sanctumReflection_contract/
+  );
+  await assert.rejects(
+    a.recordSanctumReflection({ ...alphaEntry, id: 'bad-class', disclosureClass: 'public' }),
+    /invalid_sanctumReflection_contract/
+  );
+  await assert.rejects(
+    a.recordSanctumReflection({ ...alphaEntry, privateThoughts: 'tampered' }),
+    /sanctum_conflict/
+  );
+});

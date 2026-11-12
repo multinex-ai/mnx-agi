@@ -26,7 +26,7 @@ function allowed(name, scope) {
   relative(name);
   if (name.startsWith('.mnx-agi/package/') || name === stateName) return true;
   if (/^\.agents\/skills\/mnx-[a-z-]+\//.test(name)) return true;
-  if (scope === 'global') return name === '.local/bin/mnx-agi' || name === '.codex/AGENTS.md' || name === '.claude/CLAUDE.md' || /^\.claude\/skills\/mnx-[a-z-]+\//.test(name);
+  if (scope === 'global') return name === '.local/bin/mnx-agi' || name === '.codex/AGENTS.md' || name === '.claude/CLAUDE.md' || name === '.gemini/GEMINI.md' || /^\.claude\/skills\/mnx-[a-z-]+\//.test(name) || /^\.gemini\/config\/skills\/mnx-[a-z-]+\//.test(name);
   return ['AGENTS.md', '.realm/realm.json', '.realm/policy.md'].includes(name);
 }
 function checkState(state, scope) {
@@ -61,8 +61,8 @@ export function verify(target, scope) {
   return { ok: !errors.length, version: state.version, scope, errors, runtimeVerified: false };
 }
 export function install(bundle, target, { scope = 'project', hosts = ['codex'], dryRun = false } = {}) {
-  if (!['project', 'global'].includes(scope) || !hosts.length || hosts.some(h => !['codex','claude'].includes(h)) || new Set(hosts).size !== hosts.length) throw new Error('Invalid scope or hosts');
-  if (scope === 'project' && (hosts.length !== 1 || hosts[0] !== 'codex')) throw new Error('Project installation supports the AGENTS.md host; use global for Claude');
+  if (!['project', 'global'].includes(scope) || !hosts.length || hosts.some(h => !['codex','claude','gemini'].includes(h)) || new Set(hosts).size !== hosts.length) throw new Error('Invalid scope or hosts');
+  if (scope === 'project' && (hosts.length !== 1 || hosts[0] !== 'codex')) throw new Error('Project installation supports the AGENTS.md host; use global for Claude or Gemini');
   const root = rootPath(target);
   if (read(root, pendingName)) throw new Error('Interrupted installation: run rollback');
   const old = prior(root, scope);
@@ -71,10 +71,12 @@ export function install(bundle, target, { scope = 'project', hosts = ['codex'], 
   const desired = new Map();
   const add = (name, bytes, kind = 'managed', mode = 0o600) => desired.set(name, { bytes: Buffer.from(bytes), kind, mode });
   for (const [name, bytes] of bundle.files) add(`.mnx-agi/package/${name}`, bytes);
-  const hostFiles = scope === 'global' ? hosts.map(h => h === 'codex' ? '.codex/AGENTS.md' : '.claude/CLAUDE.md') : ['AGENTS.md'];
+  const hostMap = { codex: '.codex/AGENTS.md', claude: '.claude/CLAUDE.md', gemini: '.gemini/GEMINI.md' };
+  const skillMap = { codex: '.agents/skills', claude: '.claude/skills', gemini: '.gemini/config/skills' };
+  const hostFiles = scope === 'global' ? hosts.map(h => hostMap[h]) : ['AGENTS.md'];
   const body = `${begin}\n${utf8(bundle.files.get('constitution/CORE.md'))}\nLocal project and account-routing instructions remain applicable. Resolve task ownership before private memory access, including explicit project targets and linked worktrees. Read the adopted realm policy when present. A local declaration never proves remote authorization.\n${end}`;
   for (const name of hostFiles) add(name, body, 'block');
-  const skillRoots = scope === 'global' ? hosts.map(h => h === 'codex' ? '.agents/skills' : '.claude/skills') : ['.agents/skills'];
+  const skillRoots = scope === 'global' ? hosts.map(h => skillMap[h]) : ['.agents/skills'];
   for (const [name, bytes] of bundle.files) if (name.startsWith('skills/')) for (const skillRoot of skillRoots) add(`${skillRoot}/${name.slice(7)}`, bytes);
   if (scope === 'global') {
     add('.local/bin/mnx-agi', `#!/bin/sh\nexec node ${quote(path.join(root, '.mnx-agi/package/bin/mnx-agi.mjs'))} "$@"\n`, 'managed', 0o700);

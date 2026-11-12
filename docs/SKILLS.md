@@ -1,10 +1,11 @@
 # MNX-AGI skills
 
-These eleven skills are workflow definitions installed by the CLI. Each skill routes a specific kind of work and refers to the shared core and MemQ contract. The installer places self-contained copies in the selected hosts' skill directories, including the operational, ingestion, and maintenance workflows.
+These twelve skills are workflow definitions installed by the CLI. Each skill routes a specific kind of work and refers to the shared core and MemQ contract. The installer places self-contained copies in the selected hosts' skill directories, including the operational, ingestion, and maintenance workflows.
 
 | Skill | Trigger | Result |
 |---|---|---|
 | [realm-context](../skills/mnx-realm-context/SKILL.md) | Start or switch a realm-bound task | Effective scope and relevant context |
+| [memq-compact](../skills/mnx-memq-compact/SKILL.md) | Resume or repeat work with a known task | Bounded checkpoint recall and measured efficiency |
 | [memq-recall](../skills/mnx-memq-recall/SKILL.md) | Prior knowledge can change a decision | Bounded, sourced context with uncertainty |
 | [memq-checkpoint](../skills/mnx-memq-checkpoint/SKILL.md) | Long work, interruption, or meaningful phase boundary | Resumable done/next/blocked state |
 | [memq-coordinate](../skills/mnx-memq-coordinate/SKILL.md) | Authorized agents share one task | Bounded ownership, revision and handoff evidence |

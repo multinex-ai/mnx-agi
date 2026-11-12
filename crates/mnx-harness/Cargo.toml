@@ -1,0 +1,18 @@
+[package]
+name = "mnx-harness"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+mnx-contracts = { path = "../mnx-contracts" }
+mnx-broker = { path = "../mnx-broker" }
+
+[lib]
+name = "mnx_harness"
+path = "src/lib.rs"
+
+[[bin]]
+name = "mnx-harness"
+path = "src/main.rs"

@@ -1,0 +1,12 @@
+[package]
+name = "mnx-broker"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+mnx-contracts = { path = "../mnx-contracts" }
+
+[lib]
+path = "src/lib.rs"

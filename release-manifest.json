@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "version": "1.4.0-rc.1",
+  "version": "1.4.0-rc.2",
   "files": [
     {
       "path": ".github/workflows/validate.yml",
@@ -8,11 +8,19 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "dc28b5106ea16ccbbea6a1a793c91615dace13af3f695f2adfe2814c931f776c"
+      "sha256": "687c01eae5a1c6e0f81b24fd5b82bb7d7dc18322a163035c510a77331cba09f7"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "aa61faf3beccc9e86c4243695ae8f366a0bb30137e2632a600f6d8bae894c2ca"
+      "sha256": "1c78dfee7291440782b65fa703bfbeaf984b310d687d363fe1ae25a3eb9b832f"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "5a11260969c43589ad41e55e48770e9e739d3950a71aa8450186c8fc747adfe2"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "7b2264ca6d5ca6225f8332adfc9ce0a90d62974b8029f24685883c8a6590a739"
     },
     {
       "path": "LICENSE",
@@ -20,7 +28,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "c5cb6c6e0d39e5de3169cd9db5a82166af77bd1ea7167d1597dd019a7f1536b0"
+      "sha256": "8de40d6865d6a82795cbd2f0c227d0f36f347f230a5d710632d15e7e24d1b253"
     },
     {
       "path": "SECURITY.md",
@@ -36,7 +44,7 @@
     },
     {
       "path": "bin/mnx-agi.mjs",
-      "sha256": "6b59f320b0c4110e352c4a0042000e47b650dee393ac1c038fef2913af58cafb"
+      "sha256": "72a4f270e2dee0b1ef8c921df4b54162ec946b8491f756c6bc1e1a9a397bad6d"
     },
     {
       "path": "bin/mnx-memq-guard.mjs",
@@ -44,27 +52,63 @@
     },
     {
       "path": "broker/README.md",
-      "sha256": "a3be49527ca8869e441a8e96912277ec9d93773af85c20052a60543e3e2eeeb1"
+      "sha256": "e6bf641b1df931652ab78df4db50a13c0fc022301f32076320d10e6f01100fae"
     },
     {
       "path": "broker/install_macos.py",
-      "sha256": "7b3c845b76934741c9d67436d67811f1a1ae888b48c39722767ed93b4c2e7eed"
+      "sha256": "d70c91c510db2f957f6812eeb2eb1484492fab98dbb2f46b04b7d1c7871ee026"
+    },
+    {
+      "path": "broker/isolated_host.py",
+      "sha256": "1e5223c2ecc561dc17b55ee43e3607b37e6d06eec191b511525b3d882898402f"
     },
     {
       "path": "broker/memq_broker.py",
-      "sha256": "6dbec2ab57c40c9f0aea7fd3dfcb49706d7c05d07aba4c8e80ae9186d61a2f36"
+      "sha256": "f9da2ab32ae3ca227959e671f88006177c50ca77dbfc0a7dc86ac8855f8b36af"
     },
     {
       "path": "broker/test_broker.py",
-      "sha256": "30fcb2f4bd1185f28f654b13f5b521f70bbde3d990642a12822728387155ceec"
+      "sha256": "fccd85853d3c6fe3ac28885897d740518d90f96819523238ec28f0b6b23d060c"
+    },
+    {
+      "path": "broker/test_host.py",
+      "sha256": "bc2517fbc61e230862fcdb04d3fab63fef9a62827a804bf629afa808e0d10414"
     },
     {
       "path": "broker/test_install.py",
-      "sha256": "abdaf1d6654cf6088bdf12729aae1c7c81aab2ac7964738da940d9008571381f"
+      "sha256": "06078a8e8c4f4b96512ffb02ba42acccf0ca783718a3506ad2f6b46d5a1fd179"
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "aa080e6d724dd0c720e6e0c66b96d9e3a9130fe38d26dc764e2456c1717b943a"
+      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
+    },
+    {
+      "path": "crates/mnx-broker/Cargo.toml",
+      "sha256": "2f9ee48d35dcce221ac1daf041c1525e5fd823d3cde7cafd2d48d857945d1195"
+    },
+    {
+      "path": "crates/mnx-broker/src/lib.rs",
+      "sha256": "88ba9135fc1f373ce390fce15a6c17c5c74289b345ab521ad051bac0803c1f5a"
+    },
+    {
+      "path": "crates/mnx-contracts/Cargo.toml",
+      "sha256": "09916453642fe7b8740c4180bb5d8910a51385364404d5ae242d75ef6b2a2daf"
+    },
+    {
+      "path": "crates/mnx-contracts/src/lib.rs",
+      "sha256": "102fbe6e4b5da8d3ba862fa1cf10bc53a607b1960373c66d519361ffac9f3f4d"
+    },
+    {
+      "path": "crates/mnx-harness/Cargo.toml",
+      "sha256": "07d4bb35b9337453e6a875a58f02000cf68d2f644f4a73315b32719d34482ca1"
+    },
+    {
+      "path": "crates/mnx-harness/src/lib.rs",
+      "sha256": "29b65d7f7b487fc4558989c3ebe01d7229f4b61102ed32efc68dde301efcf232"
+    },
+    {
+      "path": "crates/mnx-harness/src/main.rs",
+      "sha256": "c1e7482277704417f71e78fa7b04b01ef66a50c0c5b1e3ac158c8f8eb52dbaad"
     },
     {
       "path": "docs/ACCEPTANCE.md",
@@ -87,16 +131,24 @@
       "sha256": "37e34f71179d0bbdcaff7952fc7fd94d289ccd2791e1c9a0cf8125de43656ae9"
     },
     {
+      "path": "docs/COMPACT_MEMORY.md",
+      "sha256": "ce87cb405eaad984d4370fe617fc6d7ffe9db0e6c6b32ae51bd90928b0e8ccf1"
+    },
+    {
       "path": "docs/HARNESS_MODULES.md",
-      "sha256": "5d6e1b3c1371abba81d9bc043c35ebee702405e421d576bd105efa8d2638e212"
+      "sha256": "fa9c8b25a446dc19ba33a247ff0244988f4aba791f1cc7ed6fa24e70c01ff02d"
     },
     {
       "path": "docs/INSTALL.md",
       "sha256": "13befc7f47deaa928f4a20b882f23702376fdacbf09d6dd3f732d82de276e8a5"
     },
     {
+      "path": "docs/ISOLATED_HOSTS.md",
+      "sha256": "9e130bea59241d87b58dcd17f60676c2ae6fc69cd55b3eed39e9626a57b5cfba"
+    },
+    {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
-      "sha256": "5cf5ba25940851a13988b29472a354d8060d3e946bf0ca13ceda65fa91be717b"
+      "sha256": "4aa63ff018df130bce5b966feab7223927e474bf67eaa46a0c61cf0b4f9ae4d9"
     },
     {
       "path": "docs/MEMORY_WORKFLOWS.md",
@@ -116,7 +168,7 @@
     },
     {
       "path": "docs/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "docs/POSITIONING.md",
@@ -131,6 +183,10 @@
       "sha256": "5bc5ed4fd2dac9a0ea67367d1d62d2256ee85b2d51d5e61b22f2626450d08cb9"
     },
     {
+      "path": "docs/REPORT_PRESENTATION.md",
+      "sha256": "b6082d17d750431518e1eeaaa82ff2d0e595182812313a73426d4c9e67c0e9c2"
+    },
+    {
       "path": "docs/RESEARCH.md",
       "sha256": "2837a6716e32d6970b72a7da8f542e7cec4e2fb42ec82b20a0f51485e4e2b027"
     },
@@ -140,7 +196,7 @@
     },
     {
       "path": "docs/SKILLS.md",
-      "sha256": "c25540c250418cb34cf992444502b34879d28817f09385451021c1b25b3f6fd2"
+      "sha256": "c9f3c5e1da75f0a71924a1b83e0b3d6f1f38cafcb945a34a09b1ee8a1363382e"
     },
     {
       "path": "docs/VECTOR_TRANSLATION.md",
@@ -164,7 +220,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "55e55635c63882fbb67e06f2dcb3d5e7825b1f8aea6a763f4fb805d4cb98d308"
+      "sha256": "b806bffb0b1c4e3d9735486db40fe13ab5095e3063c6d5e3b195c1d74373e396"
     },
     {
       "path": "profiles/multinex.md",
@@ -191,12 +247,20 @@
       "sha256": "2fa42ec9b27360233f24121fe5122fb9822277a5dcf01bf3c8d12bea2a2fbda8"
     },
     {
+      "path": "skills/mnx-accords-governance/SKILL.md",
+      "sha256": "c034dc09ccf35ce0d1be6f7fbc51c077b7e61fc22fc955e10e40028bc1d9928b"
+    },
+    {
+      "path": "skills/mnx-accords-governance/references/REPORT_PRESENTATION.md",
+      "sha256": "b6082d17d750431518e1eeaaa82ff2d0e595182812313a73426d4c9e67c0e9c2"
+    },
+    {
       "path": "skills/mnx-decision-routing/SKILL.md",
       "sha256": "657fca132686af1ccf14dc0fa3df497b91d1c907869a76625b6c3c2e02537965"
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "aa080e6d724dd0c720e6e0c66b96d9e3a9130fe38d26dc764e2456c1717b943a"
+      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
@@ -216,7 +280,7 @@
     },
     {
       "path": "skills/mnx-harness-evaluate/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-harness-evaluate/references/RUNTIME.md",
@@ -236,11 +300,15 @@
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-checkpoint/references/RUNTIME.md",
       "sha256": "7449029327b1eeafb45abdf9d4c606c046ce59f415850bcec0de786799cd193c"
+    },
+    {
+      "path": "skills/mnx-memq-compact/SKILL.md",
+      "sha256": "5b49bee1325905a3bd75c860e8c755dcc04fb5541aae366e17fcd76ec70ea8ec"
     },
     {
       "path": "skills/mnx-memq-coordinate/SKILL.md",
@@ -256,7 +324,7 @@
     },
     {
       "path": "skills/mnx-memq-coordinate/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-coordinate/references/RUNTIME.md",
@@ -276,7 +344,7 @@
     },
     {
       "path": "skills/mnx-memq-ingest/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-ingest/references/RUNTIME.md",
@@ -296,7 +364,7 @@
     },
     {
       "path": "skills/mnx-memq-learn/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-learn/references/RUNTIME.md",
@@ -312,7 +380,7 @@
     },
     {
       "path": "skills/mnx-memq-maintain/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-maintain/references/RUNTIME.md",
@@ -328,7 +396,7 @@
     },
     {
       "path": "skills/mnx-memq-operate/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-operate/references/RUNTIME.md",
@@ -348,7 +416,7 @@
     },
     {
       "path": "skills/mnx-memq-recall/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-memq-recall/references/RUNTIME.md",
@@ -364,7 +432,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "aa080e6d724dd0c720e6e0c66b96d9e3a9130fe38d26dc764e2456c1717b943a"
+      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -372,7 +440,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-realm-federation/SKILL.md",
@@ -384,11 +452,11 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "aa080e6d724dd0c720e6e0c66b96d9e3a9130fe38d26dc764e2456c1717b943a"
+      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
     },
     {
       "path": "skills/mnx-realm-federation/references/MEMQ_TOOL_COVERAGE.md",
-      "sha256": "d56feee165bc4ffb1e64f4ecc161ef0114959325635b14bb9f74fb9ab9e87cf5"
+      "sha256": "5a93c90cc7c2055fc18d01586ee1271dd0cd3ef322965ba49a51929488168efd"
     },
     {
       "path": "skills/mnx-realm-federation/references/RUNTIME.md",
@@ -396,7 +464,7 @@
     },
     {
       "path": "src/bundle.mjs",
-      "sha256": "b947e2dab705924e6a926fb4560f52a0881f0fd4320b2fc631b6d0ce84ccba46"
+      "sha256": "0f6de60033eafc1b809aaa9247bac670fb90ccae354f78cd8f9241e8f2ffe3f2"
     },
     {
       "path": "src/codex-memq-client.mjs",
@@ -404,19 +472,19 @@
     },
     {
       "path": "src/cognitive-contracts.mjs",
-      "sha256": "2120ff2806e34f6f12281d15a7438522ad07a2c085dee5b53285679a803ed942"
+      "sha256": "3237da0bd3607a0dabaccac7ac46d432a9424adc323b08a3373500cd5988bcda"
     },
     {
       "path": "src/cognitive-contracts.schema.json",
-      "sha256": "6bba5967af9485f72db8ed39c874db57461df15206d47b79758d9f81d61e2865"
+      "sha256": "2e6888a6a56ccd5656e19fcff1fe146ef551647c53e06b0be10f2c3661cc3070"
     },
     {
       "path": "src/cognitive-session.mjs",
-      "sha256": "0ad68eee061e04cc7b029e7a74eeae7c4ebf369a81ccabad08353b6c6eb55cdb"
+      "sha256": "00b2e8a05ee64b953c942106aa8a8df2d2851e971ff4420360295986fd3ba521"
     },
     {
       "path": "src/evaluate.mjs",
-      "sha256": "ece70218df92398c1f47d0e07fb0fdf2f37589ea2107f66fda4848805f05bcde"
+      "sha256": "c312f2922c1990374d8f52b9328598885edd7f777aafd6aa0ed554dc33f3917b"
     },
     {
       "path": "src/files.mjs",
@@ -432,7 +500,7 @@
     },
     {
       "path": "src/install.mjs",
-      "sha256": "160a551f06741e7305e8abac80fc1221c2d61e7b626565a48878b3a00f8acfc6"
+      "sha256": "b020fc10f32b47449aba50327f267d72efcedb8ed2df5cdbb0f9371fde39b3ab"
     },
     {
       "path": "src/memory-plan.mjs",
@@ -456,11 +524,11 @@
     },
     {
       "path": "test/cognitive-session.test.mjs",
-      "sha256": "216535d0eb70e5193bc1503c5d2be831e1e6f6131889bdcc77f03a67bfe1b54a"
+      "sha256": "01825f0838fbc8879eba1fb9669d4eda9a8d16c763387489a8000f0e01459f6c"
     },
     {
       "path": "test/evaluate.test.mjs",
-      "sha256": "3407d0d90089ec2cfdf3b898da47827b77df0a12e7fdd9a6bce98b85a8e42d13"
+      "sha256": "6bd00725d10503b421aaefd60dccb1094b64538a747bd0e111a6a58ce0e7b439"
     },
     {
       "path": "test/fixtures/cognitive-contract-fixtures.json",
@@ -484,7 +552,7 @@
     },
     {
       "path": "test/install.test.mjs",
-      "sha256": "5996175a3918edc5b45ee24385d1f325e063611db78479a1518f07a859bf7e64"
+      "sha256": "63014f9284926c888987b5ac451b7ab93408c64d7f31d5f9b7cd8e1f3843cbd6"
     },
     {
       "path": "test/memory-plan.test.mjs",
@@ -508,11 +576,11 @@
     },
     {
       "path": "tools/build-skills.mjs",
-      "sha256": "fd23e30685fc0f0984a7ebc623b5a2a9bea8fd8730081af7c697b22b1a20bfd6"
+      "sha256": "a778a8a2a9f51e8c0fc495faeae140dd77cd79bfc928046e5b456171ccec2327"
     },
     {
       "path": "tools/check-release.mjs",
-      "sha256": "69e3a8b9eeedd38882f365a26fd847397de7ae43c6e5309b94e9a74006ed2f13"
+      "sha256": "84ea62de25eb907af3c5686c92d81a28e0ae58cdbe035fc989fdc26aab01c5a4"
     },
     {
       "path": "tools/prepare-managed-hosts.mjs",
