@@ -1,6 +1,6 @@
-# Accords Sovereign Interactive Report & Tracker Standard (v2.1)
+# Accords Sovereign Interactive Report & Tracker Standard (v2.2)
 
-Version 2.1.0-mnx1.4 (Updated November 3, 2026). Applies unilaterally across Codex (`AGENTS.md`), Claude Code (`CLAUDE.md`), and Antigravity/Gemini (`GEMINI.md`).
+Version 2.2.0-mnx1.4 (Updated November 12, 2026 — token structure aligned to a `defineTheme`-shaped accent/radius/motion pattern; brand/UI package choices themselves stay out of this public package per `profiles/multinex.md`). Applies unilaterally across Codex (`AGENTS.md`), Claude Code (`CLAUDE.md`), and Antigravity/Gemini (`GEMINI.md`).
 
 When producing substantial explanations, architecture briefs, planning roadmaps, tracking files, qualification receipts, or status reports, deliver a self-contained interactive HTML report (`<!doctype html>`) governed by this standard. Keep brief conversational answers concise in chat and honor a different format whenever explicitly requested.
 
@@ -17,7 +17,7 @@ Every HTML report and tracker MUST support seamless **Dark Mode and Light Mode**
 :root {
   color-scheme: light dark;
   interpolate-size: allow-keywords;
-  /* Sovereign Neutral Surface Hierarchy (Light Mode: Ivory Paper / Dark Mode: Vengeance Obsidian) */
+  /* Sovereign Neutral Surface Hierarchy (Light Mode: Ivory Paper / Dark Mode: Astryx Obsidian) */
   --bg-canvas: light-dark(#F7F8FA, #05070B);
   --bg-elevated: light-dark(#FFFFFF, #090C11);
   --bg-card: light-dark(#FFFFFF, #0D1117);
@@ -49,6 +49,16 @@ Every HTML report and tracker MUST support seamless **Dark Mode and Light Mode**
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* defineTheme-shaped theming primitives (accent / radius+multiplier / motion fast+medium+ratio)
+     so a hand-rolled offline report and a themed app share one design language. */
+  --radius-base: 8px;
+  --radius-multiplier: 1;
+  --radius-sm: calc(var(--radius-base) * 0.5 * var(--radius-multiplier));
+  --radius-md: calc(var(--radius-base) * var(--radius-multiplier));
+  --radius-lg: calc(var(--radius-base) * 1.5 * var(--radius-multiplier));
+  --motion-fast: 120ms;
+  --motion-medium: 220ms;
+  --motion-ratio: 1.8;
 }
 html[data-theme="dark"] { color-scheme: dark; }
 html[data-theme="light"] { color-scheme: light; }
@@ -59,6 +69,8 @@ html[data-brand="indigo"]  { --brand: light-dark(#4F46E5, #A78BFA); --brand-bg: 
 
 ## 3. Visual & Structural Rules (`MUST` / `MUST NOT`)
 
+- **Theming-Pattern Alignment (`MUST`):** Token names, radius scale, and motion durations follow a `defineTheme`-shaped pattern -- a single accent derives `--brand`/`--status-*`, `radius.base`/`multiplier` drives `--radius-*`, `motion.fast`/`medium`/`ratio` drives `--motion-*` -- so a static report and a themed app share one design language and porting between them is mechanical, not a rewrite. Use `var(--motion-fast)`/`var(--motion-medium)` for hover/focus/transition durations instead of inventing ad-hoc values.
+- **MUST Verify Contrast In Both Modes, After Theming, Not Before:** once an accent/theme is actually configured, re-check text-on-background contrast separately in light mode and in dark mode -- a palette that compiles via `light-dark()` is not guaranteed to be legible in both directions. Spot-check body text (`>= 4.5:1`), large text/headings (`>= 3:1`), and secondary text against the actual background tokens in both themes. Don't assume dark mode "just works" because light mode passed, or vice versa.
 - **MUST NOT Tint Reading Surfaces:** Never flood `--bg-canvas` or `--bg-card` with dark green, navy, or saturated brand colors. All reading surfaces MUST remain neutral (`--bg-canvas`, `--bg-card`) so semantic status badges and SVG diagrams carry clear chromatic meaning in both Dark Mode and Light Mode.
 - **MUST Enforce the 6%–14% Opacity Rule:** Callouts, warning banners, and status pills MUST use translucent surface fills (`6%` to `14%` alpha via `--status-*-bg`) with `1px solid var(--status-*-bd)` borders and high-contrast text (`>= 4.5:1`). Never place opaque pastel blocks (e.g., solid yellow `#f6e0ad`) on dark surfaces.
 - **Fluid Typography & Tabular Numerals:** Use `clamp()` fluid sizing (`rem`-based, never `< 0.75rem`/`12px`), `text-wrap: balance` on headings, `text-wrap: pretty` on body prose (`max-width: 72ch`), and `font-variant-numeric: tabular-nums` on all KPIs, tables, counters, and timestamps.
