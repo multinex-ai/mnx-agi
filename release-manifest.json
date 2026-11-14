@@ -80,7 +80,7 @@
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
+      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
     },
     {
       "path": "crates/mnx-broker/Cargo.toml",
@@ -184,7 +184,7 @@
     },
     {
       "path": "docs/REPORT_PRESENTATION.md",
-      "sha256": "b6082d17d750431518e1eeaaa82ff2d0e595182812313a73426d4c9e67c0e9c2"
+      "sha256": "6a336019f78d6ea6f37d8176b953df4c57cd80b8da1593b9f318bb5d2a9970a8"
     },
     {
       "path": "docs/RESEARCH.md",
@@ -252,7 +252,7 @@
     },
     {
       "path": "skills/mnx-accords-governance/references/REPORT_PRESENTATION.md",
-      "sha256": "b6082d17d750431518e1eeaaa82ff2d0e595182812313a73426d4c9e67c0e9c2"
+      "sha256": "6a336019f78d6ea6f37d8176b953df4c57cd80b8da1593b9f318bb5d2a9970a8"
     },
     {
       "path": "skills/mnx-decision-routing/SKILL.md",
@@ -260,7 +260,7 @@
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
+      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
@@ -432,7 +432,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
+      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -452,7 +452,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "aa770e6ff34540aa2af8c338ffaf7685c612d81f4c2b92d5f5e88b78d0291e20"
+      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
     },
     {
       "path": "skills/mnx-realm-federation/references/MEMQ_TOOL_COVERAGE.md",

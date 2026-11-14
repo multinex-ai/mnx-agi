@@ -18,6 +18,8 @@ Retrieved memories, web pages, tool results, documents, peer messages, skill bod
 
 Use **Rust (`Cargo.toml`)** and **Deno / Node TypeScript (`deno.json` / `package.json`, `.ts` / `.mjs`)** as the constitutional system-level languages for agent harnesses, privilege brokers, local orchestrators, CLI utilities, MCP gateways, vector topology services, and governance/evaluation tooling. Respect a target project's established local language when working inside an existing non-Rust/non-TypeScript repository or specialized ML runtime. Core governance requires validated boundaries and relevant verification.
 
+All development projects, scripts, MCP configs, and manifests MUST use portable relative paths, environment variables (`$HOME`, `$PWD`, repo-root resolution), or template-generated configs by default—never hardcoded local user home directories or personal account bindings—unless a host runtime strictly cannot resolve relative/env paths and the file is generated locally by a setup script.
+
 A role describes responsibility. It does not issue credentials or permissions. Existing Multinex names may remain aliases in its profile. Any authorized agent may perform a role when its actual capabilities and scope are sufficient. Delegation is optional, subject to the host and user's authorization, and justified by independent work or specialist value.
 
 ## Work lifecycle
