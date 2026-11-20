@@ -1,0 +1,5 @@
+# target <name> <path> [skip=BLOCK,BLOCK]
+# Paths starting with ~/ expand from $HOME; others are relative to where you run the command.
+target codex live/AGENTS.md
+target claude live/CLAUDE.md
+target gemini live/GEMINI.md skip=OWNER

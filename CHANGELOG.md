@@ -1,5 +1,12 @@
 # Changelog
 
+## MARS and mnx-sync
+
+- Add `mars/`: a bounded PERCEIVE, PLAN, EXECUTE, REFLECT loop, a context slicer and a dependency-aware scheduler, with tests.
+- Add an enforced agent boundary in `mars/src/visa`: signed audience-bound permits with proof of possession, replay protection, scoped grants, a separate gate, a hash-chained audit log and a sandbox launcher whose runtime permissions allow only the gate.
+- Add `mars/mnx-sync`: a dependency-free Rust tool that renders one rules source into `AGENTS.md`, `CLAUDE.md` and `GEMINI.md`, with backups, receipts and drift detection.
+- Document the design and its limits in `docs/MARS.md` and `docs/AGENT_BOUNDARY.md`.
+
 ## First-run configuration
 
 - Add preview-first setup, explicit Accord adoption and private local preferences with no credential collection or remote calls.

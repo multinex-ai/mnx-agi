@@ -1,0 +1,10 @@
+[package]
+name = "mnx-sync"
+version = "0.1.0"
+edition = "2021"
+description = "One source of truth for agent rules: renders AGENTS.md, CLAUDE.md and GEMINI.md and links shared skills."
+license = "Apache-2.0"
+repository = "https://github.com/multinex-ai/mnx-agi"
+publish = false
+
+[dependencies]
