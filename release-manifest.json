@@ -4,7 +4,7 @@
   "files": [
     {
       "path": ".github/workflows/validate.yml",
-      "sha256": "6cbb52cdfa6aaf21f418a5282e992c49fa029d3bc93d177deb1e2965419a21dd"
+      "sha256": "1d9e6aca51eabd714a0cd1296d2772069b3af9820d4155e6dd24c05cac3339a2"
     },
     {
       "path": ".gitignore",
@@ -12,7 +12,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "9f31fe2345e0bd4709dbeb02fbbb9675040895c8a7b13124536369e9fc7194d5"
+      "sha256": "03ffd3a7132cec9a6b86b7fd73ee50a5966cec2b55e3860a7e3b64325225491e"
     },
     {
       "path": "LICENSE",
@@ -20,7 +20,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "d760bcb6938322365e82b7de9d692f858188f856c55915b79de304358346e148"
+      "sha256": "26dc3ec7eafde8b0258363b47aabc214ba0695382c53553be00f44273b5eb15e"
     },
     {
       "path": "SECURITY.md",
@@ -71,6 +71,10 @@
       "sha256": "e905b8e6bd6bcd72432c59274e3c0ea87815b2ac81d4cddb102e7aa30e0ed561"
     },
     {
+      "path": "docs/AGENT_BOUNDARY.md",
+      "sha256": "f7a51cce1e7f6e1d7abf9b2974b64a5b3061db6e9ebfc4d07785c9a18a62a1dc"
+    },
+    {
       "path": "docs/ARCHITECTURE.md",
       "sha256": "2ac44c5ebdff4eefc4b64cfd0a29fa6d79abed55f38da88885b9ca5449c02b8f"
     },
@@ -93,6 +97,10 @@
     {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
       "sha256": "f4cd13dbed6a22c5df50a1e3b5e2481c8a27bfe171077bcf393a4f2030f6d933"
+    },
+    {
+      "path": "docs/MARS.md",
+      "sha256": "fa9f94a8b5b5b96c2b4cd9b631db1983802ea9e054c5126bca78a6f20936dc85"
     },
     {
       "path": "docs/MEMORY_WORKFLOWS.md",
@@ -161,6 +169,174 @@
     {
       "path": "examples/team.realm.json",
       "sha256": "eec4071d372ee1346dce96cd1c35923417f9193f77fc617644230a84be09063a"
+    },
+    {
+      "path": "mars/LICENSE-MIT",
+      "sha256": "27ce1bf5b2843a4594aee897c38fd5494cfb8b5434c80b9a60d1ac264308757b"
+    },
+    {
+      "path": "mars/README.md",
+      "sha256": "62e14fcea65fa41c7fdec7437974d9f167b1c00d5e41200ded388ca8ade92a2b"
+    },
+    {
+      "path": "mars/deno.json",
+      "sha256": "73c6855a537f67f262c2c88e65f61e9720c33ec6b926fe16ec69698f9da88317"
+    },
+    {
+      "path": "mars/deno.lock",
+      "sha256": "18f0ec8d768b48e58ba63d41712ad6c33a7a323b5a65fa09d324de8eecb97664"
+    },
+    {
+      "path": "mars/mnx-sync/.gitignore",
+      "sha256": "c199009c9d75c329b145c86e1c90d0b9f9639597ae89588b95a3e6942cc59ff2"
+    },
+    {
+      "path": "mars/mnx-sync/Cargo.lock",
+      "sha256": "57088df60c5a7e5b3b3892dd723cc3e2a3b53607f2d56d6a91ad5eecc47994dc"
+    },
+    {
+      "path": "mars/mnx-sync/Cargo.toml",
+      "sha256": "95f39c1e3e0586a0268b9ac68161999efd18fb66289c1b27df9d5b364d619e43"
+    },
+    {
+      "path": "mars/mnx-sync/README.md",
+      "sha256": "a48de11363a10fa59aebdbb20cc5fbd068513a1767101f2c7108e29ce779dae6"
+    },
+    {
+      "path": "mars/mnx-sync/example/.gitignore",
+      "sha256": "96cca779b7c205874026501320ddfd36d9617fab3b515a97345a98ac7085f11f"
+    },
+    {
+      "path": "mars/mnx-sync/example/rules/accords/STANDARDS.md",
+      "sha256": "342c062bd206864194773828f5b0a7d2cbfa14de50fdd761576bf90d98457d28"
+    },
+    {
+      "path": "mars/mnx-sync/example/rules/constitution/CORE.md",
+      "sha256": "ca5b3aeb6770e5fe0d2be7cfd89c86ccde937f95b0d5d98b66ab545f498c1816"
+    },
+    {
+      "path": "mars/mnx-sync/example/rules/manifest.txt",
+      "sha256": "974656974ab6ec579eb2b9a12aa0f8cfc1a2bb37a8ff7f60219faf52a808a7f3"
+    },
+    {
+      "path": "mars/mnx-sync/example/rules/profile/OWNER.md",
+      "sha256": "a4c71006101de07a0f1fd631266f2dd83712a872d3adc1f04e1dac2a7db5796d"
+    },
+    {
+      "path": "mars/mnx-sync/example/rules/template.md",
+      "sha256": "c8bd7102e000104aa576e167f46809064cded2c28cf78747bcd249f79fac8f4a"
+    },
+    {
+      "path": "mars/mnx-sync/rustfmt.toml",
+      "sha256": "e090969e99df9360705680cc0097cfaddae10c22dc2e01470592cf3b9787fd36"
+    },
+    {
+      "path": "mars/mnx-sync/src/main.rs",
+      "sha256": "122a3a6554883ed96dffedaaf7be9ab43a3431d979c7d386177f0d84980b86f6"
+    },
+    {
+      "path": "mars/mnx-sync/src/model.rs",
+      "sha256": "fa527dba453a4068b3615ca1412b8196a48b4746a90ffb95684f11db4e8d6520"
+    },
+    {
+      "path": "mars/mnx-sync/src/sha256.rs",
+      "sha256": "02007eea77f21c7d9ea04047bb9d5fa852eaeb7f964e73299c51cd06c7f941f5"
+    },
+    {
+      "path": "mars/mnx-sync/src/skills.rs",
+      "sha256": "ce81a629ffefc259ed6aa69404a3c591cb6f87513ce40d325abdc08b6673b6fc"
+    },
+    {
+      "path": "mars/mnx-sync/tests/cli.rs",
+      "sha256": "fc56090af72776e4bbd1d7c022cfb4042082f36d95bcb25819700b24a8ab1ab7"
+    },
+    {
+      "path": "mars/src/context_slice.ts",
+      "sha256": "90dedd79c2778778f4905cef3962233ffba414e47fa00a08ca0778d3239a2198"
+    },
+    {
+      "path": "mars/src/context_slice_test.ts",
+      "sha256": "d0d274cdfddab8ff4a890649df5196ee7a8bae543a3c76f9ac1c505577fffb3e"
+    },
+    {
+      "path": "mars/src/fleet.ts",
+      "sha256": "5b39c089579c9d9b5167d4e007045b4c78c8876bcab301125b6f09fe5c646c9d"
+    },
+    {
+      "path": "mars/src/fleet_test.ts",
+      "sha256": "cb8d78976b1b8e09a4e751fdcd780976c9feaa867f19d38c7b70d5c7e760c584"
+    },
+    {
+      "path": "mars/src/log.ts",
+      "sha256": "116971ca8c01e71ddfa3f114437dcf6c719cd7eab81bec10532a08aac9e2f34b"
+    },
+    {
+      "path": "mars/src/loop.ts",
+      "sha256": "f4e93d64e6753f6f290b81ad446b9e5cb6c26e0dd398315690ee3baad628ba6a"
+    },
+    {
+      "path": "mars/src/loop_test.ts",
+      "sha256": "c2a5ea0db03c4f26250b131fd5cfec5bfc2e0159e3bcb7b07d52024fce2c52aa"
+    },
+    {
+      "path": "mars/src/visa/audit.ts",
+      "sha256": "5a18c89d59458b699cdb6bb94bb7719ccec48d36d94c3e3be6f33f1cee570c68"
+    },
+    {
+      "path": "mars/src/visa/client.ts",
+      "sha256": "67aef54d62a69e0303d3c4fe7bec5a48d80ea0f5e30afa7931bddb1a9ff10a29"
+    },
+    {
+      "path": "mars/src/visa/encoding.ts",
+      "sha256": "7f32ab46b9b137c416b56b625c9c210e683287b50f6358ae8b8c722639e4ade4"
+    },
+    {
+      "path": "mars/src/visa/errors.ts",
+      "sha256": "0a236c1a07b8c556880a51f67d7da6e76b0820d61cad4725c7f2914555bf3c50"
+    },
+    {
+      "path": "mars/src/visa/gate.ts",
+      "sha256": "d5b754b119a5c28a399c797aa8eb00e27e3614375bf2b273a9c396116959fcd0"
+    },
+    {
+      "path": "mars/src/visa/gate_test.ts",
+      "sha256": "2be1049df4d21edc1dda8f5d0129182bf56b2e26ac65107c98736bcf1915b757"
+    },
+    {
+      "path": "mars/src/visa/keys.ts",
+      "sha256": "56d6c7be79d07da0766392dc645c3ac598b8e8f26e9fa2a3eb03ef44d762f7b9"
+    },
+    {
+      "path": "mars/src/visa/mod.ts",
+      "sha256": "3968996147520f09ba162e5009d71518420e338d39b0c8fbea6272e3cd896c96"
+    },
+    {
+      "path": "mars/src/visa/sandbox.ts",
+      "sha256": "e5fc1cce87a792ccaf80530c5f5b7d9e96d488a2c5a5c99489b20da1b92ccff1"
+    },
+    {
+      "path": "mars/src/visa/sandbox_test.ts",
+      "sha256": "e0b06b4fcd1c5ecb42c1fe389a23914fba162ac6e1f148f5f952610152ccd647"
+    },
+    {
+      "path": "mars/src/visa/server.ts",
+      "sha256": "e578d2027c2a925befccccc3893713e302fa222a09b148639a1720702cc99c88"
+    },
+    {
+      "path": "mars/src/visa/test_support.ts",
+      "sha256": "8074dd919c5d485607114ad7bd78b18bb9d425955899aec825fbcde35199154c"
+    },
+    {
+      "path": "mars/src/visa/token.ts",
+      "sha256": "73b6168f0ba994032045abbeab041c7653ced0aff76fee1e88ccf3760628b98a"
+    },
+    {
+      "path": "mars/tests/fixtures/agent_hang.ts",
+      "sha256": "adb67652d40c467dee31fa2ca078dea69a1d5a5c9e1ed302936bfa4c8a2adb25"
+    },
+    {
+      "path": "mars/tests/fixtures/agent_probe.ts",
+      "sha256": "e8e28e97ca769a21e42c47df7a04cccba2f2b13e71b24e82c45cadda41e255f2"
     },
     {
       "path": "package.json",

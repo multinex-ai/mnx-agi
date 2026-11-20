@@ -23,3 +23,34 @@ jobs:
       - run: npm test
       - run: npm run check
       - run: node tools/build-skills.mjs && npm run manifest && git diff --exit-code
+  mars:
+    name: mars (deno)
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: mars
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
+        with:
+          deno-version: v2.x
+      - run: deno task fmt
+      - run: deno task lint
+      - run: deno task check
+      - run: deno task test
+  mnx-sync:
+    name: mars/mnx-sync (rust)
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: mars/mnx-sync
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - run: cargo fmt --check
+      - run: cargo test --locked

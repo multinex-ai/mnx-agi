@@ -129,6 +129,14 @@ The experimental [MemQ host integration candidate](docs/MEMQ_ENFORCEMENT_CANDIDA
 
 [Managed host enforcement](docs/MANAGED_HOST_ENFORCEMENT.md) describes the prepared Codex/Claude policies, independent account tests, and the credential-broker and OS boundaries required before activation. Policy generation alone is not enforcement.
 
+## MARS: bounded loops, a real boundary, and rules sync
+
+[`mars/`](mars/README.md) holds small, tested pieces that sit around the harness:
+
+- **A work loop that always closes.** PERCEIVE, PLAN, EXECUTE and REFLECT with a hard attempt bound; loops nest. See [MARS and the MNX-AGI work cycle](docs/MARS.md).
+- **A boundary that is enforced.** Signed, short-lived permits are checked by a separate gate, and the agent runs in a sandbox that can reach only that gate. The test suite attacks it with a hostile agent. See [Agent boundary](docs/AGENT_BOUNDARY.md).
+- **One rules source for every agent.** [`mnx-sync`](mars/mnx-sync/README.md) renders `AGENTS.md`, `CLAUDE.md` and `GEMINI.md` from one template and detects drift.
+
 ## Develop and verify
 
 ```sh
