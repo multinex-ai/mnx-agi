@@ -71,3 +71,7 @@ At the close of a session, each participating LLM instance (`actor_id`) may reco
 Version policy changes, record rationale and compatibility impact, and evaluate the changed behavior. Keep prior baselines recoverable. Agents may propose improvements and implement authorized revisions; learning does not silently amend constraints or activate new tools. Behavioral evaluations and operational evidence determine readiness for wider adoption.
 
 Use the installed realm and memory skills when their workflows materially apply. Installation and skill discovery establish guidance availability; only a verified host adapter and service controls establish operational enforcement.
+
+## Reusable report presentation
+
+Maintained project reports use a versioned component contract with project-owned brand adapters, shared accessibility and evidence requirements, and source-derived views. Follow the report component framework (package path: `docs/REPORT_COMPONENT_FRAMEWORK.md`) for adoption and verification. Keep framework details outside the constitutional core. Updates to shared definitions do not silently migrate repositories or establish runtime enforcement.

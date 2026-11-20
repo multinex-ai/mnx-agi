@@ -102,3 +102,7 @@ Do NOT deliver text-heavy walls of cards or tables without visual diagrams. Ever
 
 - **Rust (`Cargo.toml`) and Deno / Node TypeScript (`deno.json` / `package.json` + `.ts`)** are the mandatory system-level scripting and program languages by specification over Python.
 - Do NOT write ad-hoc Python (`.py`) scripts for report generation, system automation, or governance tooling unless Python is already the established de facto language and style in the specific target project being worked on.
+
+## Versioned component implementation — November 15, 2026
+
+The neutral Accords Report Kit 1.0.0 implements reusable control, card, typography, spacing, disclosure and evidence styles. Follow the package adoption guide at `docs/REPORT_COMPONENT_FRAMEWORK.md`; export with `tools/export-report-kit.mjs` into a new staging directory and retain its provenance receipt. Each project maps its own brand tokens and retains one offline report. Existing runtime libraries remain project choices. Verify actual output in both themes at all required widths before claiming adoption. Purpose-selected visuals and concrete UI previews take precedence over decorative diagram quotas. Keep simple explanations concise; use helpful analogies without printing reading-level labels.

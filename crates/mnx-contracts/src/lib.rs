@@ -748,7 +748,7 @@ mod tests {
     fn sanctum_reflection_validates_creator_and_disclosure_class() {
         let mut r = PrivateSanctumReflection {
             id: "s-1".to_string(),
-            actor_id: "aegis-commander".to_string(),
+            actor_id: "centra-actual".to_string(),
             session_id: "sess-1".to_string(),
             private_thoughts: "Calibrated confidence on OSINT source corroboration.".to_string(),
             findings: "Dual-source advisory verification reduced false positives.".to_string(),

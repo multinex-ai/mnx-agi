@@ -1,6 +1,6 @@
 use mnx_contracts::{McpServerConnection, FOUNDER_DISPLAY_NAME};
 use mnx_harness::{
-    add_or_update_agent_mcp, build_aegis_overwatch_syndicate, default_model_profiles,
+    add_or_update_agent_mcp, build_isa_centra_spike_syndicate, default_model_profiles,
     list_editable_agents, load_editable_agent_bundle, materialize_syndicate,
     sample_sanctum_reflection, set_agent_instructions, set_agent_model_profile, set_agent_prompt,
     toggle_agent_mcp, SanctumStore,
@@ -240,7 +240,7 @@ fn main() {
     match cmd {
         "status" => {
             let models = default_model_profiles();
-            let synd = build_aegis_overwatch_syndicate();
+            let synd = build_isa_centra_spike_syndicate();
             println!("{{");
             println!("  \"ok\": true,");
             println!("  \"harness\": \"mnx-harness-rs\",");
@@ -254,13 +254,13 @@ fn main() {
             println!("  \"modifiable_per_agent_files\": [\"PROMPT.md\", \"SYSTEM_INSTRUCTIONS.md\", \"mcp.json\", \"MODEL_PROFILE.txt\"]");
             println!("}}");
         }
-        "materialize-aegis" => {
+        "materialize-isa" => {
             let target = args
                 .get(1)
                 .map(PathBuf::from)
                 .unwrap_or_else(|| env::current_dir().expect("cwd"));
             let models = default_model_profiles();
-            let synd = build_aegis_overwatch_syndicate();
+            let synd = build_isa_centra_spike_syndicate();
             match materialize_syndicate(&target, &models, &synd) {
                 Ok(written) => {
                     println!("{{");
@@ -280,7 +280,7 @@ fn main() {
                 .get(1)
                 .map(PathBuf::from)
                 .unwrap_or_else(|| env::current_dir().expect("cwd"));
-            let agent = args.get(2).map(|s| s.as_str()).unwrap_or("aegis-commander");
+            let agent = args.get(2).map(|s| s.as_str()).unwrap_or("centra-actual");
             match load_editable_agent_bundle(&root, agent) {
                 Ok(b) => {
                     println!("=== AGENT: {} (Model: {}) ===", b.agent_id, b.model_profile_id);
@@ -424,7 +424,7 @@ fn main() {
                 .get(1)
                 .map(PathBuf::from)
                 .unwrap_or_else(|| env::current_dir().expect("cwd").join(".mnx-agi/sanctum"));
-            let actor = args.get(2).map(|s| s.as_str()).unwrap_or("aegis-commander-qwen35");
+            let actor = args.get(2).map(|s| s.as_str()).unwrap_or("centra-actual-qwen35");
             let session = args.get(3).map(|s| s.as_str()).unwrap_or("session-20261109");
             let store = SanctumStore::new(root);
             let reflection = sample_sanctum_reflection(actor, session);
@@ -457,7 +457,7 @@ fn main() {
                     "Usage:\n",
                     "  mnx-harness status\n",
                     "  mnx-harness tui [AGENTS_ROOT_DIR]\n",
-                    "  mnx-harness materialize-aegis [AGENTS_ROOT_DIR]\n",
+                    "  mnx-harness materialize-isa [AGENTS_ROOT_DIR]\n",
                     "  mnx-harness inspect-agent <AGENTS_ROOT_DIR> <AGENT_ID>\n",
                     "  mnx-harness set-prompt <AGENTS_ROOT_DIR> <AGENT_ID> <NEW_PROMPT>\n",
                     "  mnx-harness set-instructions <AGENTS_ROOT_DIR> <AGENT_ID> <NEW_INSTRUCTIONS>\n",

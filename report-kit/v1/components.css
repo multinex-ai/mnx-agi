@@ -1,0 +1,59 @@
+/* Accords Report Kit 1.0.0. Brand-neutral; inline after host styles. */
+:root {
+  --rpt-space-1:.25rem; --rpt-space-2:.5rem; --rpt-space-3:.75rem;
+  --rpt-space-4:1rem; --rpt-space-6:1.5rem; --rpt-space-8:2rem;
+  --rpt-radius-control:.625rem; --rpt-radius-card:1rem;
+  --rpt-font:var(--font-sans,system-ui,sans-serif);
+  --rpt-display:var(--font-display,var(--rpt-font));
+  --rpt-accent:var(--brand); --rpt-focus:var(--brand);
+  --rpt-shadow:0 1px 2px light-dark(rgb(15 23 42 / .04),rgb(0 0 0 / .2));
+}
+body {font-family:var(--rpt-font);font-size:clamp(.9375rem,.9rem + .1vw,1rem);line-height:1.6}
+h1,h2,h3,h4 {text-wrap:balance} p {text-wrap:pretty}
+button,input,select,textarea {font:inherit}
+button,select,input:not([type=checkbox]):not([type=radio]) {
+  min-height:44px;border:1px solid var(--border-strong);border-radius:var(--rpt-radius-control);
+  background:var(--bg-card);color:var(--text-1);padding:.625rem .875rem;
+}
+button {font-weight:550;cursor:pointer;box-shadow:var(--rpt-shadow)}
+button:hover:not(:disabled) {border-color:var(--rpt-accent);background:var(--bg-interactive)}
+button[aria-pressed=true],button[aria-selected=true] {background:var(--brand-bg);border-color:var(--brand);color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+button:disabled {cursor:not-allowed;box-shadow:none;color:var(--text-2);border-style:dashed}
+:where(a,button,input,select,summary,[tabindex]):focus-visible {outline:3px solid var(--rpt-focus);outline-offset:3px}
+input::placeholder,textarea::placeholder {color:var(--text-2);opacity:1}
+:where(.cell,.milestone,.report-hero,.fl-workspace,.rpt-card) {
+  border:1px solid var(--border-subtle);border-radius:var(--rpt-radius-card);background:var(--bg-card);box-shadow:var(--rpt-shadow);
+}
+:where(.cell,.milestone,.rpt-card) {padding:var(--rpt-space-6)}
+.report-hero {padding:clamp(1.25rem,3vw,2rem);gap:var(--rpt-space-8)}
+.report-hero h1 {font-family:var(--rpt-display);font-size:clamp(1.875rem,2.4vw,2.5rem);line-height:1.15}
+.hero-kpis {gap:var(--rpt-space-4)}
+.hero-kpis b {font-size:1.5rem;font-weight:650;letter-spacing:-.025em}
+:where(.badge,rpt-badge) {display:inline-flex;align-items:center;gap:.375rem;font-size:.75rem;font-weight:600;line-height:1.5;padding:.25rem .5rem;border-radius:.375rem;max-width:100%;overflow-wrap:anywhere}
+:where(table,.metric,.hero-kpis,time) {font-variant-numeric:tabular-nums}
+:where(th,td) {padding:.75rem 1rem;text-align:left;vertical-align:top}
+th {font-size:.75rem;font-weight:650;color:var(--text-2);background:var(--bg-interactive)}
+:where(details.risk,.rpt-body>details) {border-radius:.75rem;border:1px solid var(--border-subtle);background:var(--bg-card);padding:.875rem 1rem}
+summary {min-height:44px;align-content:center;cursor:pointer;font-weight:550}
+summary::marker {color:var(--text-2)}
+.report-rail nav a {border:1px solid transparent;border-radius:var(--rpt-radius-control)}
+.report-rail nav a[aria-current] {border-color:var(--brand-bd);font-weight:600}
+.fl-workspace button {border-radius:var(--rpt-radius-control);font-size:.875rem}
+.fl-workspace-header {background:var(--bg-card);padding:var(--rpt-space-6)}
+.fl-workspace-header h2 {font-size:1.125rem!important;font-weight:650}
+.fl-reader {line-height:1.7}.fl-reader h3 {font-size:1.25rem}
+.fl-map-toolbar {background:var(--bg-card);gap:var(--rpt-space-2)}
+.fl-folders {background:var(--bg-card)}
+.board-lane {border:1px solid var(--border-subtle);border-radius:var(--rpt-radius-card);padding:var(--rpt-space-4)}
+.board-card {border-radius:.75rem;padding:var(--rpt-space-4)}
+.rpt-specimens {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:var(--rpt-space-4);margin:var(--rpt-space-6) 0;grid-column:1/-1}
+.rpt-specimens h3 {margin:0 0 .75rem}.rpt-specimens p {font-size:.875rem;color:var(--text-2)}
+.rpt-specimen-actions {display:flex;flex-wrap:wrap;gap:.5rem}
+.rpt-swatch {display:inline-block;width:1rem;height:1rem;border:1px solid var(--border-strong);border-radius:50%;vertical-align:middle;margin-right:.5rem}
+.rpt-caption {font-size:.75rem;color:var(--text-2)}
+body.compact {--rpt-space-6:1rem;--rpt-space-8:1.5rem}
+@media(prefers-reduced-motion:no-preference) {
+ button:active:not(:disabled) {transform:translateY(1px)}
+ button {transition:transform 140ms ease,opacity 140ms ease}
+}
+@media print {button{box-shadow:none}.rpt-specimens{display:block}.rpt-card{break-inside:avoid;margin-bottom:1rem}*{box-shadow:none!important}}

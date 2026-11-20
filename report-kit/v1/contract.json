@@ -1,0 +1,14 @@
+{
+  "name": "Accords Report Kit",
+  "version": "1.0.0",
+  "status": "local-candidate",
+  "runtime": "standards-first CSS and semantic HTML; existing project interactions retained",
+  "requiredThemeTokens": ["--bg-canvas", "--bg-card", "--bg-interactive", "--text-1", "--text-2", "--border-subtle", "--border-strong", "--brand", "--brand-bg", "--brand-bd", "--font-sans"],
+  "optionalThemeTokens": ["--font-display"],
+  "sections": ["top", "inception", "research", "system", "design", "walk", "delivery", "verify", "gtm", "operate", "register", "decide", "log"],
+  "viewports": [360, 768, 1280, 1920],
+  "themes": ["light", "dark"],
+  "minimumTargetPixels": 44,
+  "offline": true,
+  "brandAssetsIncluded": false
+}

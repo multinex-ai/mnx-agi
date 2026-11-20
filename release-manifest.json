@@ -80,7 +80,7 @@
     },
     {
       "path": "constitution/CORE.md",
-      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
+      "sha256": "41ae56dc8f92a755a7d700366f7e8007ebab44bb7b3575973188f794596eb31c"
     },
     {
       "path": "crates/mnx-broker/Cargo.toml",
@@ -147,6 +147,10 @@
       "sha256": "9e130bea59241d87b58dcd17f60676c2ae6fc69cd55b3eed39e9626a57b5cfba"
     },
     {
+      "path": "docs/LIVING_REALM_REPORTS.md",
+      "sha256": "82bd995cd6e590603614f8a44a079b731df69f0855a3d547f9ce40ad16cf4c79"
+    },
+    {
       "path": "docs/MANAGED_HOST_ENFORCEMENT.md",
       "sha256": "4aa63ff018df130bce5b966feab7223927e474bf67eaa46a0c61cf0b4f9ae4d9"
     },
@@ -183,8 +187,12 @@
       "sha256": "5bc5ed4fd2dac9a0ea67367d1d62d2256ee85b2d51d5e61b22f2626450d08cb9"
     },
     {
+      "path": "docs/REPORT_COMPONENT_FRAMEWORK.md",
+      "sha256": "6e0a7ef0362da9f9f2c65ec8a1c12bf9f17db8458ca260c4d076ca9a8826e1ea"
+    },
+    {
       "path": "docs/REPORT_PRESENTATION.md",
-      "sha256": "6a336019f78d6ea6f37d8176b953df4c57cd80b8da1593b9f318bb5d2a9970a8"
+      "sha256": "b3e447a41e293e21fa4c6b1acf25aab683d6e1cf597a171c7096cbd5c9f53124"
     },
     {
       "path": "docs/RESEARCH.md",
@@ -228,7 +236,15 @@
     },
     {
       "path": "profiles/portable.md",
-      "sha256": "829fe6c7a478ca4cd7e89914060d82d6ab647db7d3d7e2fde5f64d19d9917d97"
+      "sha256": "f9a0f92d2bdd53644ecadd034433c8a34861dc458a1a6dadf5dcb455c5a9fe1f"
+    },
+    {
+      "path": "report-kit/v1/components.css",
+      "sha256": "78b446da780e42db82979507e486002a23195e50ffd9ee865892bcdbb413e621"
+    },
+    {
+      "path": "report-kit/v1/contract.json",
+      "sha256": "ab00f709ab06cef22bed2c5a76abfd0d84b475d86d765be26b09f0747f61fcd2"
     },
     {
       "path": "schemas/cognitive-state.schema.json",
@@ -252,7 +268,7 @@
     },
     {
       "path": "skills/mnx-accords-governance/references/REPORT_PRESENTATION.md",
-      "sha256": "6a336019f78d6ea6f37d8176b953df4c57cd80b8da1593b9f318bb5d2a9970a8"
+      "sha256": "b3e447a41e293e21fa4c6b1acf25aab683d6e1cf597a171c7096cbd5c9f53124"
     },
     {
       "path": "skills/mnx-decision-routing/SKILL.md",
@@ -260,7 +276,7 @@
     },
     {
       "path": "skills/mnx-decision-routing/references/CORE.md",
-      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
+      "sha256": "41ae56dc8f92a755a7d700366f7e8007ebab44bb7b3575973188f794596eb31c"
     },
     {
       "path": "skills/mnx-decision-routing/references/RESEARCH.md",
@@ -432,7 +448,7 @@
     },
     {
       "path": "skills/mnx-realm-context/references/CORE.md",
-      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
+      "sha256": "41ae56dc8f92a755a7d700366f7e8007ebab44bb7b3575973188f794596eb31c"
     },
     {
       "path": "skills/mnx-realm-context/references/MEMQ_CONTRACT.md",
@@ -452,7 +468,7 @@
     },
     {
       "path": "skills/mnx-realm-federation/references/CORE.md",
-      "sha256": "f00dafdee6198a1579485f2dd7f2a6fab20338c750cf07e2428936173db56d92"
+      "sha256": "41ae56dc8f92a755a7d700366f7e8007ebab44bb7b3575973188f794596eb31c"
     },
     {
       "path": "skills/mnx-realm-federation/references/MEMQ_TOOL_COVERAGE.md",
@@ -567,6 +583,10 @@
       "sha256": "3c96c6c2ca97aee6c80f2a281fec7cfdae751687e0d7abacabf9e91be74f482b"
     },
     {
+      "path": "test/report-kit.test.mjs",
+      "sha256": "8052fdfabaec2530813cdacd15d8bc2212e2cf43aef2bff9fe4946bed9d99763"
+    },
+    {
       "path": "test/runtime.test.mjs",
       "sha256": "cd3255b0a4ce7f1ae1053671b707b752800b5b84681bb4450569a8fcfc27f6ef"
     },
@@ -581,6 +601,10 @@
     {
       "path": "tools/check-release.mjs",
       "sha256": "84ea62de25eb907af3c5686c92d81a28e0ae58cdbe035fc989fdc26aab01c5a4"
+    },
+    {
+      "path": "tools/export-report-kit.mjs",
+      "sha256": "f39cc7029ab2c7917547adf7377c70533b0bd3b1dd34873a5ded2e560694e067"
     },
     {
       "path": "tools/prepare-managed-hosts.mjs",
